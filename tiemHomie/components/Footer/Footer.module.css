@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&family=Poppins&display=swap');
+.bg{
+    background-color: #F79C43;
+   
+}
+
+.link_img .imgg img{
+  width: auto;
+  height: fit-content;
+  align-items: center;
+  justify-content: center;
+  margin-left:7%;
+}
+
+.textt p {
+ margin-left:2px;
+ text-align:left;
+  overflow-x: auto;
+  max-height: 7rem;
+}
+
+@media (max-width: 768px) {
+  .textt p {
+    
+   text-align: left;
+  }
+}
+.textt .shortText{
+  min-height: 112px;
+}
+.textt p{
+    font-family: 'Poppins', sans-serif;
+ 
+      
+   color: white;
+  
+    font-size:14px
+}
+.read-more-link {
+    display: inline-block;
+    color: gray;
+    cursor: pointer;
+  }
+
+.textt a{
+    font-family: 'Poppins', sans-serif;
+font-size: 14px;
+font-weight: 400;
+line-height: 21px;
+letter-spacing: 0em;
+text-align: left;
+
+}
+ 
+.textt h5{
+    font-size: 20px;
+}
+
+ .flex{
+     display: flex;
+    padding-right: 2rem;
+    align-items: center;
+    margin: space-between;
+
+ }
+
+ .flex h2{
+     text-decoration: none;
+     font-family: 'Pacifico', cursive;
+     padding-left: 2px;
+ 
+   
+
+ }
+ .flex h5{
+padding-left: 10px;
+
+}
+ .flex img{
+     
+
+width: 73px;
+height: 73px;
+top:-22px;
+ }
+ 
+ .link_img img{
+    
+    width: 339px;
+    height: 142px;
+    left: 775px;
+    top: 93px;
+     
+ }
+ .link_img li{
+    list-style-type: none;  
+ }
+
+ .text_contact{
+     align-items: none !important
+ }
+
+ .text_contact  h6{
+padding-top: 20px;
+ }
+
+ .text_contact ul{
+     padding-left: 0;
+     padding-right: 1.8rem;  
+ }
+ .contact   .link-no-decoration {
+    text-decoration: none;
+  }
+
+  .textt .middleFooter{
+      max-height: 43px;
+  }
+
+  .containSize{
+      height: 227px;
+      width: 350px;
+  }
+
+  
+  @media (max-width: 768px) and (max-height: 1024px) {
+    .responsiveText p {
+      font-size: 14px; /* Adjust the font size as needed */
+      max-height: 70px;
+      overflow: scroll;
+      padding-bottom: 1000000px;
+      
+    }
+    .responsiveText { 
+        padding: 2px;
+      border: 100px thin rgb(30, 27, 27);
+    }
+   
+  }
+.bg .textt .icon i{
+   margin-top: 2220rem;
+}

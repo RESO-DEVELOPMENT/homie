@@ -1,0 +1,22 @@
+/* shop_left.module.css */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .page-item {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    margin-right: 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    list-style-type: none; /* Remove the dot */
+  }
+  
+  .active {
+    background-color: #F79C43;
+    color: white;
+  }
+  

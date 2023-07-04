@@ -1,0 +1,21 @@
+
+
+.thead th{
+    font-family: 'DM Sans';
+font-style: normal;
+}
+
+.name{
+    color: gray;
+    text-decoration: none;
+}
+
+.remove i{
+    width: 11px;
+height: 16px;
+text-align: center;
+}
+
+.btn{
+    background-color: #F79C43;
+}

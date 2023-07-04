@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&family=Poppins&family=Roboto:wght@700&display=swap');
+ 
+.bg .head h1 {
+    font-family: Roboto;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 60px;
+    letter-spacing: 0em;
+    text-align: left;
+    
+  }
+
+  .linkUnderline {
+    color: #292B2C;
+    text-decoration: none;
+  }
+  
+  

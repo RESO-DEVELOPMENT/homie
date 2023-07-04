@@ -1,0 +1,227 @@
+/* contain 9 items */
+.containerNines {
+  justify-content: center;
+  align-items: center;
+}
+
+.containerNines .col-md-4 {
+  width: 33.33%;
+  padding: 10px;
+}
+
+/* chia bo cuc 9 items */
+.horizon {
+  height: 100%;
+}
+
+.item {
+  width: calc(43.33% - 10px);
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+/* khoang cach giua top product va slidesection */
+.topProduct {
+  margin-bottom: 5rem;
+}
+
+/* co dinh kich co cua contact address */
+.address p {
+  font-size: 12px;
+}
+
+/* edit 2 banner sale 40% */
+.leftB image {
+  margin-left: 10000px;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* 2banners */
+/* css index */
+
+/* slider */
+.buttons .prevB button {
+  position: absolute;
+  display: inline-block;
+  left: -40px;
+  top: 50%;
+  border: none;
+  color: grey;
+  font-size: 66px;  
+  line-height: 1.2;
+  transform: translateY(-50%);
+  background-color: white;
+  z-index: 1;
+}
+.buttons .leftA:hover {
+  color: #F79C43; /* Change the color when hovered */
+}
+
+.buttons .nextB button {
+  position: absolute;
+  border: none;
+  color: grey;
+  font-size: 66px;  
+  line-height: 1.2;
+
+  right: -40px;
+  display: inline-block;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+  z-index: 1;
+}
+.buttons .rightA:hover {
+  color: #F79C43; /* Change the color when hovered */
+}
+
+@media (max-width: 768px) {
+  /* Adjustments for smaller screens */
+  .buttons .prevB button {
+    left: 7px;
+  }
+
+  .buttons .nextB button {
+    right: 7px;
+  }
+}
+
+.buttons .leftA {
+  right: 25px;
+  width: 10px;
+  height: 40px;
+  border: none;
+  color: grey;
+  border-radius: 5px;
+  transition: color 0.3s;
+  font-size: 10px;
+}
+
+.buttons .rightA {
+  left: 25px;
+  width: 10px;
+  height: 40px;
+  border: none;
+  color: grey;
+  font-size: 66px;  
+  line-height: 1.2;
+  border-radius: 5px;
+  transition: color 0.3s;
+  font-size: 10px;
+}
+
+.buttonsN .prevBN button {
+  background-color: white;
+  border:  #ccc;
+}
+
+.buttonsN .nextBN button {
+  background-color: white;
+  border:  #ccc ;
+}
+
+ 
+
+.buttonsN .leftAN {
+  width: 10px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  transition: color 0.3s;
+  font-size: 10px;
+  position: relative;
+  color: gray; /* Set the default color */
+}
+
+.buttonsN .leftAN:hover {
+  color: #F79C43; /* Change the color when hovered */
+}
+
+.buttonsN .rightAN {
+  width: 10px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  transition: color 0.3s;
+  font-size: 10px;
+  position: relative;
+  color: gray; /* Set the default color */
+}
+
+.buttonsN .rightAN:hover {
+  color: #F79C43; /* Change the color when hovered */
+}
+ 
+
+.buttonsN {
+  top: -4rem;
+}
+
+@media (max-width: 400px) {
+  /* Adjustments for screens up to 375px */
+  .buttonsN {
+    top: -64px;
+    left: -1px;
+  }
+}
+
+@media (min-width: 500px) {
+  /* Adjustments for screens between 376px and 778px */
+  .buttonsN {
+    top: -71px;
+    left: 0%;
+  }
+}
+
+@media (min-width: 700px) and (max-width: 830px) {
+  /* Adjustments for screens between 700px and 830px */
+  .buttonsN {
+    top: -78px;
+    left: 0rem;
+  }
+}
+
+@media only screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) {
+  .buttonsN {
+    right: 1rem;
+    top: -32rem; /* Default value for larger screens */
+    position: fixed;
+  }
+}
+
+
+
+/* .color span{
+  border: #000 1px solid;
+} */
+.product_color_switch span {
+  height: 15px;
+  width: 15px;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 5px;
+  position: relative;
+  cursor: pointer;
+  border-radius: 100%;
+}
+
+.active{
+  border: #F79C43 4px solid;
+  margin: 1px;
+  padding: 4px;
+}
+.bannerL {
+  padding-left: 4rem;
+  white-space: nowrap;
+}
+
+.bannerR {
+  white-space: nowrap;
+
+}

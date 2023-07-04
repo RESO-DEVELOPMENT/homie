@@ -1,0 +1,112 @@
+.container {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.productImg {
+  min-height: 100px;
+  min-width: 94px;
+}
+
+ 
+.img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px; /* Adjust the height as needed */
+}
+
+.img img {
+  min-width: 90%;
+  min-height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.img1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px; /* Adjust the height as needed */
+}
+.img1 img {
+  min-height: 40%;
+  max-height: 40%;
+  /* width: fit-content;
+  height: fit-content; */
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+@media (max-width: 576px) {
+  .img img {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .img img {
+    width: 100%;
+  }
+}
+
+.product_action_box {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.product_info {
+  padding: 10px;
+}
+
+.product_title {
+  margin-bottom: 10px;
+}
+
+.product_price {
+  margin-top: 10px;
+}
+
+.on_sale {
+  font-weight: bold;
+}
+
+.pr_desc {
+  margin-top: 10px;
+}
+
+.desSize {
+  height: 43px;
+  overflow: hidden;
+}
+
+.desSize .overF p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.desSize .overF {
+  max-height: fit-content;
+}
+
+.downClass .desSize p {
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+}
+
+.downClass h6 {
+  text-decoration: none !important;
+  color: #292B2C !important;
+}
+
+.downClass .product_info .product_title a {
+  color: #292B2C !important;
+  text-decoration: none;
+}
+/* product_list */
+.overall{
+  max-height: 8rem;
+}

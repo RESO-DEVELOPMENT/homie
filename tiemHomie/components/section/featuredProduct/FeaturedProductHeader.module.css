@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&family=Poppins&display=swap');
+.titleLeft{
+  display: flex;
+height: 38px;
+width: 273px;
+justify-content: center;
+}
+
+ 
+
+.titleLeft span{
+    
+font-family: Roboto;
+font-size: 26px;
+font-weight: 700;
+line-height: 36px;
+color:  #292B2C;
+text-align: center
+
+
+
+
+
+ 
+  }
+  
+  .titleRight .redText a{   
+    color: #292B2C;  
+    font-family: Roboto;
+     
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: center;
+    
+      }
+
+   

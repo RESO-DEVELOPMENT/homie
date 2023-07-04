@@ -1,0 +1,155 @@
+.buttons .prevB button {
+    position: absolute;
+    display: inline-block;
+    left: -40px;
+    top: 50%;
+    border: none;
+    color: grey;
+    
+    line-height: 1.2;
+    transform: translateY(-50%);
+    background-color: white;
+    z-index: 1;
+  }
+  .buttons .leftA:hover {
+    color: #F79C43; /* Change the color when hovered */
+  }
+  
+  .buttons .nextB button {
+    position: absolute;
+    border: none;
+    color: grey;
+    
+    line-height: 1.2;
+  
+    right: -40px;
+    display: inline-block;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
+    z-index: 1;
+  }
+  .buttons .rightA:hover {
+    color: #F79C43; /* Change the color when hovered */
+  }
+  
+  @media (max-width: 768px) {
+    /* Adjustments for smaller screens */
+    .buttons .prevB button {
+      left: 7px;
+    }
+  
+    .buttons .nextB button {
+      right: 7px;
+    }
+  }
+  
+  .buttons .leftA {
+     
+    width: 10px;
+    height: 40px;
+    border: none;
+    color: grey;
+    border-radius: 5px;
+    transition: color 0.3s;
+    font-size: 10px;
+  }
+  
+  .buttons .rightA {
+     
+    width: 10px;
+    height: 40px;
+    border: none;
+    color: grey;
+    
+    line-height: 1.2;
+    border-radius: 5px;
+    transition: color 0.3s;
+    font-size: 10px;
+  }
+  
+  .buttonsN .prevBN button {
+    background-color: white;
+    border:  #ccc;
+  }
+  
+  .buttonsN .nextBN button {
+    background-color: white;
+    border:  #ccc ;
+  }
+  
+   
+  
+  .buttonsN .leftAN {
+    width: 10px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    transition: color 0.3s;
+    font-size: 10px;
+    position: relative;
+    color: gray; /* Set the default color */
+  }
+  
+  .buttonsN .leftAN:hover {
+    color: #F79C43; /* Change the color when hovered */
+  }
+  
+  .buttonsN .rightAN {
+    width: 10px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    transition: color 0.3s;
+    font-size: 10px;
+    position: relative;
+    color: gray; /* Set the default color */
+  }
+  
+  .buttonsN .rightAN:hover {
+    color: #F79C43; /* Change the color when hovered */
+  }
+   
+  
+  .buttonsN {
+    top: -4rem;
+  }
+  
+  @media (max-width: 400px) {
+    /* Adjustments for screens up to 375px */
+    .buttonsN {
+      top: -64px;
+      left: -1px;
+    }
+  }
+  
+  @media (min-width: 500px) {
+    /* Adjustments for screens between 376px and 778px */
+    .buttonsN {
+      top: -71px;
+      left: 0%;
+    }
+  }
+  
+  @media (min-width: 700px) and (max-width: 830px) {
+    /* Adjustments for screens between 700px and 830px */
+    .buttonsN {
+      top: -78px;
+      left: 0rem;
+    }
+  }
+  
+  @media only screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) {
+    .buttonsN {
+      right: 1rem;
+      top: -32rem; /* Default value for larger screens */
+      position: fixed;
+    }
+  }
+  
+  
+  
+  /* .color span{
+    border: #000 1px solid;
+  } */
+ 

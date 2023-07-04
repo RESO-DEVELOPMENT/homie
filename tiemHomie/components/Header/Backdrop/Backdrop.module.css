@@ -1,0 +1,33 @@
+.backDrop {
+    position: fixed;
+    opacity: 0;
+    width: 100%;
+    left: 0;
+    top: 0 !important;
+    right: 0;
+    bottom: 0;
+    background-color: #363636;
+    z-index: 999;
+    /* visibility: visible;
+    opacity: 0.5; */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.backDrop.active {
+    position: fixed;
+    opacity: 1;
+    width: 100%;
+    left: 0;
+    top: 0 !important;
+    right: 0;
+    bottom: 0;
+    background-color: #363636;
+    z-index: 999;
+    visibility: visible;
+    opacity: 0.5;
+    /* visibility: hidden;
+    opacity: 0; */
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
