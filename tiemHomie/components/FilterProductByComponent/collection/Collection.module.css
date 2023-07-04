@@ -33,3 +33,23 @@
   font-size: 16px;
   color: #333;
 }
+
+@media only screen and (max-width: 768px) {
+  .card .icon {
+    font-size: 2rem;
+  }
+
+  .card .label {
+    font-size: 10px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .card .icon {
+    font-size: 1.2rem;
+  }
+
+  .card .label {
+    font-size: 8.5px;
+  }
+}
