@@ -3,9 +3,9 @@ import Image from "next/image";
 import Styles from "../productCard/ProductCard.module.css";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
-import { addToCart} from "@/redux/reducers/cartSlice";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { addToCart } from "@/redux/reducers/cartSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import slugify from "slugify";
 
 function createSlugFromTitle(title) {
@@ -17,7 +17,7 @@ function createSlugFromTitle(title) {
   return slug;
 }
 const notify = () => {
-  toast.success('Thêm vào giỏ hàng thành công!!', {
+  toast.success("Thêm vào giỏ hàng thành công!!", {
     position: "top-right",
     autoClose: 3000,
     hideProgressBar: false,
@@ -26,10 +26,8 @@ const notify = () => {
     draggable: true,
     progress: undefined,
     theme: "light",
-    });
-}
-
-
+  });
+};
 
 const formatPrice = (price) => {
   return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -45,64 +43,70 @@ const ProductList = ({
   // const {  attribute :  {p, imageUrl, title, price, salePercent, rating, del, description, rating_num} } = productData;
   return (
     <div className={Styles.overall}>
-    <ToastContainer />
-        <div className="product m-2" style={{ maxHeight: "8rem" }}>
-          <span className="pr_flash">New</span>
-          <div className="product_img text-center">
-            <div className={Styles.img_container}>
-              <Link   href={`/product/${createSlugFromTitle(productData.name)}-${
-              productData.code
-            }`}>
-                <div className={Styles.img1}>
-                  <img src={productData.picUrl} alt={productData.name} />
-                </div>
-              </Link>
-              {showProductActionBox && (
-                <div className="product_action_box">
-                  <ul className="list_none pr_action_btn">
-                    <li className="add-to-cart">
-                      <Link href="/"
-                      
-                      >
-                        <i className="icon-basket-loaded" onClick={() => {
-                        notify();
-                      }}/> Add To Cart
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="#" className="popup-ajax">
-                        <i className="icon-shuffle" />
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="#" className="popup-ajax">
-                        <i className="icon-magnifier-add" />
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="#">
-                        <i className="icon-heart" />
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              )}
-            </div>
+      <ToastContainer />
+      <div className="product m-2" style={{ maxHeight: "8rem" }}>
+        <span className="pr_flash">New</span>
+        <div className="product_img text-center">
+          <div className={Styles.img_container}>
+            <Link
+              href={`/product/${createSlugFromTitle(productData.name)}-${
+                productData.code
+              }`}
+            >
+              <div className={Styles.img1}>
+                <img src={productData.picUrl} alt={productData.name} />
+              </div>
+            </Link>
+            {showProductActionBox && (
+              <div className="product_action_box">
+                <ul className="list_none pr_action_btn">
+                  <li className="add-to-cart">
+                    <Link href="/">
+                      <i
+                        className="icon-basket-loaded"
+                        onClick={() => {
+                          notify();
+                        }}
+                      />{" "}
+                      Add To Cart
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="#" className="popup-ajax">
+                      <i className="icon-shuffle" />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="#" className="popup-ajax">
+                      <i className="icon-magnifier-add" />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="#">
+                      <i className="icon-heart" />
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            )}
           </div>
-          <div className="product_info " style={{ maxHeight: "4.5rem" }}>
-            <div className={Styles.downClass}>
-              <Link href={`/product/${createSlugFromTitle(productData.name)}-${
-                        productData.code
-                      }`}>
-                        <div className={Styles.productTitle}>
+        </div>
+        <div className="product_info " style={{ maxHeight: "4.5rem" }}>
+          <div className={Styles.downClass}>
+            <Link
+              href={`/product/${createSlugFromTitle(productData.name)}-${
+                productData.code
+              }`}
+            >
+              <div className={Styles.productTitle}>
                 <h6
                   className="product_title"
                   style={{ color: "#292B2C", textDecoration: "none" }}
                 >
                   <Link
-                      href={`/product/${createSlugFromTitle(productData.name)}-${
-                        productData.code
-                      }`}
+                    href={`/product/${createSlugFromTitle(productData.name)}-${
+                      productData.code
+                    }`}
                     style={{ color: "#292B2C", textDecoration: "none" }}
                   >
                     {productData.name}
@@ -113,9 +117,7 @@ const ProductList = ({
               <div className={Styles.desSize}>
                 <div className="pr_desc d-block">
                   <div className={Styles.overF}>
-                    <p>
-                      {productData.description}
-                    </p>
+                    <p>{productData.description}</p>
                   </div>
                 </div>
               </div>
@@ -140,7 +142,12 @@ const ProductList = ({
 
                   {showSaleOfprice && (
                     <del className="">
-                      {formatPrice(productData.minPrice !== null ? productData.minPrice : productData.sellingPrice)} VND
+                      {formatPrice(
+                        productData.minPrice !== null
+                          ? productData.minPrice
+                          : productData.sellingPrice
+                      )}{" "}
+                      VND
                     </del>
                   )}
                 </div>
@@ -151,12 +158,10 @@ const ProductList = ({
                   )}
                 </div>
               </div>
-
-              </Link>
-              
-            </div>
+            </Link>
           </div>
         </div>
+      </div>
     </div>
   );
 };

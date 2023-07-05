@@ -16,7 +16,7 @@ import Arrows from "../components/Button/Arrows";
 import SliderSection from "../components/section/SliderSection/SliderSection";
 import CollBar from "../components/FilterProductByComponent/collection/Collection";
 
-function Home({  collections, filterProductCollection }) {
+function Home({ collections, filterProductCollection }) {
   const [showTabs, setShowTabs] = useState(true);
   const [showProductActionBox, setShowProductActionBox] = useState(true);
 
@@ -30,12 +30,17 @@ function Home({  collections, filterProductCollection }) {
 
   const getSliderItems = () => {
     const itemsPerSlide = 3; // Số sản phẩm hiển thị trên mỗi slide
-    const totalSlides = Math.ceil(filterProductCollection[1].products.length / itemsPerSlide); // Tổng số slide
+    const totalSlides = Math.ceil(
+      filterProductCollection[1].products.length / itemsPerSlide
+    ); // Tổng số slide
     const sliderItems = [];
     for (let i = 0; i < totalSlides; i++) {
       const startIndex = i * itemsPerSlide;
       const endIndex = startIndex + itemsPerSlide;
-      const slideItems = filterProductCollection[1].products.slice(startIndex, endIndex);
+      const slideItems = filterProductCollection[1].products.slice(
+        startIndex,
+        endIndex
+      );
       sliderItems.push(slideItems);
     }
     return sliderItems;
@@ -51,7 +56,7 @@ function Home({  collections, filterProductCollection }) {
     slidesToScroll: 3, // Scroll 3 items at a time
     responsive: [
       {
-        breakpoint: 800,
+        breakpoint: 992,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
@@ -59,7 +64,7 @@ function Home({  collections, filterProductCollection }) {
         },
       },
       {
-        breakpoint: 576,
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -427,7 +432,7 @@ export async function getStaticProps() {
     })
     .filter((collection) => collectionIds.has(collection.collection.id));
 
-    // End this Function Filter PARENT AND SINGLE DONT HAVE CHILD
+  // End this Function Filter PARENT AND SINGLE DONT HAVE CHILD
 
   return {
     props: { collections, filterProductCollection },
