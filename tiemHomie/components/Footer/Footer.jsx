@@ -26,8 +26,8 @@ const Footer = ({}) => {
                               <h5>Miễn Phí vận chuyển</h5>
                               <p>
                                 Miễn phí vận chuyển toàn quốc cho đơn hàng từ
-                                600k.<br></br> Ship nhanh trong vòng 2h các quận
-                                nội thành HCM, phí ship chỉ từ 15-30k.
+                                600k.<br></br> Ship nhanh trong vòng 2h nội
+                                thành TP.HCM, phí ship chỉ từ 15-30k.
                               </p>
                             </div>
                           </div>
