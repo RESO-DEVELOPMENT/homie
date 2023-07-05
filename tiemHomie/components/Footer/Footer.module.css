@@ -9,13 +9,14 @@
   height: fit-content;
   align-items: center;
   justify-content: center;
+  border-radius: 8px;
 }
 
 .textt p {
   margin-left: 2px;
   text-align: left;
   overflow-x: auto;
-  max-height: 9rem;
+  max-height: 8rem;
 }
 
 @media (max-width: 768px) {
