@@ -53,21 +53,21 @@
   top: 50%;
   border: none;
   color: grey;
-  font-size: 66px;  
+  font-size: 66px;
   line-height: 1.2;
   transform: translateY(-50%);
   background-color: white;
   z-index: 1;
 }
 .buttons .leftA:hover {
-  color: #F79C43; /* Change the color when hovered */
+  color: #f79c43; /* Change the color when hovered */
 }
 
 .buttons .nextB button {
   position: absolute;
   border: none;
   color: grey;
-  font-size: 66px;  
+  font-size: 66px;
   line-height: 1.2;
 
   right: -40px;
@@ -78,7 +78,7 @@
   z-index: 1;
 }
 .buttons .rightA:hover {
-  color: #F79C43; /* Change the color when hovered */
+  color: #f79c43; /* Change the color when hovered */
 }
 
 @media (max-width: 768px) {
@@ -109,7 +109,7 @@
   height: 40px;
   border: none;
   color: grey;
-  font-size: 66px;  
+  font-size: 66px;
   line-height: 1.2;
   border-radius: 5px;
   transition: color 0.3s;
@@ -118,15 +118,13 @@
 
 .buttonsN .prevBN button {
   background-color: white;
-  border:  #ccc;
+  border: #ccc;
 }
 
 .buttonsN .nextBN button {
   background-color: white;
-  border:  #ccc ;
+  border: #ccc;
 }
-
- 
 
 .buttonsN .leftAN {
   width: 10px;
@@ -140,7 +138,7 @@
 }
 
 .buttonsN .leftAN:hover {
-  color: #F79C43; /* Change the color when hovered */
+  color: #f79c43; /* Change the color when hovered */
 }
 
 .buttonsN .rightAN {
@@ -155,9 +153,8 @@
 }
 
 .buttonsN .rightAN:hover {
-  color: #F79C43; /* Change the color when hovered */
+  color: #f79c43; /* Change the color when hovered */
 }
- 
 
 .buttonsN {
   top: -4rem;
@@ -195,12 +192,10 @@
   }
 }
 
-
-
 /* .color span{
   border: #000 1px solid;
 } */
-.product_color_switch span {
+/* .product_color_switch span {
   height: 15px;
   width: 15px;
   display: inline-block;
@@ -215,6 +210,48 @@
   border: #F79C43 4px solid;
   margin: 1px;
   padding: 4px;
+} */
+
+.switch_color {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.switch_color_title {
+  min-width: 76px;
+  font-size: 16px;
+}
+.groupButtonColor {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+.groupButtonColor_button {
+  display: inline-block;
+  transition: all 0.2s ease-in;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  border-radius: 4px;
+  min-width: 70px;
+  padding: 5px 10px;
+  border: 1px solid black;
+  color: black;
+  background-color: #fff;
+  box-shadow: 3px 3px 6px #c5c5c5, -3px -3px 6px #ffffff;
+}
+.groupButtonColor_button:hover {
+  color: #e8e8e8;
+  background-color: rgb(247, 156, 67);
+  border: 1px solid rgb(247, 156, 67);
+}
+.active {
+  color: white;
+  background-color: rgb(247, 156, 67);
+  border: 1px solid;
 }
 .bannerL {
   padding-left: 4rem;
@@ -223,5 +260,4 @@
 
 .bannerR {
   white-space: nowrap;
-
 }
