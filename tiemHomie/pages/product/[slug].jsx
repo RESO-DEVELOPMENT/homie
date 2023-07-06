@@ -35,10 +35,8 @@ function createSlugFromTitle(title) {
   return slug;
 }
 
-const ProductDetail = ({ product, products, categories, filterProductCate }) => {
-
-  console.log(filterProductCate);
-  
+const ProductDetail = ({ product, products }) => {
+  console.log("product", product);
   const getSliderItems = () => {
     const itemsPerSlide = 2; // Số sản phẩm hiển thị trên mỗi slide
     const totalSlides = Math.ceil(filterProducts.length / itemsPerSlide); // Tổng số slide
@@ -61,7 +59,7 @@ const ProductDetail = ({ product, products, categories, filterProductCate }) => 
     slidesToScroll: 3, // Scroll 3 items at a time
     responsive: [
       {
-        breakpoint: 800,
+        breakpoint: 992,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
@@ -69,7 +67,7 @@ const ProductDetail = ({ product, products, categories, filterProductCate }) => 
         },
       },
       {
-        breakpoint: 576,
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -107,7 +105,7 @@ const ProductDetail = ({ product, products, categories, filterProductCate }) => 
         name: product.name,
         sellingPrice: product.sellingPrice,
         picUrl: product.picUrl,
-        sku:product.code,
+        sku: product.code,
         attribute: {
           amount: quantity,
         },
@@ -116,23 +114,14 @@ const ProductDetail = ({ product, products, categories, filterProductCate }) => 
   };
 
   useEffect(() => {
-    console.log("Categories:", categories);
     console.log("Products:", products);
 
-    const filterProductCate = categories.map((categoryId) => {
-      const filteredProducts = products.filter((product) =>
-        product.categoryId.includes(categoryId.id)
-      );
-      return {
-        category: categoryId,
-        products: filteredProducts,
-      };
-    });
-
-    console.log("Filtered Products by Category:", filterProductCate);
-
-    setFilteredProductsCate(filterProductCate);
-  }, []);
+    const filteredProducts = products.filter(
+      (prod) => prod.parentProductId == product.id && prod.type === "CHILD"
+    );
+    console.log("Filtered Products by parent product", filteredProducts);
+    setFilteredProducts(filterProducts);
+  }, [products]);
 
   const cateCodeObject = filteredProductsCate.find(
     (obj) => obj.category.id === product.categoryId
@@ -145,11 +134,14 @@ const ProductDetail = ({ product, products, categories, filterProductCate }) => 
     const formattedPrice = price.toLocaleString().replace(/,/g, ".");
     return formattedPrice;
   };
-
-  //'logic sizesss
+  const childProducts = products.filter(
+    (p) => p.type == "CHILD" && p.parentProductId == product.id
+  );
+  console.log("childProducts", childProducts);
+  //'logic size;sss
   const charS = product.size;
   let sizes;
-
+  console.log(product.color);
   if (charS === "L") {
     sizes = " LARGE ";
   } else if (charS === "M") {
@@ -159,12 +151,12 @@ const ProductDetail = ({ product, products, categories, filterProductCate }) => 
   } else {
     sizes = " Xem thêm ở phần mô tả sản phẩm ";
   }
-  const filterProducts = filteredProductsCate.length > 0 &&
-  filteredProductsCate.find((obj) => obj.category.name === categoryName)
-    ? filteredProductsCate.find((obj) => obj.category.name === categoryName)
-        .products
-    : [];
-
+  const filterProducts =
+    filteredProductsCate.length > 0 &&
+    filteredProductsCate.find((obj) => obj.category.name === categoryName)
+      ? filteredProductsCate.find((obj) => obj.category.name === categoryName)
+          .products
+      : [];
 
   const headingStyle = {
     //css title product
@@ -187,14 +179,14 @@ const ProductDetail = ({ product, products, categories, filterProductCate }) => 
 
     responsive: [
       {
-        breakpoint: 800,
+        breakpoint: 992,
         settings: {
           slidesToShow: 2,
           arrows: false,
         },
       },
       {
-        breakpoint: 576,
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
           arrows: false,
@@ -212,10 +204,10 @@ const ProductDetail = ({ product, products, categories, filterProductCate }) => 
       product.picUrl,
       product.picUrl,
     ];
-  } else if (picUrls.length > 1 && picUrls.length < 4) {
+  } else if (picUrls.length > 1) {
     images = [...picUrls];
 
-    while (images.length < 4) {
+    while (images.length < picUrls.length) {
       images.push(...picUrls);
     }
   } else if (picUrls.length === 0) {
@@ -319,16 +311,54 @@ const ProductDetail = ({ product, products, categories, filterProductCate }) => 
                         </li>
                       </ul>
                     </div>
-                    <div className="pr_switch_wrap">
+                    {/* <div className="pr_switch_wrap">
                       <span className="switch_lable">Color</span>
                       <div className={`${styles.product_color_switch}`}>
                         <span className={styles.active} data-color="#87554B" />
                         <span data-color="red" />
                         <span data-color="#DA323F" />
                       </div>
-                    </div>
-                 
+                    </div> */}
+                    {product.type === "PARENT" && (
+                      <>
+                        <div className={`${styles.switch_color}`}>
+                          <span className={`${styles.switch_color_title}`}>
+                            Phân loại:
+                          </span>
+                          <div className={`${styles.groupButtonColor}`}>
+                            <button
+                              className={`${styles.groupButtonColor_button}`}
+                            >
+                              Màu đen
+                            </button>
+                            <button
+                              className={`${styles.groupButtonColor_button} ${styles.active}`}
+                            >
+                              Màu trắng
+                            </button>
+                          </div>
+                        </div>
+                        <div className={`${styles.switch_color}`}>
+                          <span className={`${styles.switch_color_title}`}>
+                            Kích cỡ
+                          </span>
+                          <div className={`${styles.groupButtonColor}`}>
+                            <button
+                              className={`${styles.groupButtonColor_button}`}
+                            >
+                              S
+                            </button>
+                            <button
+                              className={`${styles.groupButtonColor_button}`}
+                            >
+                              M
+                            </button>
+                          </div>
+                        </div>
+                      </>
+                    )}
                   </div>
+
                   <hr />
                   <div className="cart_extra">
                     <div className="cart-product-quantity">
@@ -499,7 +529,7 @@ const ProductDetail = ({ product, products, categories, filterProductCate }) => 
                     className="d-flex justify-content-center"
                     title="Có Thể Bạn Cũng Quan Tâm"
                   />
-                   <div
+                  <div
                     className={styles.buttonsN}
                     style={{
                       position: "relative",
@@ -653,7 +683,7 @@ export async function getStaticProps({ params }) {
       product,
       products,
       categories,
-      filterProductCate
+      filterProductCate,
     },
   };
 }
