@@ -21,8 +21,8 @@ const SectionBannerSlider = () => {
             <div className="banner_slide_content">
               <div className="container">
                 {/* STRART CONTAINER */}
-                <div className="row">
-                  <div className="col-lg-7 col-9">
+                <div className="">
+                  <div className="">
                     <div className="banner_content overflow-hidden">
                       <h5
                         className="mb-3 staggered-animation font-weight-light"
@@ -35,8 +35,9 @@ const SectionBannerSlider = () => {
                         className="staggered-animation"
                         data-animation="slideInLeft"
                         data-animation-delay="1s"
+                        style={{ fontFamily: "G" }}
                       >
-                       ENJOY LIFE . SPREAD LOVE
+                        ENJOY LIFE . SPREAD LOVE
                       </h2>
                       <Link
                         className="btn btn-fill-out rounded-0 staggered-animation text-uppercase"
@@ -61,7 +62,7 @@ const SectionBannerSlider = () => {
               height={600}
               alt="img"
             />
-                        <div className="banner_slide_content">
+            <div className="banner_slide_content">
               <div className="container">
                 {/* STRART CONTAINER */}
                 <div className="row">
@@ -71,26 +72,26 @@ const SectionBannerSlider = () => {
                         className="mb-3 staggered-animation font-weight-light"
                         data-animation="slideInLeft"
                         data-animation-delay="0.5s"
-                        style={{ color: 'white' }}
+                        style={{ color: "white" }}
                       >
-                      Super Sale
+                        Super Sale
                       </h5>
                       <h2
                         className="staggered-animation"
                         data-animation="slideInLeft"
                         data-animation-delay="1s"
-                        style={{ color: 'white' }}
+                        style={{ color: "white" }}
                       >
-                       Bộ sưu tập mới
+                        Bộ sưu tập mới
                       </h2>
                       <Link
                         className="btn btn-fill-out rounded-0 staggered-animation text-uppercase"
                         href="/collection"
                         data-animation="slideInLeft"
                         data-animation-delay="1.5s"
-                        style={{ color: 'white' }}
+                        style={{ color: "white" }}
                       >
-                         Mua Ngay
+                        Mua Ngay
                       </Link>
                     </div>
                   </div>
@@ -107,7 +108,7 @@ const SectionBannerSlider = () => {
               height={600}
               alt="img"
             />
-                        <div className="banner_slide_content">
+            <div className="banner_slide_content">
               <div className="container">
                 {/* STRART CONTAINER */}
                 <div className="row">
@@ -117,7 +118,7 @@ const SectionBannerSlider = () => {
                         className="mb-3 staggered-animation font-weight-light"
                         data-animation="slideInLeft"
                         data-animation-delay="0.5s"
-                        style={{ color: 'white' }}
+                        style={{ color: "white" }}
                       >
                         Sale 40% Off
                       </h5>
@@ -125,7 +126,7 @@ const SectionBannerSlider = () => {
                         className="staggered-animation"
                         data-animation="slideInLeft"
                         data-animation-delay="1s"
-                        style={{ color: 'white' }}
+                        style={{ color: "white" }}
                       >
                         SUMMER COMING
                       </h2>
@@ -135,7 +136,7 @@ const SectionBannerSlider = () => {
                         data-animation="slideInLeft"
                         data-animation-delay="1.5s"
                       >
-                         Mua Ngay
+                        Mua Ngay
                       </Link>
                     </div>
                   </div>
