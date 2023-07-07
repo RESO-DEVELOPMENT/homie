@@ -213,7 +213,7 @@
 } */
 
 .switch_color {
-  display: flex;
+  /* display: flex; */
   gap: 20px;
   align-items: center;
   margin-bottom: 20px;
@@ -222,12 +222,18 @@
   min-width: 76px;
   font-size: 16px;
 }
+@media only screen and (max-width: 480px) {
+  .switch_color_title {
+    font-size: 14px;
+  }
+}
 .groupButtonColor {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 10px;
   align-items: center;
+  margin-top: 10px;
 }
 .groupButtonColor_button {
   display: inline-block;
@@ -242,7 +248,6 @@
   font-size: small;
   color: black;
   background-color: #fff;
-  box-shadow: 3px 3px 6px #c5c5c5, -3px -3px 6px #ffffff;
 }
 .groupButtonColor_button:hover {
   color: #e8e8e8;
@@ -262,7 +267,6 @@
   border: 1px solid rgb(247, 156, 67);
   color: rgb(247, 156, 67);
   background-color: #fff;
-  box-shadow: 3px 3px 6px #c5c5c5, -3px -3px 6px #ffffff;
 }
 .bannerL {
   padding-left: 4rem;
