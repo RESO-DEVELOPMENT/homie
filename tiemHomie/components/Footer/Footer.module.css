@@ -16,7 +16,7 @@
   margin-left: 2px;
   text-align: left;
   overflow-x: auto;
-  max-height: 8rem;
+  max-height: 9rem;
 }
 
 @media (max-width: 768px) {
