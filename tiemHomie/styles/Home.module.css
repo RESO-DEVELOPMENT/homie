@@ -239,6 +239,7 @@
   min-width: 70px;
   padding: 5px 10px;
   border: 1px solid black;
+  font-size: small;
   color: black;
   background-color: #fff;
   box-shadow: 3px 3px 6px #c5c5c5, -3px -3px 6px #ffffff;
@@ -249,9 +250,19 @@
   border: 1px solid rgb(247, 156, 67);
 }
 .active {
-  color: white;
-  background-color: rgb(247, 156, 67);
-  border: 1px solid;
+  font-size: small;
+  display: inline-block;
+  transition: all 0.2s ease-in;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  border-radius: 4px;
+  min-width: 70px;
+  padding: 5px 10px;
+  border: 1px solid rgb(247, 156, 67);
+  color: rgb(247, 156, 67);
+  background-color: #fff;
+  box-shadow: 3px 3px 6px #c5c5c5, -3px -3px 6px #ffffff;
 }
 .bannerL {
   padding-left: 4rem;

@@ -35,11 +35,11 @@ function createSlugFromTitle(title) {
   return slug;
 }
 
-const ProductDetail = ({ product, products }) => {
+const ProductDetail = ({ product, products, categories }) => {
   console.log("product", product);
   const getSliderItems = () => {
     const itemsPerSlide = 2; // Số sản phẩm hiển thị trên mỗi slide
-    const totalSlides = Math.ceil(filterProducts.length / itemsPerSlide); // Tổng số slide
+    const totalSlides = Math.ceil(filteredProducts.length / itemsPerSlide); // Tổng số slide
     const sliderItems = [];
     for (let i = 0; i < totalSlides; i++) {
       const startIndex = i * itemsPerSlide;
@@ -79,8 +79,10 @@ const ProductDetail = ({ product, products }) => {
   //  test lay chuoi tu ten
   const [showProductActionBox, setShowProductActionBox] = useState(true);
   const [allProducts, setAllProducts] = useState();
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [childProducts, setChildProducts] = useState([]);
   const [filteredProductsCate, setFilteredProductsCate] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [selectedChildProduct, setSelectedChildProduct] = useState();
 
   //route declare
   const dispatch = useDispatch();
@@ -100,27 +102,54 @@ const ProductDetail = ({ product, products }) => {
   };
 
   const handleAddToCart = () => {
-    dispatch(
-      addToCart({
-        name: product.name,
-        sellingPrice: product.sellingPrice,
-        picUrl: product.picUrl,
-        sku: product.code,
-        attribute: {
-          amount: quantity,
-        },
-      })
-    );
+    if (product.type === "PARENT") {
+      dispatch(
+        addToCart({
+          name: selectedChildProduct.name,
+          sellingPrice: selectedChildProduct.sellingPrice,
+          picUrl: selectedChildProduct.picUrl,
+          sku: selectedChildProduct.code,
+          attribute: {
+            amount: quantity,
+          },
+        })
+      );
+    } else {
+      dispatch(
+        addToCart({
+          name: product.name,
+          sellingPrice: product.sellingPrice,
+          picUrl: product.picUrl,
+          sku: product.code,
+          attribute: {
+            amount: quantity,
+          },
+        })
+      );
+    }
   };
 
+  console.log("selectedChildProduct", selectedChildProduct);
   useEffect(() => {
     console.log("Products:", products);
 
-    const filteredProducts = products.filter(
-      (prod) => prod.parentProductId == product.id && prod.type === "CHILD"
+    const listChild = products.filter(
+      (p) => p.type == "CHILD" && p.parentProductId == product.id
     );
-    console.log("Filtered Products by parent product", filteredProducts);
-    setFilteredProducts(filterProducts);
+    const filterProductCate = categories.map((categoryId) => {
+      const filteredProducts = products.filter((product) =>
+        product.categoryId.includes(categoryId.id)
+      );
+      return {
+        category: categoryId,
+        products: filteredProducts,
+      };
+    });
+
+    console.log("Filtered Products by Category:", filterProductCate);
+    setSelectedChildProduct(listChild[0]);
+    setFilteredProductsCate(filterProductCate);
+    setChildProducts(listChild);
   }, [products]);
 
   const cateCodeObject = filteredProductsCate.find(
@@ -134,29 +163,8 @@ const ProductDetail = ({ product, products }) => {
     const formattedPrice = price.toLocaleString().replace(/,/g, ".");
     return formattedPrice;
   };
-  const childProducts = products.filter(
-    (p) => p.type == "CHILD" && p.parentProductId == product.id
-  );
+
   console.log("childProducts", childProducts);
-  //'logic size;sss
-  const charS = product.size;
-  let sizes;
-  console.log(product.color);
-  if (charS === "L") {
-    sizes = " LARGE ";
-  } else if (charS === "M") {
-    sizes = " MEDIUM ";
-  } else if (charS === "S") {
-    sizes = " SMALL ";
-  } else {
-    sizes = " Xem thêm ở phần mô tả sản phẩm ";
-  }
-  const filterProducts =
-    filteredProductsCate.length > 0 &&
-    filteredProductsCate.find((obj) => obj.category.name === categoryName)
-      ? filteredProductsCate.find((obj) => obj.category.name === categoryName)
-          .products
-      : [];
 
   const headingStyle = {
     //css title product
@@ -326,33 +334,21 @@ const ProductDetail = ({ product, products }) => {
                             Phân loại:
                           </span>
                           <div className={`${styles.groupButtonColor}`}>
-                            <button
-                              className={`${styles.groupButtonColor_button}`}
-                            >
-                              Màu đen
-                            </button>
-                            <button
-                              className={`${styles.groupButtonColor_button} ${styles.active}`}
-                            >
-                              Màu trắng
-                            </button>
-                          </div>
-                        </div>
-                        <div className={`${styles.switch_color}`}>
-                          <span className={`${styles.switch_color_title}`}>
-                            Kích cỡ
-                          </span>
-                          <div className={`${styles.groupButtonColor}`}>
-                            <button
-                              className={`${styles.groupButtonColor_button}`}
-                            >
-                              S
-                            </button>
-                            <button
-                              className={`${styles.groupButtonColor_button}`}
-                            >
-                              M
-                            </button>
+                            {childProducts.length > 0 &&
+                              childProducts.map((childProduct) => (
+                                <button
+                                  onClick={() =>
+                                    setSelectedChildProduct(childProduct)
+                                  }
+                                  className={
+                                    childProduct == selectedChildProduct
+                                      ? `${styles.active}`
+                                      : `${styles.groupButtonColor_button}`
+                                  }
+                                >
+                                  {childProduct.name}
+                                </button>
+                              ))}
                           </div>
                         </div>
                       </>
@@ -586,7 +582,7 @@ const ProductDetail = ({ product, products }) => {
                         <Slider
                           ref={sliderRef6}
                           {...specialSettings}
-                          products={filterProducts}
+                          products={filteredProducts}
                         >
                           {getSliderItems().map((sliderItems, index) => (
                             <div key={index} className="gridContainer">
