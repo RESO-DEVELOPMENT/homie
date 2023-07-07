@@ -13,9 +13,9 @@ const SectionBannerSlider = () => {
         <div className="carousel-inner">
           <div className="carousel-item active background_bg">
             <Image
-              src="/assets/images2/image-18@2x.png"
-              width={500}
-              height={600}
+              src="/assets/images2/banner.jpg"
+              width={965}
+              height={570}
               alt="img"
             />
             <div className="banner_slide_content">
@@ -35,9 +35,9 @@ const SectionBannerSlider = () => {
                         className="staggered-animation"
                         data-animation="slideInLeft"
                         data-animation-delay="1s"
-                        style={{ fontFamily: "G" }}
+                        style={{ fontFamily: "Georgia" }}
                       >
-                        ENJOY LIFE . SPREAD LOVE
+                        ENJOY LIFE. SPREAD LOVE
                       </h2>
                       <Link
                         className="btn btn-fill-out rounded-0 staggered-animation text-uppercase"
@@ -55,16 +55,16 @@ const SectionBannerSlider = () => {
             </div>
           </div>
 
-          <div className="carousel-item background_bg">
+          {/* <div className="carousel-item background_bg">
             <Image
-              src="/assets/images2/shop-banner-img1jpg@2x.png"
-              width={500}
+              src="/assets/images2/banner.jpg"
+              width={1016}
               height={600}
               alt="img"
             />
             <div className="banner_slide_content">
               <div className="container">
-                {/* STRART CONTAINER */}
+                
                 <div className="row">
                   <div className="col-lg-6">
                     <div className="banner_content overflow-hidden">
@@ -97,20 +97,20 @@ const SectionBannerSlider = () => {
                   </div>
                 </div>
               </div>
-              {/* END CONTAINER*/}
+              
             </div>
           </div>
 
           <div className="carousel-item background_bg">
             <Image
-              src="/assets/images2/shop-banner-img2jpg@2x.png"
-              width={500}
+              src="/assets/images2/banner.jpg"
+              width={1016}
               height={600}
               alt="img"
             />
             <div className="banner_slide_content">
               <div className="container">
-                {/* STRART CONTAINER */}
+                
                 <div className="row">
                   <div className="col-lg-6">
                     <div className="banner_content overflow-hidden">
@@ -142,11 +142,11 @@ const SectionBannerSlider = () => {
                   </div>
                 </div>
               </div>
-              {/* END CONTAINER*/}
+              
             </div>
-          </div>
+          </div> */}
         </div>
-        <Link
+        {/* <Link
           className="carousel-control-prev"
           href="#carouselExampleControls"
           role="button"
@@ -161,7 +161,7 @@ const SectionBannerSlider = () => {
           data-bs-slide="next"
         >
           <i className="ion-chevron-right" />
-        </Link>
+        </Link> */}
       </div>
     </div>
   );
