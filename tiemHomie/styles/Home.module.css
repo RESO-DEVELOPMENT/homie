@@ -276,3 +276,7 @@
 .bannerR {
   white-space: nowrap;
 }
+.banner {
+  display: flex;
+  flex-direction: row;
+}

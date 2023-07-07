@@ -15,6 +15,7 @@ import styles from "../styles/Home.module.css";
 import Arrows from "../components/Button/Arrows";
 import SliderSection from "../components/section/SliderSection/SliderSection";
 import CollBar from "../components/FilterProductByComponent/collection/Collection";
+import SectionBannerSlider2 from "../components/SectionBanner/SectionBanner2";
 
 function Home({ collections, filterProductCollection }) {
   const [showTabs, setShowTabs] = useState(true);
@@ -79,7 +80,7 @@ function Home({ collections, filterProductCollection }) {
       <div>
         <>
           {/* START SECTION BANNER */}
-          <SectionBannerSlider />
+          <SectionBannerSlider2 />
           {/* END SECTION BANNER */}
         </>
         <div className="single_banner">
