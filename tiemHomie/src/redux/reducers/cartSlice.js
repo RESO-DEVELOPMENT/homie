@@ -4,6 +4,7 @@ const initialState = {
   cartItems: [],
   amount: 0,
   total: 0,
+  menu: null,
 };
 
 const cartSlice = createSlice({
@@ -13,30 +14,35 @@ const cartSlice = createSlice({
     // addToCart: (state, action) => {
     //   const product = action.payload;
     //   const existingProduct = state.cartItems.find((item) => item.name === product.name);
-    
+
     //   if (existingProduct) {
     //     existingProduct.attribute.amount++;
     //   } else {
     //     state.cartItems.push({ ...product, attribute: { amount: 1 } });
     //   }
-      
+
     //   state.totalQuantity += 1;
     // },
+    setMenu: (state, action) => {
+      const menu = action.payload;
+      state.menu = menu;
+    },
 
     addToCart: (state, action) => {
       const product = action.payload;
-      const existingProduct = state.cartItems.find((item) => item.name === product.name);
-    
+      const existingProduct = state.cartItems.find(
+        (item) => item.name === product.name
+      );
+
       if (existingProduct) {
         existingProduct.attribute.amount += product.attribute.amount;
       } else {
         state.cartItems.push({ ...product });
       }
-    
+
       state.amount += product.attribute.amount;
     },
-    
-    
+
     incrementAmount: (state, action) => {
       const { name } = action.payload;
       const item = state.cartItems.find((item) => item.name === name);
@@ -73,11 +79,16 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, updateQuantity, incrementAmount, decrementAmount, removeItem, updateTotal,
-   clearCart, } =
-  cartSlice.actions;
+export const {
+  addToCart,
+  updateQuantity,
+  incrementAmount,
+  decrementAmount,
+  removeItem,
+  updateTotal,
+  clearCart,
+} = cartSlice.actions;
 
-  export const selectAllProducts = (state) => state.cartItems;
-
+export const selectAllProducts = (state) => state.cartItems;
 
 export default cartSlice.reducer;

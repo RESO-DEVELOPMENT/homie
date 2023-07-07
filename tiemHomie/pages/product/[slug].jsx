@@ -82,7 +82,8 @@ const ProductDetail = ({ product, products, categories }) => {
   const [childProducts, setChildProducts] = useState([]);
   const [filteredProductsCate, setFilteredProductsCate] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [selectedChildProduct, setSelectedChildProduct] = useState();
+  const [selectedProduct, setSelectedProduct] = useState();
+  const [listImage, setListImage] = useState([]);
 
   //route declare
   const dispatch = useDispatch();
@@ -105,10 +106,10 @@ const ProductDetail = ({ product, products, categories }) => {
     if (product.type === "PARENT") {
       dispatch(
         addToCart({
-          name: selectedChildProduct.name,
-          sellingPrice: selectedChildProduct.sellingPrice,
-          picUrl: selectedChildProduct.picUrl,
-          sku: selectedChildProduct.code,
+          name: selectedProduct.name,
+          sellingPrice: selectedProduct.sellingPrice,
+          picUrl: selectedProduct.picUrl,
+          sku: selectedProduct.code,
           attribute: {
             amount: quantity,
           },
@@ -129,29 +130,53 @@ const ProductDetail = ({ product, products, categories }) => {
     }
   };
 
-  console.log("selectedChildProduct", selectedChildProduct);
+  const setListImageDisplay = (images) => {
+    const picUrls = images.split(";");
+    if (picUrls.length === 1) {
+      setListImage(picUrls);
+    } else if (picUrls.length > 1) {
+      setListImage(picUrls);
+    } else if (picUrls.length === 0) {
+      return "undefined";
+    } else {
+      setListImage(picUrls);
+    }
+  };
+
   useEffect(() => {
-    console.log("Products:", products);
-
-    const listChild = products.filter(
-      (p) => p.type == "CHILD" && p.parentProductId == product.id
-    );
-    const filterProductCate = categories.map((categoryId) => {
-      const filteredProducts = products.filter((product) =>
-        product.categoryId.includes(categoryId.id)
+    if (product.type === "SINGLE") {
+      const filterProductCate = categories.map((categoryId) => {
+        const filteredProducts = products.filter((product) =>
+          product.categoryId.includes(categoryId.id)
+        );
+        return {
+          category: categoryId,
+          products: filteredProducts,
+        };
+      });
+      console.log("Filtered Products by Category:", filterProductCate);
+      setSelectedProduct(product);
+      setListImageDisplay(product.picUrl);
+    } else {
+      const listChild = products.filter(
+        (p) => p.type == "CHILD" && p.parentProductId == product.id
       );
-      return {
-        category: categoryId,
-        products: filteredProducts,
-      };
-    });
-
-    console.log("Filtered Products by Category:", filterProductCate);
-    setSelectedChildProduct(listChild[0]);
-    setFilteredProductsCate(filterProductCate);
-    setChildProducts(listChild);
-  }, [products]);
-
+      const filterProductCate = categories.map((categoryId) => {
+        const filteredProducts = products.filter((product) =>
+          product.categoryId.includes(categoryId.id)
+        );
+        return {
+          category: categoryId,
+          products: filteredProducts,
+        };
+      });
+      console.log("Filtered Products by Category:", filterProductCate);
+      setChildProducts(listChild);
+      setSelectedProduct(listChild[0]);
+      setListImageDisplay(listChild[0].picUrl);
+      setFilteredProductsCate(filterProductCate);
+    }
+  }, [product]);
   const cateCodeObject = filteredProductsCate.find(
     (obj) => obj.category.id === product.categoryId
   );
@@ -202,34 +227,15 @@ const ProductDetail = ({ product, products, categories }) => {
       },
     ],
   };
-  const picUrls = product.picUrl.split(";");
-  let images;
-  if (picUrls.length === 1) {
-    images = [
-      product.picUrl,
-      product.picUrl,
-      product.picUrl,
-      product.picUrl,
-      product.picUrl,
-    ];
-  } else if (picUrls.length > 1) {
-    images = [...picUrls];
-
-    while (images.length < picUrls.length) {
-      images.push(...picUrls);
-    }
-  } else if (picUrls.length === 0) {
-    return "undefined";
-  } else {
-    images = picUrls;
-  }
 
   return (
     <>
       <BreadCrumb
         middlePath="Chi Tiết Sản Phẩm"
-        title={product.name}
-        descriptionTitle={product.name}
+        title={selectedProduct === undefined ? "" : selectedProduct.name}
+        descriptionTitle={
+          selectedProduct === undefined ? "" : selectedProduct.name
+        }
       />
 
       {/* START MAIN CONTENT */}
@@ -256,7 +262,7 @@ const ProductDetail = ({ product, products, categories }) => {
 
                         // className="productCarousel"
                       >
-                        {images.map((imgUrl, index) => (
+                        {listImage.map((imgUrl, index) => (
                           <div key={index}>
                             <img src={`${imgUrl}`} alt="img" />
                           </div>
@@ -276,12 +282,19 @@ const ProductDetail = ({ product, products, categories }) => {
                   <div className="product_description">
                     <h4 className="product_title">
                       <Link style={headingStyle} href="#">
-                        {product.name}
+                        {selectedProduct === undefined
+                          ? ""
+                          : selectedProduct.name}
                       </Link>
                     </h4>
                     <div className="product_price">
                       <span className="price">
-                        {formatPrice(product.sellingPrice)} VND
+                        {formatPrice(
+                          selectedProduct === undefined
+                            ? 0
+                            : selectedProduct.sellingPrice
+                        )}{" "}
+                        VND
                       </span>
 
                       {/* <div className="on_sale">
@@ -300,7 +313,11 @@ const ProductDetail = ({ product, products, categories }) => {
                       <span className="rating_num">(21)</span>
                     </div> */}
                     <div className="pr_desc">
-                      <p>{product.description}</p>
+                      <p>
+                        {selectedProduct === undefined
+                          ? ""
+                          : selectedProduct.description}
+                      </p>
                     </div>
 
                     <div className="product_sort_info">
@@ -337,11 +354,12 @@ const ProductDetail = ({ product, products, categories }) => {
                             {childProducts.length > 0 &&
                               childProducts.map((childProduct) => (
                                 <button
-                                  onClick={() =>
-                                    setSelectedChildProduct(childProduct)
-                                  }
+                                  onClick={() => {
+                                    setSelectedProduct(childProduct);
+                                    setListImageDisplay(childProduct.picUrl);
+                                  }}
                                   className={
-                                    childProduct == selectedChildProduct
+                                    childProduct == selectedProduct
                                       ? `${styles.active}`
                                       : `${styles.groupButtonColor_button}`
                                   }

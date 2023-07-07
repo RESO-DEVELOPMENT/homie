@@ -3,20 +3,14 @@
 import { useDispatch } from "react-redux";
 import axiosInstance from "../utils/axiosClient";
 
-
-
-
-
-    // const dispatch = useDispatch();
-
+// const dispatch = useDispatch();
 
 export const getAllProduct = async () => {
-
   try {
     // Login request
-    const loginResponse = await axiosInstance.post('/auth/login', {
-      username: 'homiestaff',
-      password: '123456',
+    const loginResponse = await axiosInstance.post("/auth/login", {
+      username: "homiestaff",
+      password: "123456",
     });
     const accessToken = loginResponse.accessToken; // Access the access_token
 
@@ -30,15 +24,15 @@ export const getAllProduct = async () => {
         Authorization: `Bearer ${accessToken}`,
       },
     });
+    // dispatch(
+    //   setMenu({
+    //     menu: response.data,
+    //   })
+    // );
+    console.log("response.data", response.data);
     return response;
   } catch (error) {
-    console.error('Error fetching products:', error);
+    console.error("Error fetching products:", error);
     throw error;
   }
 };
-
-
-
-
-
-
