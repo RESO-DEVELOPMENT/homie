@@ -4,9 +4,6 @@
   height: 100%;
 }
 .banner-img {
-  background-image: url(../../public/assets/images/banner1.jpg);
-  max-height: 650px;
-
   overflow: hidden;
 }
 .banner_container_title {
