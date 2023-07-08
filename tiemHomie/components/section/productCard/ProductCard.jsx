@@ -9,15 +9,6 @@ import slugify from "slugify";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function createSlugFromTitle(title) {
-  const slug = slugify(title, {
-    replacement: "-",
-    lower: true,
-    strict: true,
-  });
-  return slug;
-}
-
 const notify = () => {
   toast.success("Thêm vào giỏ hàng thành công!!", {
     position: "top-right",
@@ -50,11 +41,7 @@ const ProductCard = ({
       <div className="product">
         {/* <span className="pr_flash">New</span> */}
         <div className="product_img text-center">
-          <Link
-            href={`/product/${createSlugFromTitle(productData.name)}-${
-              productData.code
-            }`}
-          >
+          <Link href={`/product/${productData.code}`}>
             <div className={Styles.img}>
               <img src={productData.picUrl} alt={productData.name} />
             </div>
@@ -116,9 +103,7 @@ const ProductCard = ({
                 style={{ color: "#292B2C", textDecoration: "none" }}
               >
                 <Link
-                  href={`/product/${createSlugFromTitle(productData.name)}-${
-                    productData.code
-                  }`}
+                  href={`/product/${productData.code}`}
                   style={{ color: "#292B2C", textDecoration: "none" }}
                 >
                   {productData.name}
@@ -129,11 +114,7 @@ const ProductCard = ({
             <div className={Styles.desSize}>
               <div className="pr_desc d-block">
                 <div className={Styles.overF}>
-                  <Link
-                    href={`/product/${createSlugFromTitle(productData.name)}-${
-                      productData.code
-                    }`}
-                  >
+                  <Link href={`/product/${productData.code}`}>
                     <p>
                       {productData.description}
                       {/* Màu đỏ cầu sức khoẻ, bình an, xua đuổi các việc không may. Màu trắng kêu gọi tài khí, phúc khí, mời gọi nhân duyên tốt lành, tài lộc cho gia chủ.... */}
@@ -145,11 +126,7 @@ const ProductCard = ({
 
             <div className="product_price">
               <div className="">
-                <Link
-                  href={`/product/${createSlugFromTitle(productData.name)}-${
-                    productData.code
-                  }`}
-                >
+                <Link href={`/product/${productData.code}`}>
                   <span className="price">
                     {formatPrice(productData.sellingPrice)} VND
                   </span>

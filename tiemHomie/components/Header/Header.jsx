@@ -13,14 +13,7 @@ import slugify from "slugify";
 
 const Header = ({ products, categories, collections }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
-  function createSlugFromTitle(title) {
-    const slug = slugify(title, {
-      replacement: "-",
-      lower: true,
-      strict: true,
-    });
-    return slug;
-  }
+
   const handleCartOpen = (e) => {
     e.preventDefault();
     setIsCartOpen(true);
@@ -198,9 +191,7 @@ const Header = ({ products, categories, collections }) => {
                                   <li>
                                     <Link
                                       className="dropdown-item nav-link nav-item"
-                                      href={`/category/${createSlugFromTitle(
-                                        category.name
-                                      )}`}
+                                      href={`/category/${category.code}`}
                                       onClick={handleLinkClick}
                                     >
                                       {category.name}
@@ -217,9 +208,7 @@ const Header = ({ products, categories, collections }) => {
                                   <li>
                                     <Link
                                       className="dropdown-item nav-link nav-item"
-                                      href={`/collection/${createSlugFromTitle(
-                                        collection.name
-                                      )}`}
+                                      href={`/collection/${collection.code}`}
                                       onClick={handleLinkClick}
                                     >
                                       {collection.name}

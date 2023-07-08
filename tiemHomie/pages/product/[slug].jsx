@@ -26,15 +26,6 @@ import slugify from "slugify";
 import SliderSection from "../../components/section/SliderSection/SliderSection";
 import ProductList from "../../components/section/productCard/ProductList";
 
-function createSlugFromTitle(title) {
-  const slug = slugify(title, {
-    replacement: "-",
-    lower: true,
-    strict: true,
-  });
-  return slug;
-}
-
 const ProductDetail = ({ product, products, categories }) => {
   const getSliderItems = () => {
     const itemsPerSlide = 2; // Số sản phẩm hiển thị trên mỗi slide
@@ -642,7 +633,7 @@ export async function getStaticPaths() {
   const products = data.products;
 
   const paths = products.map((p) => {
-    const slug = `${createSlugFromTitle(p.name)}-${p.code}`;
+    const slug = `${p.code}`;
 
     return {
       params: {
@@ -658,7 +649,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const productCode = params.slug.split("-").pop();
+  const productCode = params.slug;
 
   const data = await getAllProduct();
   const products = data.products;

@@ -169,16 +169,20 @@ export async function getStaticProps({ params }) {
   const data = await getAllProduct();
 
   // here is match the code with code of the collections in the url
-  const categoryId = params.slug;
+  const categoryCode = params.slug;
   const categories = data.categories;
-  const category = categories.find((c) => c.code === categoryId);
+  const category = categories.find((c) => c.code === categoryCode);
   const products = data.products;
   const collections = data.collections;
+
+  const filterProducts = products.filter(
+    (product) => product.type === "SINGLE" || product.type === "PARENT"
+  );
 
   const productCount = categories.map((category) => {
     let count = 0;
 
-    products.forEach((product) => {
+    filterProducts.forEach((product) => {
       if (product.categoryId.includes(category.id)) {
         count++;
       }
@@ -188,13 +192,13 @@ export async function getStaticProps({ params }) {
   });
 
   // Filter products by categoryIds  LOGIC T THEM NEW O DAY
-  const filteredProducts = products.filter((product) =>
+  const filteredProducts = filterProducts.filter((product) =>
     product.categoryId.includes(category.id)
   );
 
   return {
     props: {
-      products,
+      products: filterProducts,
       categories,
       category,
       collections,

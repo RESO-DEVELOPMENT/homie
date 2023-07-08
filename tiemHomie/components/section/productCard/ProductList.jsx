@@ -8,14 +8,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import slugify from "slugify";
 
-function createSlugFromTitle(title) {
-  const slug = slugify(title, {
-    replacement: "-",
-    lower: true,
-    strict: true,
-  });
-  return slug;
-}
 const notify = () => {
   toast.success("Thêm vào giỏ hàng thành công!!", {
     position: "top-right",
@@ -48,11 +40,7 @@ const ProductList = ({
         <span className="pr_flash">New</span>
         <div className="product_img text-center">
           <div className={Styles.img_container}>
-            <Link
-              href={`/product/${createSlugFromTitle(productData.name)}-${
-                productData.code
-              }`}
-            >
+            <Link href={`/product/${productData.code}`}>
               <div className={Styles.img1}>
                 <img src={productData.picUrl} alt={productData.name} />
               </div>
@@ -93,20 +81,14 @@ const ProductList = ({
         </div>
         <div className="product_info " style={{ maxHeight: "4.5rem" }}>
           <div className={Styles.downClass}>
-            <Link
-              href={`/product/${createSlugFromTitle(productData.name)}-${
-                productData.code
-              }`}
-            >
+            <Link href={`/product/${productData.code}`}>
               <div className={Styles.productTitle}>
                 <h6
                   className="product_title"
                   style={{ color: "#292B2C", textDecoration: "none" }}
                 >
                   <Link
-                    href={`/product/${createSlugFromTitle(productData.name)}-${
-                      productData.code
-                    }`}
+                    href={`/product/${productData.code}`}
                     style={{ color: "#292B2C", textDecoration: "none" }}
                   >
                     {productData.name}

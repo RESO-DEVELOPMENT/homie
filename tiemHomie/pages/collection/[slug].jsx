@@ -101,7 +101,7 @@ const shopleft = ({
         <div className="container">
           <div className="row">
             <div className="col-lg-9">
-              <div className="row align-items-center mb-4 pb-1">
+              <div className="row align-items-center mb-2 pb-1">
                 <div className="col-12 d-flex justify-content-between product_header">
                   <SortBySelected
                     handleSortOptionChange={handleSortOptionChange}
@@ -163,15 +163,18 @@ export async function getStaticProps({ params }) {
   const data = await getAllProduct();
 
   // here is match the code with code of the collections in the url
-  const collectionId = params.slug;
+  const collectionCode = params.slug;
   const collections = data.collections;
-  const collection = collections.find((c) => c.code === collectionId);
+  const collection = collections.find((c) => c.code === collectionCode);
   const products = data.products; // take the products attribute in the menu
 
+  const filterProducts = products.filter(
+    (product) => product.type === "SINGLE" || product.type === "PARENT"
+  );
   const productCount = collections.map((collection) => {
     let count = 0;
 
-    products.forEach((product) => {
+    filterProducts.forEach((product) => {
       if (product.collectionIds.includes(collection.id)) {
         count++;
       }
@@ -180,13 +183,13 @@ export async function getStaticProps({ params }) {
     return count;
   });
   // Filter products by categoryIds  LOGIC T THEM NEW O DAY
-  const filteredProducts = products.filter((product) =>
+  const filteredProducts = filterProducts.filter((product) =>
     product.collectionIds.includes(collection.id)
   );
 
   return {
     props: {
-      products,
+      products: filterProducts,
       collections,
       collection,
       filteredProducts,

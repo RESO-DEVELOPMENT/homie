@@ -16,36 +16,39 @@ import Arrows from "../components/Button/Arrows";
 import SliderSection from "../components/section/SliderSection/SliderSection";
 import CollBar from "../components/FilterProductByComponent/collection/Collection";
 
-function Home({ collections, filterProductCollection, categories }) {
+function Home({ collections, categories, products }) {
   const [showTabs, setShowTabs] = useState(true);
   const [showProductActionBox, setShowProductActionBox] = useState(true);
-
-  const arrivalSliderRef = useRef(null);
-  const sellersSliderRef = useRef(null);
-  const featuredSliderRef = useRef(null);
-  const specialSliderRef = useRef(null);
-  const sliderRef5 = useRef(null);
-  const sliderRef6 = useRef(null);
-  const sliderRef7 = useRef(null);
-
+  const collection0 = useRef(null);
+  const collection1 = useRef(null);
+  const collection2 = useRef(null);
+  const collection3 = useRef(null);
+  const collection4 = useRef(null);
+  const collection5 = useRef(null);
+  const collection6 = useRef(null);
+  const collection7 = useRef(null);
+  const collection8 = useRef(null);
   const getSliderItems = () => {
     const itemsPerSlide = 3; // Số sản phẩm hiển thị trên mỗi slide
     const totalSlides = Math.ceil(
-      filterProductCollection[1].products.length / itemsPerSlide
+      products.filter((p) => p.collectionIds.includes(collections[5].id))
+        .length / itemsPerSlide
     ); // Tổng số slide
     const sliderItems = [];
     for (let i = 0; i < totalSlides; i++) {
       const startIndex = i * itemsPerSlide;
       const endIndex = startIndex + itemsPerSlide;
-      const slideItems = filterProductCollection[1].products.slice(
-        startIndex,
-        endIndex
-      );
+      const slideItems = products
+        .filter((p) => p.collectionIds.includes(collections[5].id))
+        .slice(startIndex, endIndex);
       sliderItems.push(slideItems);
     }
     return sliderItems;
   };
-  console.log(filterProductCollection);
+
+  const getProductByCollectionID = (collectionId) => {
+    return products.filter((p) => p.collectionIds.includes(collectionId));
+  };
 
   const specialSettings = {
     dots: false,
@@ -95,71 +98,53 @@ function Home({ collections, filterProductCollection, categories }) {
           {/* START SECTION SHOP DONE */}
           <div className="section small_pb">
             <div className="container">
-              <FeaturedProductHeader showTabs={showTabs} title="Bộ sưu tập" />
+              <FeaturedProductHeader
+                collections={collections}
+                showTabs={showTabs}
+                title="Bộ sưu tập"
+              />
               <div className="row">
                 <div className="col-12">
                   <div className="tab_slider">
                     <div
                       className="tab-pane fade show active"
-                      id="arrival"
+                      id={collections[0].code}
                       role="tabpanel"
-                      aria-labelledby="arrival-tab"
+                      aria-labelledby={`${collections[0].code}-tab`}
                     >
                       <SliderSection
-                        sliderRef={arrivalSliderRef}
-                        products={
-                          filterProductCollection.length > 0
-                            ? filterProductCollection[7].products
-                            : []
-                        }
+                        sliderRef={collection0}
+                        products={products.filter((p) =>
+                          p.collectionIds.includes(collections[0].id)
+                        )}
                         showProductActionBox={showProductActionBox}
                       />
                     </div>
                     <div
-                      className="tab-pane fade"
-                      id="sellers"
+                      className="tab-pane fade show active"
+                      id={collections[1].code}
                       role="tabpanel"
-                      aria-labelledby="sellers-tab"
+                      aria-labelledby={`${collections[1].code}-tab`}
                     >
                       <SliderSection
-                        sliderRef={sellersSliderRef}
-                        products={
-                          filterProductCollection.length > 0
-                            ? filterProductCollection[5].products
-                            : []
-                        }
+                        sliderRef={collection1}
+                        products={products.filter((p) =>
+                          p.collectionIds.includes(collections[1].id)
+                        )}
                         showProductActionBox={showProductActionBox}
                       />
                     </div>
                     <div
-                      className="tab-pane fade"
-                      id="featured"
+                      className="tab-pane fade show active"
+                      id={collections[2].code}
                       role="tabpanel"
-                      aria-labelledby="featured-tab"
+                      aria-labelledby={`${collections[2].code}-tab`}
                     >
                       <SliderSection
-                        sliderRef={featuredSliderRef}
-                        products={
-                          filterProductCollection.length > 0
-                            ? filterProductCollection[8].products
-                            : []
-                        }
-                        showProductActionBox={showProductActionBox}
-                      />
-                    </div>
-                    <div
-                      className="tab-pane fade"
-                      id="special"
-                      role="tabpanel"
-                      aria-labelledby="special-tab"
-                    >
-                      <SliderSection
-                        sliderRef={specialSliderRef}
-                        products={
-                          filterProductCollection.length > 0
-                            ? filterProductCollection[6].products
-                            : []
-                        }
+                        sliderRef={collection2}
+                        products={products.filter((p) =>
+                          p.collectionIds.includes(collections[2].id)
+                        )}
                         showProductActionBox={showProductActionBox}
                       />
                     </div>
@@ -169,6 +154,49 @@ function Home({ collections, filterProductCollection, categories }) {
             </div>
           </div>
           {/* END SECTION SHOP */}
+
+          {/* START SECTION SHOP Done */}
+
+          <div className="section small_pt small_pb">
+            <div className="container">
+              <div className="d-flex justify-content-center">
+                <FeaturedProductHeader
+                  className="d-flex justify-content-center"
+                  title={collections[3].name}
+                />
+              </div>
+              <div className="tab-pane fade show active">
+                <SliderSection
+                  sliderRef={collection3}
+                  products={products.filter((p) =>
+                    p.collectionIds.includes(collections[3].id)
+                  )}
+                  showProductActionBox={showProductActionBox}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="section small_pt small_pb">
+            <div className="container">
+              <div className="d-flex justify-content-center">
+                <FeaturedProductHeader
+                  className="d-flex justify-content-center"
+                  title={collections[4].name}
+                />
+              </div>
+              <div className="tab-pane fade show active">
+                <SliderSection
+                  sliderRef={collection4}
+                  products={products.filter((p) =>
+                    p.collectionIds.includes(collections[4].id)
+                  )}
+                  showProductActionBox={showProductActionBox}
+                />
+              </div>
+            </div>
+          </div>
+
           {/* START SECTION BANNER */}
           <div className="section pb_20 small_pt">
             <div className="container">
@@ -243,57 +271,6 @@ function Home({ collections, filterProductCollection, categories }) {
           </div>
           {/* END SECTION BANNER */}
 
-          {/* START SECTION SHOP Done */}
-          <div className="section small_pt small_pb">
-            <div className="container">
-              <div className="d-flex justify-content-center">
-                <FeaturedProductHeader
-                  className="d-flex justify-content-center"
-                  title="Sản Phẩm Mới"
-                />
-              </div>
-              <div className="row">
-                <div className="col-md-12">
-                  <SliderSection
-                    sliderRef={sliderRef5}
-                    products={
-                      filterProductCollection.length > 0
-                        ? filterProductCollection[7].products
-                        : []
-                    }
-                    showProductActionBox={showProductActionBox}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* END SECTION SHOP */}
-          {/* START SECTION SHOP Done */}
-          <div className="section small_pt small_pb">
-            <div className="container">
-              <div className="d-flex justify-content-center">
-                <FeaturedProductHeader
-                  className="d-flex justify-content-center"
-                  title="Chỉ Có Tại Homie"
-                />
-              </div>
-              <div className="row">
-                <div className="col-md-12">
-                  <SliderSection
-                    sliderRef={sliderRef6}
-                    products={
-                      filterProductCollection.length > 0
-                        ? filterProductCollection[6].products
-                        : []
-                    }
-                    showProductActionBox={showProductActionBox}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* END SECTION SHOP */}
-
           {/* START SECTION SHOP  */}
           <div className="section small_pt pb_20">
             <div className="container col-12">
@@ -302,7 +279,7 @@ function Home({ collections, filterProductCollection, categories }) {
                   <div>
                     <FeaturedProductHeader
                       className="d-flex justify-content-center"
-                      title="Bán Chạy Tại Homie"
+                      title={collections[5].name}
                     />
                   </div>
                   <div
@@ -318,7 +295,7 @@ function Home({ collections, filterProductCollection, categories }) {
                         type="button"
                         role="presentation"
                         className="custom-prev-button"
-                        onClick={() => sliderRef7.current.slickPrev()}
+                        onClick={() => collection5.current.slickPrev()}
                       >
                         <FaChevronLeft className={styles.leftAN} />
                       </button>
@@ -328,7 +305,7 @@ function Home({ collections, filterProductCollection, categories }) {
                         type="button"
                         role="presentation"
                         className="custom-next-button"
-                        onClick={() => sliderRef7.current.slickNext()}
+                        onClick={() => collection5.current.slickNext()}
                       >
                         <FaChevronRight className={styles.rightAN} />
                       </button>
@@ -342,14 +319,10 @@ function Home({ collections, filterProductCollection, categories }) {
                   <div className="product_list">
                     <div className={styles.shop}>
                       <Slider
-                        ref={sliderRef7}
+                        ref={collection5}
                         {...specialSettings}
                         className="overflow-hidden"
-                        products={
-                          filterProductCollection.length > 0
-                            ? filterProductCollection[6].products
-                            : []
-                        }
+                        products={getProductByCollectionID(collections[5].id)}
                       >
                         {getSliderItems().map((sliderItems, index) => (
                           <div key={index} className="gridContainer">
@@ -397,45 +370,17 @@ export async function getStaticProps() {
   //this function to Filter PARENT AND SINGLE DONT HAVE CHILD
   const collectionIds = new Set(collections.map((collection) => collection.id));
 
-  const filterProductCollection = collections
-    .map((collection) => {
-      const filteredProducts = products.reduce((result, product) => {
-        if (
-          product.collectionIds.includes(collection.id) &&
-          product.type !== "CHILD"
-        ) {
-          if (product.type === "PARENT" || product.type === "SINGLE") {
-            const childProducts = products.filter(
-              (childProduct) =>
-                childProduct.type === "CHILD" &&
-                childProduct.parentProductId === product.id
-            );
-
-            const minPrice = Math.min(
-              ...childProducts.map((childProduct) => childProduct.sellingPrice)
-            );
-
-            result.push({
-              ...product,
-              minPrice: minPrice,
-            });
-          } else {
-            result.push(product);
-          }
-        }
-        return result;
-      }, []);
-
-      return {
-        collection: collection,
-        products: filteredProducts,
-      };
-    })
-    .filter((collection) => collectionIds.has(collection.collection.id));
+  const filterProducts = products.filter(
+    (product) => product.type === "SINGLE" || product.type === "PARENT"
+  );
 
   // End this Function Filter PARENT AND SINGLE DONT HAVE CHILD
 
   return {
-    props: { collections, filterProductCollection, categories },
+    props: {
+      collections,
+      categories,
+      products: filterProducts,
+    },
   };
 }

@@ -35,13 +35,17 @@ const SectionBannerSlider = () => {
                         className="staggered-animation"
                         data-animation="slideInLeft"
                         data-animation-delay="1s"
-                        style={{ fontFamily: "Georgia" }}
+                        style={{
+                          fontFamily: "Georgia",
+                          color: "white",
+                          fontWeight: "bolder",
+                        }}
                       >
                         ENJOY LIFE. SPREAD LOVE
                       </h2>
                       <Link
                         className="btn btn-fill-out rounded-0 staggered-animation text-uppercase"
-                        href="/collection"
+                        href="/category"
                         data-animation="slideInLeft"
                         data-animation-delay="1.5s"
                       >

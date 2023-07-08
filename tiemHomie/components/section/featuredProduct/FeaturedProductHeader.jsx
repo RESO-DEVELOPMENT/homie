@@ -1,10 +1,10 @@
 import React from "react";
 const styles = {
-  fontFamily: 'Roboto, sans-serif',
-  fontSize: '16px',
+  fontFamily: "Roboto, sans-serif",
+  fontSize: "16px",
 };
 
-const FeaturedProductHeader = ({ title, showTabs }) => {
+const FeaturedProductHeader = ({ title, showTabs, collections }) => {
   return (
     <div className="row" style={{}}>
       <div className="col-12">
@@ -12,7 +12,6 @@ const FeaturedProductHeader = ({ title, showTabs }) => {
           <div className="heading_s2" style={{ ...styles, opacity: 1 }}>
             <h2>{title}</h2>
           </div>
-
           {showTabs && (
             <div className="tab-style2">
               <button
@@ -31,19 +30,47 @@ const FeaturedProductHeader = ({ title, showTabs }) => {
               >
                 <li className="nav-item">
                   <a
-                    className="  active"
+                    className="active"
                     style={{ ...styles, opacity: 1 }}
-                    id="arrival-tab"
+                    id={`${collections[0].code}-tab`}
                     data-bs-toggle="tab"
-                    href="#arrival"
+                    href={`#${collections[0].code}`}
                     role="tab"
-                    aria-controls="arrival"
+                    aria-controls={collections[0].code}
                     aria-selected="true"
                   >
-                 Hàng Mới Về
+                    {collections[0].name}
                   </a>
                 </li>
                 <li className="nav-item">
+                  <a
+                    className=""
+                    style={{ ...styles, opacity: 1 }}
+                    id={`${collections[1].code}-tab`}
+                    data-bs-toggle="tab"
+                    href={`#${collections[1].code}`}
+                    role="tab"
+                    aria-controls={collections[1].code}
+                    aria-selected="true"
+                  >
+                    {collections[1].name}
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a
+                    className=""
+                    style={{ ...styles, opacity: 1 }}
+                    id={`${collections[2].code}-tab`}
+                    data-bs-toggle="tab"
+                    href={`#${collections[2].code}`}
+                    role="tab"
+                    aria-controls={collections[2].code}
+                    aria-selected="true"
+                  >
+                    {collections[2].name}
+                  </a>
+                </li>
+                {/* <li className="nav-item">
                   <a
                     className=" "
                     style={{ ...styles, opacity: 1 }}
@@ -55,7 +82,6 @@ const FeaturedProductHeader = ({ title, showTabs }) => {
                     aria-selected="false"
                   >
                     Bán Chạy
-
                   </a>
                 </li>
                 <li className="nav-item">
@@ -85,7 +111,7 @@ const FeaturedProductHeader = ({ title, showTabs }) => {
                   >
                     Chỉ Có Tại Homie
                   </a>
-                </li>
+                </li> */}
               </ul>
             </div>
           )}
