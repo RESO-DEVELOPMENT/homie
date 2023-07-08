@@ -5,7 +5,7 @@ export const fetchData = createAsyncThunk("data/fetchData", async () => {
   // thunkApi.dispatch(...)
   try {
     const response = await getAllProduct(); // Gọi hàm getData trong productApi.js
-    // console.log(response);
+    console.log("redux", response);
     return response; // Trả về dữ liệu từ API
   } catch (error) {
     throw new Error("Failed to fetch products"); // Xử lý lỗi nếu có
@@ -36,7 +36,5 @@ const dataSlice = createSlice({
       });
   },
 });
-
-// const { reducers: dataReducer } = dataSlice;
 
 export default dataSlice.reducer;

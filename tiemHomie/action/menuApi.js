@@ -3,8 +3,6 @@
 import { useDispatch } from "react-redux";
 import axiosInstance from "../utils/axiosClient";
 
-// const dispatch = useDispatch();
-
 export const getAllProduct = async () => {
   try {
     // Login request
@@ -24,12 +22,7 @@ export const getAllProduct = async () => {
         Authorization: `Bearer ${accessToken}`,
       },
     });
-    // dispatch(
-    //   setMenu({
-    //     menu: response.data,
-    //   })
-    // );
-    console.log("response.data", response.data);
+
     return response;
   } catch (error) {
     console.error("Error fetching products:", error);

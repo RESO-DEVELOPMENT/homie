@@ -62,23 +62,15 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import classes from "./Collection.module.css";
 import Link from "next/link";
-import {
-  FaCoffee,
-  FaGift,
-  FaHeadphones,
-  FaHome,
-  FaPuzzlePiece,
-} from "react-icons/fa";
+
 const CollBar = ({ collections }) => {
   const settings = {
     dots: false,
     infinite: true,
     loop: true,
-    arrows: false,
     speed: 250,
-    slidesToShow: 5,
+    slidesToShow: 8,
     slidesToScroll: 1,
-
     responsive: [
       {
         breakpoint: 768,
@@ -90,33 +82,30 @@ const CollBar = ({ collections }) => {
       {
         breakpoint: 576,
         settings: {
-          slidesToShow: 5,
+          slidesToShow: 4,
           arrows: false,
         },
       },
     ],
   };
-  const icons = [
-    <FaGift />,
-    <FaHome />,
-    <FaCoffee />,
-    <FaPuzzlePiece />,
-    <FaHeadphones />,
-  ];
 
   return (
     <div className={`${classes.category}`}>
       <div className="container">
         <div className="row">
-          <div className="col-12">
+          <div className="col-24">
             <Slider {...settings}>
-              {collections.slice(0, 5).map((collection, index) => (
+              {collections.map((category, index) => (
                 <div className={`${classes.card}`} key={index}>
-                  <Link href={`/collection/${collection.code}`}>
-                    <div className={`${classes.icon}`}>
-                      {icons[index % icons.length]}
+                  <Link href={`/category/${category.code}`}>
+                    <div>
+                      <img
+                        className={`${classes.icon}`}
+                        src={category.picUrl}
+                        alt={category.name}
+                      />
                     </div>
-                    <h6 className={`${classes.label}`}>{collection.name}</h6>
+                    <h4 className={`${classes.label}`}>{category.name}</h4>
                   </Link>
                 </div>
               ))}

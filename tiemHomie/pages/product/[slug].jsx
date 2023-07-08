@@ -36,7 +36,6 @@ function createSlugFromTitle(title) {
 }
 
 const ProductDetail = ({ product, products, categories }) => {
-  console.log("product", product);
   const getSliderItems = () => {
     const itemsPerSlide = 2; // Số sản phẩm hiển thị trên mỗi slide
     const totalSlides = Math.ceil(filteredProducts.length / itemsPerSlide); // Tổng số slide

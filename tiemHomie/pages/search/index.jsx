@@ -9,8 +9,9 @@ import SortBySelected from "../../components/FilterProductByComponent/sortBySele
 import { AiFillFilter } from "react-icons/ai";
 import SideBar from "../../components/FilterProductByComponent/sidebar/SideBar";
 import FilterButton from "../../components/FilterProductByComponent/sidebar/FilterButton";
+import CategorySideBar from "../../components/FilterProductByComponent/sidebar/CategorySideBar";
 
-const Product = ({ products, collections, productCount }) => {
+const Product = ({ products, collections, categories, productCount }) => {
   const search = useSearchParams();
   const searchQuery = search ? search.get("q") : null;
   // const encodeSearchQuery = encodeURI(searchQuery || "");
@@ -167,8 +168,8 @@ const Product = ({ products, collections, productCount }) => {
                 />
               </div>
             </div>
-            <SideBar
-              collections={collections}
+            <CategorySideBar
+              categories={categories}
               productCount={productCount}
               show={show}
               handleClose={handleClose}
@@ -188,6 +189,7 @@ export async function getStaticProps() {
   const data = await getAllProduct();
   const products = data.products;
   const collections = data.collections;
+  const categories = data.categories;
   const productCount = collections.map((collection) => {
     let count = 0;
     products.forEach((product) => {
@@ -197,14 +199,10 @@ export async function getStaticProps() {
     });
     return count;
   });
-  let collectionList = [];
-  for (let index = 0; index < 5; index++) {
-    const element = collections[index];
-    collectionList.push(element);
-  }
+
   //   const filteredCollections = collections.filter((_, index) => productCount[index] > 0);
 
   return {
-    props: { products, collections: collectionList, productCount },
+    props: { products, collections, categories, productCount },
   };
 }

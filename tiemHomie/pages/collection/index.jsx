@@ -9,7 +9,7 @@ import { AiFillFilter } from "react-icons/ai";
 import SideBar from "../../components/FilterProductByComponent/sidebar/SideBar";
 import FilterButton from "../../components/FilterProductByComponent/sidebar/FilterButton";
 
-const shopleft = ({ products, collections, productCount }) => {
+const shopleft = ({ products, collections, productCount } = getStaticProps) => {
   const [showProductActionBox, setShowProductActionBox] = useState(true);
   const [data, setData] = useState(products);
   const [selectedSortOption, setSelectedSortOption] = useState("");
@@ -63,29 +63,24 @@ const shopleft = ({ products, collections, productCount }) => {
   const [value, setValue] = useState([0, 1000000]);
 
   const handleSliderChange = (newValue) => {
-      setValue(newValue);
+    setValue(newValue);
   };
   useEffect(() => {
     const filteredData = products.filter(
       (product) =>
         product.sellingPrice >= value[0] && product.sellingPrice <= value[1]
     );
-  
+
     let sortedData = [...filteredData];
     if (selectedSortOption === "price") {
-      sortedData = filteredData.sort(
-        (a, b) => a.sellingPrice - b.sellingPrice
-      );
+      sortedData = filteredData.sort((a, b) => a.sellingPrice - b.sellingPrice);
     } else if (selectedSortOption === "price-desc") {
-      sortedData = filteredData.sort(
-        (a, b) => b.sellingPrice - a.sellingPrice
-      );
+      sortedData = filteredData.sort((a, b) => b.sellingPrice - a.sellingPrice);
       //more types sorted here
     }
-  
-    setData(sortedData);
 
-  }, [value, products, selectedSortOption, setData,setSelectedSortOption]);
+    setData(sortedData);
+  }, [value, products, selectedSortOption, setData, setSelectedSortOption]);
   return (
     <div className="main_content">
       <BreadCrumb
@@ -98,13 +93,13 @@ const shopleft = ({ products, collections, productCount }) => {
         <div className="container">
           <div className="row">
             <div className="col-lg-9">
-            <div className="row align-items-center mb-4 pb-1">
+              <div className="row align-items-center mb-4 pb-1">
                 <div className="col-12 d-flex justify-content-between product_header">
                   <SortBySelected
                     handleSortOptionChange={handleSortOptionChange}
                     selectedSortOption={selectedSortOption}
                   />
-                  <FilterButton handleShow={handleShow}/>
+                  <FilterButton handleShow={handleShow} />
                 </div>
               </div>
               <div className="row shop_container">
@@ -122,8 +117,15 @@ const shopleft = ({ products, collections, productCount }) => {
                 />
               </div>
             </div>
-            <SideBar collections={collections} productCount={productCount}  show={show} handleClose={handleClose} handleSliderChange={handleSliderChange} value={value}/>          
-            </div>
+            <SideBar
+              collections={collections}
+              productCount={productCount}
+              show={show}
+              handleClose={handleClose}
+              handleSliderChange={handleSliderChange}
+              value={value}
+            />
+          </div>
         </div>
       </div>
       {/* END SECTION SHOP */}
@@ -149,13 +151,7 @@ export async function getStaticProps() {
     return count;
   });
 
-  let collectionList = []
-  for (let index = 0; index < 5; index++) {
-    const element = collections[index];
-    collectionList.push(element)
-  }
-
   return {
-    props: { products, collections:collectionList, productCount },
+    props: { products, collections, productCount },
   };
 }

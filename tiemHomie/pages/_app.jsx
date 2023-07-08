@@ -8,10 +8,12 @@ import ButtonCustomer from "../components/Button/ButtonCustomer";
 import { Provider } from "react-redux";
 import { store, persistor } from "../src/redux/store";
 import { PersistGate } from "redux-persist/integration/react";
+import { getAllProduct } from "../action/menuApi";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const MyApp = ({ Component, pageProps }) => {
+  const queryClient = new QueryClient();
   const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     const linkTags = [
       {
@@ -187,7 +189,7 @@ const MyApp = ({ Component, pageProps }) => {
           <div style={{ overflow: "hidden" }}>
             <Provider store={store}>
               <PersistGate persistor={persistor}>
-                <Header />
+                <Header {...pageProps} />
                 <ButtonCustomer />
 
                 <Component {...pageProps} />

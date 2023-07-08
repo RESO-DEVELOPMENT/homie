@@ -5,32 +5,40 @@ import Link from "next/link";
 import Cart from "./Cart/Cart";
 import Search from "./SeachingGroup/Search";
 import { useRouter } from "next/router";
+import { getAllProduct } from "../../action/menuApi";
 import { useDispatch, useSelector } from "react-redux";
 import { updateTotal } from "@/redux/reducers/cartSlice";
 import Backdrop from "./Backdrop/Backdrop";
+import slugify from "slugify";
 
-const Header = () => {
+const Header = ({ products, categories, collections }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
-
+  function createSlugFromTitle(title) {
+    const slug = slugify(title, {
+      replacement: "-",
+      lower: true,
+      strict: true,
+    });
+    return slug;
+  }
   const handleCartOpen = (e) => {
     e.preventDefault();
     setIsCartOpen(true);
     setIsNavbarOpen(false);
-  setIsDropdownOpen(false);
+    setIsDropdownOpen(false);
   };
 
   const handleCartClose = (e) => {
     e.preventDefault();
     setIsCartOpen(false);
     setIsNavbarOpen(false);
-  setIsDropdownOpen(false);
+    setIsDropdownOpen(false);
   };
   const router = useRouter();
 
   //Redux
   const amount = useSelector((store) => store.cart.amount);
 
-  const { products } = useDispatch((store) => store.counter);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -39,7 +47,6 @@ const Header = () => {
 
   const [isNavbarOpen, setIsNavbarOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
 
   const handleLinkClick = () => {
     setIsNavbarOpen(false);
@@ -109,15 +116,6 @@ const Header = () => {
                       <span className="cart_count"> {amount} </span>
                     </a>
 
-                    {/* {isCartOpen && (
-                    <div className="slide-in-left">
-                    <div className={`${style.cartSidebarOpen} `}>
-                      <Cart handleCartClose={handleCartClose} />
-
-                      </div>
-                      </div>
-                  )} */}
-
                     {isCartOpen ? (
                       <>
                         <div className="slide-in-left">
@@ -137,15 +135,11 @@ const Header = () => {
                     )}
                   </li>
 
-                  {/* <button
-                    className="navbar-toggler mt-0 mb-2 me-1"
+                  <button
+                    className="navbar-toggler mt-0 mb-2 me-1 px-1"
                     type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent"
-                    aria-expanded="false"
-
-                  > */}
-                  <button className="navbar-toggler mt-0 mb-2 me-1 px-1" type="button" onClick={() => setIsNavbarOpen(!isNavbarOpen)}>
+                    onClick={() => setIsNavbarOpen(!isNavbarOpen)}
+                  >
                     <span
                       className={`${style.toggle} ion-android-menu fs-3`}
                     ></span>
@@ -161,14 +155,12 @@ const Header = () => {
           >
             <div className="container p-0">
               <nav className={`${style.content} navbar navbar-expand-lg`}>
-                {/* <div
-                  className="collapse navbar-collapse justify-content-center"
-                  id="navbarSupportedContent"
-                > */}
-                <div className={`collapse navbar-collapse justify-content-center${isNavbarOpen ? ' show' : ''}`} 
-                // id="navbarSupportedContent"
+                <div
+                  className={`collapse navbar-collapse justify-content-center${
+                    isNavbarOpen ? " show" : ""
+                  }`}
+                  // id="navbarSupportedContent"
                 >
-
                   <ul className="navbar-nav">
                     <li className="dropdown mx-3">
                       <Link
@@ -192,248 +184,48 @@ const Header = () => {
                       >
                         Sản Phẩm
                       </a>
-                      <div className={`dropdown-menu ${isDropdownOpen ? "show" : ""}`}>
+                      <div
+                        className={`dropdown-menu ${
+                          isDropdownOpen ? "show" : ""
+                        }`}
+                      >
                         <ul className="mega-menu d-lg-flex">
                           <li className="mega-menu-col col-lg-2">
                             <ul>
-                              <li className="dropdown-header">Quà Tặng</li>
-                              <li>
-                                <Link
-                                  className="dropdown-item nav-link nav-item"
-                                  href="/category/thu-bong"
-                                  onClick={handleLinkClick}
-                                >
-                                  Thú Bông
-                                </Link>
-                              </li>
-                              <li>
-                                <Link
-                                  className="dropdown-item nav-link nav_item"
-                                  href="/category/chen-dia-ly-su"
-                                  onClick={handleLinkClick}
-
-                                >
-                                  Chén Đĩa Ly Sứ
-                                </Link>
-                              </li>
-                              <li>
-                                <Link
-                                  className="dropdown-item nav-link nav_item"
-                                  href="/category/meo-gom"
-                                  onClick={handleLinkClick}
-
-                                >
-                                  Mèo Gốm
-                                </Link>
-                              </li>
-                              <li>
-                                <Link
-                                  className="dropdown-item nav-link nav_item"
-                                  href="/category/men"
-                                  onClick={handleLinkClick}
-
-                                >
-                                  Mền
-                                </Link>
-                              </li>
-                              <li>
-                                <Link
-                                  className="dropdown-item nav-link nav_item"
-                                  href="/category/tui-xach"
-                                  onClick={handleLinkClick}
-
-                                >
-                                  Túi Xách
-                                </Link>
-                              </li>
+                              <li className="dropdown-header">Danh mục</li>
+                              {categories !== undefined &&
+                                categories.map((category) => (
+                                  <li>
+                                    <Link
+                                      className="dropdown-item nav-link nav-item"
+                                      href={`/category/${createSlugFromTitle(
+                                        category.name
+                                      )}`}
+                                      onClick={handleLinkClick}
+                                    >
+                                      {category.name}
+                                    </Link>
+                                  </li>
+                                ))}
                             </ul>
                           </li>
                           <li className="mega-menu-col col-lg-3">
                             <ul>
-                              <li className="dropdown-header">
-                                Trang Trí Nhà Cửa
-                              </li>
-                              <li>
-                                <Link
-                                  className="dropdown-item nav-link nav_item"
-                                  href="/category/thu-bong"
-                                  onClick={handleLinkClick}
-
-                                >
-                                  Thú Bông
-                                </Link>
-                              </li>
-                              <li>
-                                <Link
-                                  className="dropdown-item nav-link nav_item"
-                                  href="/category/goi-bong"
-                                  onClick={handleLinkClick}
-
-                                >
-                                  Gối Bông
-                                </Link>
-                              </li>
-                              <li>
-                                <Link
-                                  className="dropdown-item nav-link nav_item"
-                                  href="/category/chen-dia-ly-su"
-                                  onClick={handleLinkClick}
-
-                                >
-                                  Chén Đĩa Ly Sứ
-                                </Link>
-                              </li>
-                              <li>
-                                <Link
-                                  className="dropdown-item nav-link nav_item"
-                                  href="/category/meo-gom"
-                                  onClick={handleLinkClick}
-
-                                >
-                                  Mèo Gốm
-                                </Link>
-                              </li>
-                              <li>
-                                <Link
-                                  className="dropdown-item nav-link nav_item"
-                                  href="/category/men"
-                                  onClick={handleLinkClick}
-                                >
-                                  Mền
-                                </Link>
-                              </li>
-                            </ul>
-                          </li>
-                          <li className="mega-menu-col col-lg-2">
-                            <ul>
-                              <li className="dropdown-header">Thư Giãn</li>
-                              <li>
-                                <Link
-                                  className="dropdown-item nav-link nav_item"
-                                  href="/category/thu-bong"
-                                  onClick={handleLinkClick}
-                                >
-                                  Thú Bông
-                                </Link>
-                              </li>
-                              <li>
-                                <Link
-                                  className="dropdown-item nav-link nav_item"
-                                  href="/category/goi-bong"
-                                  onClick={handleLinkClick}
-                                >
-                                  Gối Bông
-                                </Link>
-                              </li>
-                              <li>
-                                <Link
-                                  className="dropdown-item nav-link nav_item"
-                                  href="/category/men"
-                                  onClick={handleLinkClick}
-                                >
-                                  Mền
-                                </Link>
-                              </li>
-                              <li>
-                                <Link
-                                  className="dropdown-item nav-link nav_item"
-                                  href="/category/quat"
-                                  onClick={handleLinkClick}
-                                >
-                                  Quạt
-                                </Link>
-                              </li>
-                            </ul>
-                          </li>
-                          <li className="mega-menu-col col-lg-2">
-                            <ul>
-                              <li className="dropdown-header">Tiện Ích</li>
-                              <li>
-                                <Link
-                                  className="dropdown-item nav-link nav_item"
-                                  href="/category/chen-dia-ly-su"
-                                  onClick={handleLinkClick}
-                                >
-                                  Chén Đĩa Ly Sứ
-                                </Link>
-                              </li>
-                              <li>
-                                <Link
-                                  className="dropdown-item nav-link nav_item"
-                                  href="/category/men"
-                                  onClick={handleLinkClick}
-                                >
-                                  Mền
-                                </Link>
-                              </li>
-                              <li>
-                                <Link
-                                  className="dropdown-item nav-link nav_item"
-                                  href="/category/quat"
-                                  onClick={handleLinkClick}
-                                >
-                                  Quạt
-                                </Link>
-                              </li>
-                              <li>
-                                <Link
-                                  className="dropdown-item nav-link nav_item"
-                                  href="/category/goi-tua-lung"
-                                  onClick={handleLinkClick}
-                                >
-                                  Gối Tựa Lưng
-                                </Link>
-                              </li>
-                              <li>
-                                <Link
-                                  className="dropdown-item nav-link nav_item"
-                                  href="/category/goi-co"
-                                  onClick={handleLinkClick}
-                                >
-                                  Gối Cổ
-                                </Link>
-                              </li>
-                              <li>
-                                <Link
-                                  className="dropdown-item nav-link nav_item"
-                                  href="/category/ly-giu-nhiet"
-                                  onClick={handleLinkClick}
-                                >
-                                  Ly Giữ Nhiệt
-                                </Link>
-                              </li>
-                            </ul>
-                          </li>
-                          <li className="mega-menu-col col-lg-3">
-                            <ul>
-                              <li className="dropdown-header">Phụ Kiện</li>
-                              <li>
-                                <Link
-                                  className="dropdown-item nav-link nav_item"
-                                  href="/category/moc-khoa"
-                                  onClick={handleLinkClick}
-                                >
-                                  Móc Khoá
-                                </Link>
-                              </li>
-                              <li>
-                                <Link
-                                  className="dropdown-item nav-link nav_item"
-                                  href="/category/tui-xach"
-                                  onClick={handleLinkClick}
-                                >
-                                  Túi Xách
-                                </Link>
-                              </li>
-                              <li>
-                                <Link
-                                  className="dropdown-item nav-link nav_item"
-                                  href="/category/tui-my-pham"
-                                  onClick={handleLinkClick}
-                                >
-                                  Túi Mỹ Phẩm
-                                </Link>
-                              </li>
+                              <li className="dropdown-header">Bộ sưu tập</li>
+                              {collections !== undefined &&
+                                collections.map((collection) => (
+                                  <li>
+                                    <Link
+                                      className="dropdown-item nav-link nav-item"
+                                      href={`/collection/${createSlugFromTitle(
+                                        collection.name
+                                      )}`}
+                                      onClick={handleLinkClick}
+                                    >
+                                      {collection.name}
+                                    </Link>
+                                  </li>
+                                ))}
                             </ul>
                           </li>
                         </ul>
@@ -444,11 +236,6 @@ const Header = () => {
                                 src="/assets/images/shop-banner-img1jpg@2x.png"
                                 alt="menu_banner1"
                               />
-                              {/* <div className="banne_info">
-                              <h6>10% Off</h6>
-                              <h4>New Arrival</h4>
-                              <a href="#">Shop now</a>
-                            </div> */}
                             </div>
                           </div>
                           <div className="col-sm-4">
@@ -457,11 +244,6 @@ const Header = () => {
                                 src="/assets/images/shop-banner-img2jpg@2x.png"
                                 alt="menu_banner2"
                               />
-                              {/* <div className="banne_info">
-                              <h6>15% Off</h6>
-                              <h4>Men's Fashion</h4>
-                              <a href="#">Shop now</a>
-                            </div> */}
                             </div>
                           </div>
                           <div className="col-sm-4">
@@ -470,11 +252,6 @@ const Header = () => {
                                 src="/assets/images/shop-banner-img1jpg@2x.png"
                                 alt="menu_banner3"
                               />
-                              {/* <div className="banne_info">
-                              <h6>23% Off</h6>
-                              <h4>Kids Fashion</h4>
-                              <a href="#">Shop now</a>
-                            </div> */}
                             </div>
                           </div>
                         </div>
@@ -483,12 +260,12 @@ const Header = () => {
                     <li>
                       <Link
                         className={`${
-                          router.pathname === "/collection" ? "active" : ""
+                          router.pathname === "/about" ? "active" : ""
                         } nav-link nav_item mx-3`}
-                        href="/collection"
+                        href="/about"
                         passHref
                       >
-                        Set Quà Tặng
+                        Câu Chuyện Thương Hiệu
                       </Link>
                     </li>
                     <li>
@@ -499,7 +276,7 @@ const Header = () => {
                         href="/contact"
                         passHref
                       >
-                        Câu Chuyện Thương Hiệu
+                        Liên hệ
                       </Link>
                     </li>
                   </ul>
@@ -513,13 +290,14 @@ const Header = () => {
   );
 };
 
-export default Header;
-
 export async function getStaticProps() {
   const data = await getAllProduct();
-  const products = data.products; // take the products attribute in the menu
-  const categories = data.categories;
+  const categories = data.data.categories;
+  const products = data.products;
+  const collections = data.collections;
   return {
-    props: { products, categories },
+    props: { products, categories, collections },
   };
 }
+
+export default Header;

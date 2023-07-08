@@ -1,8 +1,8 @@
 import React from "react";
 import PriceFilter from "../price/priceFilter";
-import Tags from "../Tags/Tags";
-const SmallSideBar = ({
-  collections,
+import CategoryTags from "../Tags/CategoryTag";
+const CategorySmallSideBar = ({
+  categories,
   productCount,
   value,
   handleSliderChange,
@@ -13,7 +13,7 @@ const SmallSideBar = ({
   return (
     <div className="sidebar">
       <div className="widget">
-        <Tags collections={collections} productCount={productCount} />
+        <CategoryTags categories={categories} productCount={productCount} />
       </div>
       <div className="widget">
         <PriceFilter
@@ -28,4 +28,4 @@ const SmallSideBar = ({
   );
 };
 
-export default SmallSideBar;
+export default CategorySmallSideBar;

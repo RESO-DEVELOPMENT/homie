@@ -24,8 +24,9 @@
 
 .card .icon {
   /* Styles for the icon */
-  font-size: 3rem;
-  margin-bottom: 10px;
+ width: 60px;
+ margin: auto;
+padding-bottom: 10px;
 }
 
 .card .label {
@@ -40,13 +41,16 @@
   }
 
   .card .label {
-    font-size: 10px;
+    font-size: 16px;
   }
 }
 
 @media only screen and (max-width: 576px) {
   .card .icon {
-    font-size: 1.2rem;
+
+    width: 60px;
+    margin: auto;
+   padding-bottom: 10px;
   }
 
   .card .label {

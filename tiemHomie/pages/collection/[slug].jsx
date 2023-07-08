@@ -16,7 +16,6 @@ const shopleft = ({
   productCount,
 }) => {
   const router = useRouter();
-
   const [showProductActionBox, setShowProductActionBox] = useState(true);
   const [data, setData] = useState([]);
   const [selectedSortOption, setSelectedSortOption] = useState("");
@@ -27,7 +26,7 @@ const shopleft = ({
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const paginatedData = data.slice(startIndex, endIndex);
-const pageCount = Math.ceil(data.length / itemsPerPage);
+  const pageCount = Math.ceil(data.length / itemsPerPage);
   // LOGIC TO FETCH DATA
   useEffect(() => {
     setData(filteredProducts);
@@ -38,14 +37,10 @@ const pageCount = Math.ceil(data.length / itemsPerPage);
 
     switch (sortOption) {
       case "price":
-        sortedData = sortedData.sort(
-          (a, b) => a.sellingPrice - b.sellingPrice
-        );
+        sortedData = sortedData.sort((a, b) => a.sellingPrice - b.sellingPrice);
         break;
       case "price-desc":
-        sortedData = sortedData.sort(
-          (a, b) => b.sellingPrice - a.sellingPrice
-        );
+        sortedData = sortedData.sort((a, b) => b.sellingPrice - a.sellingPrice);
         break;
       default:
         break;
@@ -82,22 +77,18 @@ const pageCount = Math.ceil(data.length / itemsPerPage);
       (product) =>
         product.sellingPrice >= value[0] && product.sellingPrice <= value[1]
     );
-  
+
     let sortedData = [...filteredData];
     if (selectedSortOption === "price") {
-      sortedData = filteredData.sort(
-        (a, b) => a.sellingPrice - b.sellingPrice
-      );
+      sortedData = filteredData.sort((a, b) => a.sellingPrice - b.sellingPrice);
     } else if (selectedSortOption === "price-desc") {
-      sortedData = filteredData.sort(
-        (a, b) => b.sellingPrice - a.sellingPrice
-      );
+      sortedData = filteredData.sort((a, b) => b.sellingPrice - a.sellingPrice);
       //more types sorted here
     }
-  
+
     setData(sortedData);
-  }, [value, products, selectedSortOption, setData,setSelectedSortOption]);
-  
+  }, [value, products, selectedSortOption, setData, setSelectedSortOption]);
+
   return (
     <div className="main_content">
       <BreadCrumb
@@ -116,7 +107,7 @@ const pageCount = Math.ceil(data.length / itemsPerPage);
                     handleSortOptionChange={handleSortOptionChange}
                     selectedSortOption={selectedSortOption}
                   />
-                  <FilterButton handleShow={handleShow}/>
+                  <FilterButton handleShow={handleShow} />
                 </div>
               </div>
               <div className="row shop_container">
@@ -134,7 +125,14 @@ const pageCount = Math.ceil(data.length / itemsPerPage);
                 />
               </div>
             </div>
-            <SideBar collections={collections} productCount={productCount}  show={show} handleClose={handleClose} handleSliderChange={handleSliderChange} value={value}/>
+            <SideBar
+              collections={collections}
+              productCount={productCount}
+              show={show}
+              handleClose={handleClose}
+              handleSliderChange={handleSliderChange}
+              value={value}
+            />
           </div>
         </div>
       </div>
@@ -185,15 +183,11 @@ export async function getStaticProps({ params }) {
   const filteredProducts = products.filter((product) =>
     product.collectionIds.includes(collection.id)
   );
-  let collectionList = []
-  for (let index = 0; index < 5; index++) {
-    const element = collections[index];
-    collectionList.push(element)
-  }
+
   return {
     props: {
       products,
-      collections:collectionList,
+      collections,
       collection,
       filteredProducts,
       productCount,

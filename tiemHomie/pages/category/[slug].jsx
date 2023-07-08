@@ -10,6 +10,7 @@ import SideBar from "../../components/FilterProductByComponent/sidebar/SideBar";
 import { AiFillFilter } from "react-icons/ai";
 import { getAllProduct } from "../../action/menuApi";
 import FilterButton from "../../components/FilterProductByComponent/sidebar/FilterButton";
+import CategorySideBar from "../../components/FilterProductByComponent/sidebar/CategorySideBar";
 
 const ShopLeft = ({
   products,
@@ -31,7 +32,7 @@ const ShopLeft = ({
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const paginatedData = data.slice(startIndex, endIndex);
-const pageCount = Math.ceil(data.length / itemsPerPage);
+  const pageCount = Math.ceil(data.length / itemsPerPage);
   // LOGIC TO FETCH DATA
   useEffect(() => {
     setData(filteredProducts);
@@ -42,14 +43,10 @@ const pageCount = Math.ceil(data.length / itemsPerPage);
 
     switch (sortOption) {
       case "price":
-        sortedData = sortedData.sort(
-          (a, b) => a.sellingPrice - b.sellingPrice
-        );
+        sortedData = sortedData.sort((a, b) => a.sellingPrice - b.sellingPrice);
         break;
       case "price-desc":
-        sortedData = sortedData.sort(
-          (a, b) => b.sellingPrice - a.sellingPrice
-        );
+        sortedData = sortedData.sort((a, b) => b.sellingPrice - a.sellingPrice);
         break;
       default:
         break;
@@ -86,22 +83,18 @@ const pageCount = Math.ceil(data.length / itemsPerPage);
       (product) =>
         product.sellingPrice >= value[0] && product.sellingPrice <= value[1]
     );
-  
+
     let sortedData = [...filteredData];
     if (selectedSortOption === "price") {
-      sortedData = filteredData.sort(
-        (a, b) => a.sellingPrice - b.sellingPrice
-      );
+      sortedData = filteredData.sort((a, b) => a.sellingPrice - b.sellingPrice);
     } else if (selectedSortOption === "price-desc") {
-      sortedData = filteredData.sort(
-        (a, b) => b.sellingPrice - a.sellingPrice
-      );
+      sortedData = filteredData.sort((a, b) => b.sellingPrice - a.sellingPrice);
       //more types sorted here
     }
-  
+
     setData(sortedData);
-  }, [value, products, selectedSortOption, setData,setSelectedSortOption]);
-  
+  }, [value, products, selectedSortOption, setData, setSelectedSortOption]);
+
   return (
     <div className="main_content">
       <BreadCrumb
@@ -138,8 +131,8 @@ const pageCount = Math.ceil(data.length / itemsPerPage);
                 onPageChange={handlePageChange}
               />
             </div>
-            <SideBar
-              collections={collections}
+            <CategorySideBar
+              categories={categories}
               productCount={productCount}
               show={show}
               handleClose={handleClose}
@@ -155,7 +148,6 @@ const pageCount = Math.ceil(data.length / itemsPerPage);
 };
 
 export default ShopLeft;
-
 
 export async function getStaticPaths() {
   const data = await getAllProduct();
@@ -183,11 +175,11 @@ export async function getStaticProps({ params }) {
   const products = data.products;
   const collections = data.collections;
 
-  const productCount = collections.map((collection) => {
+  const productCount = categories.map((category) => {
     let count = 0;
 
     products.forEach((product) => {
-      if (product.collectionIds.includes(collection.id)) {
+      if (product.categoryId.includes(category.id)) {
         count++;
       }
     });
@@ -199,17 +191,13 @@ export async function getStaticProps({ params }) {
   const filteredProducts = products.filter((product) =>
     product.categoryId.includes(category.id)
   );
-  let collectionList = []
-  for (let index = 0; index < 5; index++) {
-    const element = collections[index];
-    collectionList.push(element)
-  }
+
   return {
     props: {
       products,
       categories,
       category,
-      collections:collectionList,
+      collections,
       filteredProducts,
       productCount,
     },

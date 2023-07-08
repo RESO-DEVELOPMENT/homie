@@ -16,7 +16,7 @@ import Arrows from "../components/Button/Arrows";
 import SliderSection from "../components/section/SliderSection/SliderSection";
 import CollBar from "../components/FilterProductByComponent/collection/Collection";
 
-function Home({ collections, filterProductCollection }) {
+function Home({ collections, filterProductCollection, categories }) {
   const [showTabs, setShowTabs] = useState(true);
   const [showProductActionBox, setShowProductActionBox] = useState(true);
 
@@ -85,7 +85,7 @@ function Home({ collections, filterProductCollection }) {
         <div className="single_banner">
           <div className="row">
             <div className="col-12">
-              <CollBar collections={collections} />
+              <CollBar collections={categories} />
             </div>
           </div>
         </div>
@@ -95,7 +95,7 @@ function Home({ collections, filterProductCollection }) {
           {/* START SECTION SHOP DONE */}
           <div className="section small_pb">
             <div className="container">
-              <FeaturedProductHeader showTabs={showTabs} title="Top Sản Phẩm" />
+              <FeaturedProductHeader showTabs={showTabs} title="Bộ sưu tập" />
               <div className="row">
                 <div className="col-12">
                   <div className="tab_slider">
@@ -392,6 +392,7 @@ export async function getStaticProps() {
 
   const products = data.products; // take the products attribute in the menu
   const collections = data.collections;
+  const categories = data.categories;
 
   //this function to Filter PARENT AND SINGLE DONT HAVE CHILD
   const collectionIds = new Set(collections.map((collection) => collection.id));
@@ -435,6 +436,6 @@ export async function getStaticProps() {
   // End this Function Filter PARENT AND SINGLE DONT HAVE CHILD
 
   return {
-    props: { collections, filterProductCollection },
+    props: { collections, filterProductCollection, categories },
   };
 }

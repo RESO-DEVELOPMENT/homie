@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { selectAllProducts } from './cartSlice';
+import { selectAllProducts } from "./cartSlice";
 
 const initialState = {
   products: [],
-  checkoutAmount:0,
+  checkoutAmount: 0,
   totalPriceCheckout: 0,
 };
 
@@ -14,12 +14,12 @@ const checkoutSlice = createSlice({
     addProduct(state, action) {
       const { product } = action.payload;
       state.products.push(product);
-      state.checkoutAmount+=1;
+      state.checkoutAmount += 1;
     },
     removeProduct(state, action) {
       const { productId } = action.payload;
       state.products = state.products.filter((p) => p.sku !== productId);
-      state.checkoutAmount-=1;
+      state.checkoutAmount -= 1;
     },
     addAllToCheckout: (state, action) => {
       // const products = selectAllProducts(action.payload); // Assuming you have a selector in the cartSlice to get all products
@@ -44,5 +44,11 @@ const checkoutSlice = createSlice({
   },
 });
 
-export const { addProduct, removeProduct, addAllToCheckout, removeAllFromCheckout, updateTotalCheckout } = checkoutSlice.actions;
+export const {
+  addProduct,
+  removeProduct,
+  addAllToCheckout,
+  removeAllFromCheckout,
+  updateTotalCheckout,
+} = checkoutSlice.actions;
 export default checkoutSlice.reducer;

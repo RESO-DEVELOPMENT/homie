@@ -1,10 +1,9 @@
-import Link from 'next/link'
-import React from 'react'
-import classes from '../breadCrumb/BreadCrumb.module.css'
+import Link from "next/link";
+import React from "react";
+import classes from "../breadCrumb/BreadCrumb.module.css";
 const BreadCrumb = ({ descriptionTitle, title, middlePath }) => {
   return (
     <>
-
       {/* START SECTION BREADCRUMB */}
       <div className={classes.bg}>
         <div className="breadcrumb_section bg_gray page-title-mini">
@@ -21,12 +20,19 @@ const BreadCrumb = ({ descriptionTitle, title, middlePath }) => {
               <div className="col-md-6">
                 <ol className="breadcrumb justify-content-md-end">
                   <li className={`breadcrumb-item`}>
-                    <Link href="/" className={classes.linkUnderline}>Trang chủ</Link>
+                    <Link href="/" className={classes.linkUnderline}>
+                      Trang chủ
+                    </Link>
                   </li>
                   {middlePath !== "Danh mục" && (
                     <>
                       <li className={`breadcrumb-item`}>
-                        <Link href="/" className={classes.linkUnderline}>{middlePath}</Link>
+                        <Link
+                          href="/collection"
+                          className={classes.linkUnderline}
+                        >
+                          {middlePath}
+                        </Link>
                       </li>
                       <li className={`breadcrumb-item active`}>{title}</li>
                     </>
@@ -34,14 +40,18 @@ const BreadCrumb = ({ descriptionTitle, title, middlePath }) => {
                   {middlePath === "Danh mục" && (
                     <>
                       <li className={`breadcrumb-item`}>
-                        <Link href="/collection" className={classes.linkUnderline}>Danh mục</Link>
+                        <Link
+                          href="/category"
+                          className={classes.linkUnderline}
+                        >
+                          {middlePath}
+                        </Link>
                       </li>
                       <li className={`breadcrumb-item active`}>{title}</li>
                     </>
                   )}
                 </ol>
               </div>
-
             </div>
           </div>
           {/* END CONTAINER*/}
@@ -49,7 +59,7 @@ const BreadCrumb = ({ descriptionTitle, title, middlePath }) => {
       </div>
       {/* END SECTION BREADCRUMB */}
     </>
-  )
-}
+  );
+};
 
-export default BreadCrumb
+export default BreadCrumb;
