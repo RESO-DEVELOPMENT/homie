@@ -24,7 +24,7 @@ const BreadCrumb = ({ descriptionTitle, title, middlePath }) => {
                       Trang chủ
                     </Link>
                   </li>
-                  {middlePath !== "Bộ sưu tập" && (
+                  {middlePath !== "Danh mục" && (
                     <>
                       <li className={`breadcrumb-item`}>
                         <Link

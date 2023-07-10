@@ -17,7 +17,14 @@ import SliderSection from "../components/section/SliderSection/SliderSection";
 import CollBar from "../components/FilterProductByComponent/collection/Collection";
 import SectionBannerSlider2 from "../components/SectionBanner/SectionBanner2";
 
-function Home({ collections, categories, products }) {
+function Home({
+  collections,
+  categories,
+  products,
+  newProductsCollection,
+  bestSellerProductCollection,
+  onlyHomieProductCollection,
+}) {
   const [showTabs, setShowTabs] = useState(true);
   const [showProductActionBox, setShowProductActionBox] = useState(true);
   const collection0 = useRef(null);
@@ -32,7 +39,7 @@ function Home({ collections, categories, products }) {
   const getSliderItems = () => {
     const itemsPerSlide = 3; // Số sản phẩm hiển thị trên mỗi slide
     const totalSlides = Math.ceil(
-      products.filter((p) => p.collectionIds.includes(collections[2].id))
+      products.filter((p) => p.collectionIds.includes(newProductsCollection.id))
         .length / itemsPerSlide
     ); // Tổng số slide
     const sliderItems = [];
@@ -40,7 +47,7 @@ function Home({ collections, categories, products }) {
       const startIndex = i * itemsPerSlide;
       const endIndex = startIndex + itemsPerSlide;
       const slideItems = products
-        .filter((p) => p.collectionIds.includes(collections[2].id))
+        .filter((p) => p.collectionIds.includes(newProductsCollection.id))
         .slice(startIndex, endIndex);
       sliderItems.push(slideItems);
     }
@@ -107,14 +114,14 @@ function Home({ collections, categories, products }) {
               <div className="d-flex justify-content-center">
                 <FeaturedProductHeader
                   className="d-flex justify-content-center"
-                  title={collections[0].name}
+                  title={onlyHomieProductCollection.name}
                 />
               </div>
               <div className="tab-pane fade show active">
                 <SliderSection
                   sliderRef={collection0}
                   products={products.filter((p) =>
-                    p.collectionIds.includes(collections[0].id)
+                    p.collectionIds.includes(onlyHomieProductCollection.id)
                   )}
                   showProductActionBox={showProductActionBox}
                 />
@@ -127,17 +134,99 @@ function Home({ collections, categories, products }) {
               <div className="d-flex justify-content-center">
                 <FeaturedProductHeader
                   className="d-flex justify-content-center"
-                  title={collections[1].name}
+                  title={bestSellerProductCollection.name}
                 />
               </div>
               <div className="tab-pane fade show active">
                 <SliderSection
                   sliderRef={collection1}
                   products={products.filter((p) =>
-                    p.collectionIds.includes(collections[1].id)
+                    p.collectionIds.includes(bestSellerProductCollection.id)
                   )}
                   showProductActionBox={showProductActionBox}
                 />
+              </div>
+            </div>
+          </div>
+
+          {/* START SECTION SHOP  */}
+          <div className="section small_pt pb_20">
+            <div className="container col-12">
+              <div className="heading-tab-header  ">
+                <div className="">
+                  <div>
+                    <FeaturedProductHeader
+                      className="d-flex justify-content-center"
+                      title={newProductsCollection.name}
+                    />
+                  </div>
+                  <div
+                    className={styles.buttonsN}
+                    style={{
+                      position: "relative",
+                      display: "flex",
+                      justifyContent: "end",
+                    }}
+                  >
+                    <div className={styles.prevBN}>
+                      <button
+                        type="button"
+                        role="presentation"
+                        className="custom-prev-button"
+                        onClick={() => collection2.current.slickPrev()}
+                      >
+                        <FaChevronLeft className={styles.leftAN} />
+                      </button>
+                    </div>
+                    <div className={styles.nextBN}>
+                      <button
+                        type="button"
+                        role="presentation"
+                        className="custom-next-button"
+                        onClick={() => collection2.current.slickNext()}
+                      >
+                        <FaChevronRight className={styles.rightAN} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col-md-12">
+                  <div className="product_list">
+                    <div className={styles.shop}>
+                      <Slider
+                        ref={collection2}
+                        {...specialSettings}
+                        className="overflow-hidden"
+                        products={getProductByCollectionID(
+                          newProductsCollection.id
+                        )}
+                      >
+                        {getSliderItems().map((sliderItems, index) => (
+                          <div key={index} className="gridContainer">
+                            {sliderItems.map((product, innerIndex) => (
+                              <div
+                                key={innerIndex}
+                                className="item "
+                                style={{
+                                  maxHeight: "220px",
+                                  overflow: "hidden",
+                                }}
+                              >
+                                <ProductList
+                                  productData={product}
+                                  showProductActionBox={showProductActionBox}
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        ))}
+                      </Slider>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -216,87 +305,6 @@ function Home({ collections, categories, products }) {
           </div>
           {/* END SECTION BANNER */}
 
-          {/* START SECTION SHOP  */}
-          <div className="small_pt pb_20">
-            <div className="container col-12">
-              <div className="heading-tab-header  ">
-                <div className="">
-                  <div>
-                    <FeaturedProductHeader
-                      className="d-flex justify-content-center"
-                      title={collections[2].name}
-                    />
-                  </div>
-                  <div
-                    className={styles.buttonsN}
-                    style={{
-                      position: "relative",
-                      display: "flex",
-                      justifyContent: "end",
-                    }}
-                  >
-                    <div className={styles.prevBN}>
-                      <button
-                        type="button"
-                        role="presentation"
-                        className="custom-prev-button"
-                        onClick={() => collection2.current.slickPrev()}
-                      >
-                        <FaChevronLeft className={styles.leftAN} />
-                      </button>
-                    </div>
-                    <div className={styles.nextBN}>
-                      <button
-                        type="button"
-                        role="presentation"
-                        className="custom-next-button"
-                        onClick={() => collection2.current.slickNext()}
-                      >
-                        <FaChevronRight className={styles.rightAN} />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="row">
-                <div className="col-md-12">
-                  <div className="product_list">
-                    <div className={styles.shop}>
-                      <Slider
-                        ref={collection2}
-                        {...specialSettings}
-                        className="overflow-hidden"
-                        products={getProductByCollectionID(collections[2].id)}
-                      >
-                        {getSliderItems().map((sliderItems, index) => (
-                          <div key={index} className="gridContainer">
-                            {sliderItems.map((product, innerIndex) => (
-                              <div
-                                key={innerIndex}
-                                className="item "
-                                style={{
-                                  maxHeight: "220px",
-                                  overflow: "hidden",
-                                }}
-                              >
-                                <ProductList
-                                  productData={product}
-                                  showProductActionBox={showProductActionBox}
-                                />
-                              </div>
-                            ))}
-                          </div>
-                        ))}
-                      </Slider>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* END SECTION SHOP */}
-
           {/* <div className="section small_pb">
             <div className="container">
               <FeaturedProductHeader
@@ -307,6 +315,9 @@ function Home({ collections, categories, products }) {
               <div className="row">
                 <div className="col-12">
                   <div className="tab_slider">
+                    {
+                      
+                    }
                     <div
                       className="tab-pane fade show active"
                       id={collections[3].code}
@@ -370,8 +381,16 @@ export async function getStaticProps() {
   const collections = data.collections;
   const categories = data.categories;
 
-  //this function to Filter PARENT AND SINGLE DONT HAVE CHILD
-  const collectionIds = new Set(collections.map((collection) => collection.id));
+  const newProductsCollection = collections.find(
+    (col) => col.code === "hang-moi-ve"
+  );
+
+  const bestSellerProductCollection = collections.find(
+    (col) => col.code === "ban-chay"
+  );
+  const onlyHomieProductCollection = collections.find(
+    (col) => col.code === "chi-co-tai-homie"
+  );
 
   const filterProducts = products.filter(
     (product) => product.type === "SINGLE" || product.type === "PARENT"
@@ -384,6 +403,9 @@ export async function getStaticProps() {
       collections,
       categories,
       products: filterProducts,
+      newProductsCollection,
+      bestSellerProductCollection,
+      onlyHomieProductCollection,
     },
   };
 }
