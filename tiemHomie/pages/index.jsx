@@ -150,9 +150,9 @@ function Home({
           </div>
 
           {/* START SECTION SHOP  */}
-          <div className="section small_pt pb_20">
+          <div className="small_pt pb_20 small_pb">
             <div className="container col-12">
-              <div className="heading-tab-header  ">
+              <div className="heading-tab-header mgbt-40px  ">
                 <div className="">
                   <div>
                     <FeaturedProductHeader

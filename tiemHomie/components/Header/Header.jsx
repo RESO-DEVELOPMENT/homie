@@ -182,8 +182,8 @@ const Header = ({ products, categories, collections }) => {
                           isDropdownOpen ? "show" : ""
                         }`}
                       >
-                        <ul className="mega-menu d-lg-flex">
-                          <li className="mega-menu-col col-lg-2">
+                        <ul className="mega-menu  d-lg-flex">
+                          <li className="mega-menu-col col-lg-3">
                             <ul>
                               <li className="dropdown-header">Danh mục</li>
                               {categories !== undefined &&
@@ -217,33 +217,25 @@ const Header = ({ products, categories, collections }) => {
                                 ))}
                             </ul>
                           </li>
+                          <div className="flex-lg-column d-lg-flex menu_banners col-lg-6 g-3 px-3">
+                            <div className="row">
+                              <div className="header-banner">
+                                <img
+                                  src="/assets/images/shop-banner-img1jpg@2x.png"
+                                  alt="menu_banner1"
+                                />
+                              </div>
+                            </div>
+                            <div className="row">
+                              <div className="header-banner">
+                                <img
+                                  src="/assets/images/shop-banner-img2jpg@2x.png"
+                                  alt="menu_banner2"
+                                />
+                              </div>
+                            </div>
+                          </div>
                         </ul>
-                        <div className="d-lg-flex menu_banners row g-3 px-3">
-                          <div className="col-sm-4">
-                            <div className="header-banner">
-                              <img
-                                src="/assets/images/shop-banner-img1jpg@2x.png"
-                                alt="menu_banner1"
-                              />
-                            </div>
-                          </div>
-                          <div className="col-sm-4">
-                            <div className="header-banner">
-                              <img
-                                src="/assets/images/shop-banner-img2jpg@2x.png"
-                                alt="menu_banner2"
-                              />
-                            </div>
-                          </div>
-                          <div className="col-sm-4">
-                            <div className="header-banner">
-                              <img
-                                src="/assets/images/shop-banner-img1jpg@2x.png"
-                                alt="menu_banner3"
-                              />
-                            </div>
-                          </div>
-                        </div>
                       </div>
                     </li>
                     <li>
