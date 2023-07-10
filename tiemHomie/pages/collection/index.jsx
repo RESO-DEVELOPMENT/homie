@@ -139,10 +139,14 @@ export async function getStaticProps() {
   const data = await getAllProduct();
   const products = data.products;
   const collections = data.collections;
+
+  const filterProducts = products.filter(
+    (product) => product.type === "SINGLE" || product.type === "PARENT"
+  );
   const productCount = collections.map((collection) => {
     let count = 0;
 
-    products.forEach((product) => {
+    filterProducts.forEach((product) => {
       if (product.collectionIds.includes(collection.id)) {
         count++;
       }
@@ -152,6 +156,6 @@ export async function getStaticProps() {
   });
 
   return {
-    props: { products, collections, productCount },
+    props: { products: filterProducts, collections, productCount },
   };
 }

@@ -31,7 +31,7 @@ function Home({ collections, categories, products }) {
   const getSliderItems = () => {
     const itemsPerSlide = 3; // Số sản phẩm hiển thị trên mỗi slide
     const totalSlides = Math.ceil(
-      products.filter((p) => p.collectionIds.includes(collections[5].id))
+      products.filter((p) => p.collectionIds.includes(collections[2].id))
         .length / itemsPerSlide
     ); // Tổng số slide
     const sliderItems = [];
@@ -39,7 +39,7 @@ function Home({ collections, categories, products }) {
       const startIndex = i * itemsPerSlide;
       const endIndex = startIndex + itemsPerSlide;
       const slideItems = products
-        .filter((p) => p.collectionIds.includes(collections[5].id))
+        .filter((p) => p.collectionIds.includes(collections[2].id))
         .slice(startIndex, endIndex);
       sliderItems.push(slideItems);
     }
@@ -96,63 +96,7 @@ function Home({ collections, categories, products }) {
         {/* END MAIN CONTENT */}
         <div className="main_content">
           {/* START SECTION SHOP DONE */}
-          <div className="section small_pb">
-            <div className="container">
-              <FeaturedProductHeader
-                collections={collections}
-                showTabs={showTabs}
-                title="Bộ sưu tập"
-              />
-              <div className="row">
-                <div className="col-12">
-                  <div className="tab_slider">
-                    <div
-                      className="tab-pane fade show active"
-                      id={collections[0].code}
-                      role="tabpanel"
-                      aria-labelledby={`${collections[0].code}-tab`}
-                    >
-                      <SliderSection
-                        sliderRef={collection0}
-                        products={products.filter((p) =>
-                          p.collectionIds.includes(collections[0].id)
-                        )}
-                        showProductActionBox={showProductActionBox}
-                      />
-                    </div>
-                    <div
-                      className="tab-pane fade show active"
-                      id={collections[1].code}
-                      role="tabpanel"
-                      aria-labelledby={`${collections[1].code}-tab`}
-                    >
-                      <SliderSection
-                        sliderRef={collection1}
-                        products={products.filter((p) =>
-                          p.collectionIds.includes(collections[1].id)
-                        )}
-                        showProductActionBox={showProductActionBox}
-                      />
-                    </div>
-                    <div
-                      className="tab-pane fade show active"
-                      id={collections[2].code}
-                      role="tabpanel"
-                      aria-labelledby={`${collections[2].code}-tab`}
-                    >
-                      <SliderSection
-                        sliderRef={collection2}
-                        products={products.filter((p) =>
-                          p.collectionIds.includes(collections[2].id)
-                        )}
-                        showProductActionBox={showProductActionBox}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+
           {/* END SECTION SHOP */}
 
           {/* START SECTION SHOP Done */}
@@ -162,14 +106,14 @@ function Home({ collections, categories, products }) {
               <div className="d-flex justify-content-center">
                 <FeaturedProductHeader
                   className="d-flex justify-content-center"
-                  title={collections[3].name}
+                  title={collections[0].name}
                 />
               </div>
               <div className="tab-pane fade show active">
                 <SliderSection
-                  sliderRef={collection3}
+                  sliderRef={collection0}
                   products={products.filter((p) =>
-                    p.collectionIds.includes(collections[3].id)
+                    p.collectionIds.includes(collections[0].id)
                   )}
                   showProductActionBox={showProductActionBox}
                 />
@@ -182,14 +126,14 @@ function Home({ collections, categories, products }) {
               <div className="d-flex justify-content-center">
                 <FeaturedProductHeader
                   className="d-flex justify-content-center"
-                  title={collections[4].name}
+                  title={collections[1].name}
                 />
               </div>
               <div className="tab-pane fade show active">
                 <SliderSection
-                  sliderRef={collection4}
+                  sliderRef={collection1}
                   products={products.filter((p) =>
-                    p.collectionIds.includes(collections[4].id)
+                    p.collectionIds.includes(collections[1].id)
                   )}
                   showProductActionBox={showProductActionBox}
                 />
@@ -279,7 +223,7 @@ function Home({ collections, categories, products }) {
                   <div>
                     <FeaturedProductHeader
                       className="d-flex justify-content-center"
-                      title={collections[5].name}
+                      title={collections[2].name}
                     />
                   </div>
                   <div
@@ -295,7 +239,7 @@ function Home({ collections, categories, products }) {
                         type="button"
                         role="presentation"
                         className="custom-prev-button"
-                        onClick={() => collection5.current.slickPrev()}
+                        onClick={() => collection2.current.slickPrev()}
                       >
                         <FaChevronLeft className={styles.leftAN} />
                       </button>
@@ -305,7 +249,7 @@ function Home({ collections, categories, products }) {
                         type="button"
                         role="presentation"
                         className="custom-next-button"
-                        onClick={() => collection5.current.slickNext()}
+                        onClick={() => collection2.current.slickNext()}
                       >
                         <FaChevronRight className={styles.rightAN} />
                       </button>
@@ -319,10 +263,10 @@ function Home({ collections, categories, products }) {
                   <div className="product_list">
                     <div className={styles.shop}>
                       <Slider
-                        ref={collection5}
+                        ref={collection2}
                         {...specialSettings}
                         className="overflow-hidden"
-                        products={getProductByCollectionID(collections[5].id)}
+                        products={getProductByCollectionID(collections[2].id)}
                       >
                         {getSliderItems().map((sliderItems, index) => (
                           <div key={index} className="gridContainer">
@@ -337,7 +281,7 @@ function Home({ collections, categories, products }) {
                               >
                                 <ProductList
                                   productData={product}
-                                  // showProductActionBox={showProductActionBox}
+                                  showProductActionBox={showProductActionBox}
                                 />
                               </div>
                             ))}
@@ -351,6 +295,64 @@ function Home({ collections, categories, products }) {
             </div>
           </div>
           {/* END SECTION SHOP */}
+
+          {/* <div className="section small_pb">
+            <div className="container">
+              <FeaturedProductHeader
+                collections={collections}
+                showTabs={showTabs}
+                title="Bộ sưu tập"
+              />
+              <div className="row">
+                <div className="col-12">
+                  <div className="tab_slider">
+                    <div
+                      className="tab-pane fade show active"
+                      id={collections[3].code}
+                      role="tabpanel"
+                      aria-labelledby={`${collections[3].code}-tab`}
+                    >
+                      <SliderSection
+                        sliderRef={collection3}
+                        products={products.filter((p) =>
+                          p.collectionIds.includes(collections[3].id)
+                        )}
+                        showProductActionBox={showProductActionBox}
+                      />
+                    </div>
+                    <div
+                      className="tab-pane fade show active"
+                      id={collections[1].code}
+                      role="tabpanel"
+                      aria-labelledby={`${collections[1].code}-tab`}
+                    >
+                      <SliderSection
+                        sliderRef={collection1}
+                        products={products.filter((p) =>
+                          p.collectionIds.includes(collections[1].id)
+                        )}
+                        showProductActionBox={showProductActionBox}
+                      />
+                    </div>
+                    <div
+                      className="tab-pane fade show active"
+                      id={collections[2].code}
+                      role="tabpanel"
+                      aria-labelledby={`${collections[2].code}-tab`}
+                    >
+                      <SliderSection
+                        sliderRef={collection2}
+                        products={products.filter((p) =>
+                          p.collectionIds.includes(collections[2].id)
+                        )}
+                        showProductActionBox={showProductActionBox}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> */}
         </div>
         {/* END MAIN CONTENT */}
       </div>

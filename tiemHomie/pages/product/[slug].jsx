@@ -25,16 +25,21 @@ import { getAllProduct } from "../../action/menuApi";
 import slugify from "slugify";
 import SliderSection from "../../components/section/SliderSection/SliderSection";
 import ProductList from "../../components/section/productCard/ProductList";
-
-const ProductDetail = ({ product, products, categories }) => {
+import { SnackbarProvider, useSnackbar } from "notistack";
+const ProductDetail = ({
+  product,
+  products,
+  categories,
+  listProductInCate,
+}) => {
   const getSliderItems = () => {
     const itemsPerSlide = 2; // Số sản phẩm hiển thị trên mỗi slide
-    const totalSlides = Math.ceil(filteredProducts.length / itemsPerSlide); // Tổng số slide
+    const totalSlides = Math.ceil(listProductInCate.length / itemsPerSlide); // Tổng số slide
     const sliderItems = [];
     for (let i = 0; i < totalSlides; i++) {
       const startIndex = i * itemsPerSlide;
       const endIndex = startIndex + itemsPerSlide;
-      const slideItems = filterProducts.slice(startIndex, endIndex);
+      const slideItems = listProductInCate.slice(startIndex, endIndex);
       sliderItems.push(slideItems);
     }
     return sliderItems;
@@ -73,6 +78,7 @@ const ProductDetail = ({ product, products, categories }) => {
   const [filteredProductsCate, setFilteredProductsCate] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState();
+  const { enqueueSnackbar } = useSnackbar();
   const [listImage, setListImage] = useState([]);
 
   //route declare
@@ -93,7 +99,9 @@ const ProductDetail = ({ product, products, categories }) => {
   };
 
   const handleAddToCart = () => {
-    if (product.type === "PARENT") {
+    if (selectedProduct === undefined) {
+      enqueueSnackbar("Vui lòng chọn phân loại", { variant: "warning" });
+    } else if (product.type === "PARENT") {
       dispatch(
         addToCart({
           name: selectedProduct.name,
@@ -105,6 +113,7 @@ const ProductDetail = ({ product, products, categories }) => {
           },
         })
       );
+      enqueueSnackbar("Thêm sản phẩm thành công", { variant: "success" });
     } else {
       dispatch(
         addToCart({
@@ -117,19 +126,7 @@ const ProductDetail = ({ product, products, categories }) => {
           },
         })
       );
-    }
-  };
-
-  const setListImageDisplay = (images) => {
-    const picUrls = images.split(";");
-    if (picUrls.length === 1) {
-      setListImage(picUrls);
-    } else if (picUrls.length > 1) {
-      setListImage(picUrls);
-    } else if (picUrls.length === 0) {
-      return "undefined";
-    } else {
-      setListImage(picUrls);
+      enqueueSnackbar("Thêm sản phẩm thành công", { variant: "success" });
     }
   };
 
@@ -144,9 +141,9 @@ const ProductDetail = ({ product, products, categories }) => {
           products: filteredProducts,
         };
       });
+      const picUrls = product.picUrl.split(";");
+      setListImage(picUrls);
       console.log("Filtered Products by Category:", filterProductCate);
-      setSelectedProduct(product);
-      setListImageDisplay(product.picUrl);
     } else {
       const listChild = products.filter(
         (p) => p.type == "CHILD" && p.parentProductId == product.id
@@ -161,9 +158,12 @@ const ProductDetail = ({ product, products, categories }) => {
         };
       });
       console.log("Filtered Products by Category:", filterProductCate);
+      const picUrls = product.picUrl.split(";");
+      listChild.map((childProduct) => {
+        picUrls.push(childProduct.picUrl);
+      });
+      setListImage(picUrls);
       setChildProducts(listChild);
-      setSelectedProduct(listChild[0]);
-      setListImageDisplay(listChild[0].picUrl);
       setFilteredProductsCate(filterProductCate);
     }
   }, [product]);
@@ -222,10 +222,8 @@ const ProductDetail = ({ product, products, categories }) => {
     <>
       <BreadCrumb
         middlePath="Chi Tiết Sản Phẩm"
-        title={selectedProduct === undefined ? "" : selectedProduct.name}
-        descriptionTitle={
-          selectedProduct === undefined ? "" : selectedProduct.name
-        }
+        title={product.name}
+        descriptionTitle={product.name}
       />
 
       {/* START MAIN CONTENT */}
@@ -249,6 +247,11 @@ const ProductDetail = ({ product, products, categories }) => {
                         swipeable
                         swipeScrollTolerance={37}
                         preventMovementUntilSwipeScrollTolerance
+                        selectedItem={
+                          selectedProduct !== undefined
+                            ? listImage.indexOf(selectedProduct.picUrl)
+                            : 0
+                        }
 
                         // className="productCarousel"
                       >
@@ -272,16 +275,14 @@ const ProductDetail = ({ product, products, categories }) => {
                   <div className="product_description">
                     <h4 className="product_title">
                       <Link style={headingStyle} href="#">
-                        {selectedProduct === undefined
-                          ? ""
-                          : selectedProduct.name}
+                        {product.name}
                       </Link>
                     </h4>
                     <div className="product_price">
                       <span className="price">
                         {formatPrice(
                           selectedProduct === undefined
-                            ? 0
+                            ? product.sellingPrice
                             : selectedProduct.sellingPrice
                         )}{" "}
                         VND
@@ -305,7 +306,7 @@ const ProductDetail = ({ product, products, categories }) => {
                     <div className="pr_desc">
                       <p>
                         {selectedProduct === undefined
-                          ? ""
+                          ? product.description
                           : selectedProduct.description}
                       </p>
                     </div>
@@ -326,14 +327,7 @@ const ProductDetail = ({ product, products, categories }) => {
                         </li>
                       </ul>
                     </div>
-                    {/* <div className="pr_switch_wrap">
-                      <span className="switch_lable">Color</span>
-                      <div className={`${styles.product_color_switch}`}>
-                        <span className={styles.active} data-color="#87554B" />
-                        <span data-color="red" />
-                        <span data-color="#DA323F" />
-                      </div>
-                    </div> */}
+
                     {product.type === "PARENT" && (
                       <>
                         <div className={`${styles.switch_color}`}>
@@ -346,7 +340,6 @@ const ProductDetail = ({ product, products, categories }) => {
                                 <button
                                   onClick={() => {
                                     setSelectedProduct(childProduct);
-                                    setListImageDisplay(childProduct.picUrl);
                                   }}
                                   className={
                                     childProduct == selectedProduct
@@ -563,25 +556,6 @@ const ProductDetail = ({ product, products, categories }) => {
                     </div>
                   </div>
                 </div>
-                <div className="row">
-                  <div className="col-md-12">
-                    {/* <SliderSection
-                      {...settings}
-                      sliderRef={sliderRef6}
-                      products={
-                        filteredProductsCate.length > 0 &&
-                        filteredProductsCate.find(
-                          (obj) => obj.category.name === categoryName
-                        )
-                          ? filteredProductsCate.find(
-                              (obj) => obj.category.name === categoryName
-                            ).products
-                          : []
-                      }
-                      showProductActionBox={showProductActionBox}
-                    /> */}
-                  </div>
-                </div>
 
                 <div className="row">
                   <div className="col-md-12">
@@ -590,7 +564,8 @@ const ProductDetail = ({ product, products, categories }) => {
                         <Slider
                           ref={sliderRef6}
                           {...specialSettings}
-                          products={filteredProducts}
+                          className="overflow-hidden"
+                          products={listProductInCate}
                         >
                           {getSliderItems().map((sliderItems, index) => (
                             <div key={index} className="gridContainer">
@@ -605,7 +580,7 @@ const ProductDetail = ({ product, products, categories }) => {
                                 >
                                   <ProductList
                                     productData={product}
-                                    // showProductActionBox={showProductActionBox}
+                                    showProductActionBox={showProductActionBox}
                                   />
                                 </div>
                               ))}
@@ -657,25 +632,12 @@ export async function getStaticProps({ params }) {
 
   // const productFilters = products.find((item) => item.code === "179")
   const product = products.find((p) => p.code === productCode);
+  const listProductInCate = products.filter(
+    (prod) =>
+      (prod.type === "SINGLE" || prod.type === "PARENT") &&
+      prod.categoryId == product.categoryId
+  );
 
-  const filterProductCate = categories.map((categoryId) => {
-    const filteredProducts = products.filter((product) =>
-      product.categoryId.includes(categoryId.id)
-    );
-    return {
-      category: categoryId,
-      products: filteredProducts,
-    };
-  });
-  // Find the category related to the product's category
-  //  const productCategory = categories.find(category =>
-  //   category.id === product.categoryId
-  // );
-
-  // Access the products of the related category or use an empty array if no match is found
-  // const relatedCategoryProducts = productCategory ? productCategory.products : [];
-
-  // filter cate theo product
   if (!product) {
     return {
       notFound: true,
@@ -687,7 +649,7 @@ export async function getStaticProps({ params }) {
       product,
       products,
       categories,
-      filterProductCate,
+      listProductInCate,
     },
   };
 }

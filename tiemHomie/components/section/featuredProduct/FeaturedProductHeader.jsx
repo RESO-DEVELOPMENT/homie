@@ -32,17 +32,17 @@ const FeaturedProductHeader = ({ title, showTabs, collections }) => {
                   <a
                     className="active"
                     style={{ ...styles, opacity: 1 }}
-                    id={`${collections[0].code}-tab`}
+                    id={`${collections[3].code}-tab`}
                     data-bs-toggle="tab"
-                    href={`#${collections[0].code}`}
+                    href={`#${collections[3].code}`}
                     role="tab"
-                    aria-controls={collections[0].code}
+                    aria-controls={collections[3].code}
                     aria-selected="true"
                   >
-                    {collections[0].name}
+                    {collections[3].name}
                   </a>
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <a
                     className=""
                     style={{ ...styles, opacity: 1 }}
@@ -69,7 +69,7 @@ const FeaturedProductHeader = ({ title, showTabs, collections }) => {
                   >
                     {collections[2].name}
                   </a>
-                </li>
+                </li> */}
                 {/* <li className="nav-item">
                   <a
                     className=" "
