@@ -5,12 +5,14 @@
 }
 .banner-img {
   overflow: hidden;
+  filter: brightness(85%);
 }
 .banner_container_title {
-  font-size: 60px;
+  font-size: 80px;
   margin-bottom: 20px;
   font-weight: 600;
   text-transform: capitalize;
+  color: #fff;
 }
 
 .banner_container_link {
