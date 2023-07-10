@@ -158,10 +158,12 @@ const ProductDetail = ({
         };
       });
       console.log("Filtered Products by Category:", filterProductCate);
-      const picUrls = product.picUrl.split(";");
+      const picUrls = [];
+      const parentPicUrls = product.picUrl.split(";");
       listChild.map((childProduct) => {
         picUrls.push(childProduct.picUrl);
       });
+      picUrls.push(parentPicUrls);
       setListImage(picUrls);
       setChildProducts(listChild);
       setFilteredProductsCate(filterProductCate);
@@ -238,19 +240,18 @@ const ProductDetail = ({
                   <div className="">
                     <div>
                       <Carousel
+                        moveto={1}
                         infiniteLoop
                         showIndicators={false}
                         showStatus={false}
                         thumbWidth={window.innerWidth > 900 ? 119 : 70}
                         useKeyboardArrows
                         showArrows={false}
-                        swipeable
-                        swipeScrollTolerance={37}
                         preventMovementUntilSwipeScrollTolerance
                         selectedItem={
                           selectedProduct !== undefined
                             ? listImage.indexOf(selectedProduct.picUrl)
-                            : 0
+                            : listImage.length - 1
                         }
 
                         // className="productCarousel"
