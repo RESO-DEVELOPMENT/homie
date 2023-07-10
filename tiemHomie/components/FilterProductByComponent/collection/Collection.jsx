@@ -68,22 +68,24 @@ const CollBar = ({ collections }) => {
     dots: false,
     infinite: true,
     loop: true,
-    speed: 250,
+    speed: 1000,
     slidesToShow: 8,
-    slidesToScroll: 1,
+    slidesToScroll: 7,
     responsive: [
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 5,
           arrows: false,
+          slidesToScroll: 4,
         },
       },
       {
         breakpoint: 576,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 5,
           arrows: false,
+          slidesToScroll: 4,
         },
       },
     ],

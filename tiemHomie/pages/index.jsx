@@ -101,7 +101,7 @@ function Home({ collections, categories, products }) {
 
           {/* START SECTION SHOP Done */}
 
-          <div className="section small_pt small_pb">
+          <div className="small_pt small_pb">
             <div className="container">
               <div className="d-flex justify-content-center">
                 <FeaturedProductHeader
@@ -121,7 +121,7 @@ function Home({ collections, categories, products }) {
             </div>
           </div>
 
-          <div className="section small_pt small_pb">
+          <div className="small_pt small_pb">
             <div className="container">
               <div className="d-flex justify-content-center">
                 <FeaturedProductHeader
@@ -142,7 +142,7 @@ function Home({ collections, categories, products }) {
           </div>
 
           {/* START SECTION BANNER */}
-          <div className="section pb_20 small_pt">
+          <div className="pb_20 small_pt">
             <div className="container">
               <div className="row">
                 <div className="col-md-6">
@@ -216,7 +216,7 @@ function Home({ collections, categories, products }) {
           {/* END SECTION BANNER */}
 
           {/* START SECTION SHOP  */}
-          <div className="section small_pt pb_20">
+          <div className="small_pt pb_20">
             <div className="container col-12">
               <div className="heading-tab-header  ">
                 <div className="">

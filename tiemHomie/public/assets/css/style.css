@@ -81,7 +81,6 @@ a:focus {
 img {
   max-width: 100%;
   object-fit: cover;
-  
 }
 button {
   -webkit-transition: all 0.3s ease-in-out;
@@ -117,11 +116,13 @@ video {
   padding: 100px 0;
   position: relative;
 }
-.section.small_pt,
+
 .footer_top.small_pt {
   padding-top: 50px;
 }
-.section.small_pb,
+.small_pb {
+  padding-top: 20px;
+}
 .footer_top.small_pb {
   padding-bottom: 50px;
 }
@@ -1233,7 +1234,7 @@ button:focus:not(:focus-visible) {
   font-weight: 500;
   padding: 22px 10px;
   text-transform: capitalize;
-  font-size: 14px;
+  font-size: 16px;
 }
 .navbar .navbar-nav > li > a.active,
 .navbar .navbar-nav > li:hover > a,
