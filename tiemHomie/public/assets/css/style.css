@@ -81,6 +81,7 @@ a:focus {
 img {
   max-width: 100%;
   object-fit: cover;
+
 }
 button {
   -webkit-transition: all 0.3s ease-in-out;
@@ -2817,6 +2818,8 @@ input.text {
   position: relative;
   z-index: -1;
   width: 100%;
+  object-fit: cover;
+  min-height: 200px;
 }
 .carousel-control-next,
 .carousel-control-prev {
