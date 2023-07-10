@@ -94,7 +94,7 @@ const CategoryPage = ({
         middlePath="Danh mục"
       ></BreadCrumb>
       {/* START SECTION SHOP */}
-      <div className="section">
+      <div className="section pd50">
         <div className="container">
           <div className="row">
             <div className="col-lg-9">

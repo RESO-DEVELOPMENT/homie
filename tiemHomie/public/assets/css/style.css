@@ -4330,7 +4330,7 @@ footer .widget_title {
   font-size: 28px;
 }
 .page-title-mini .breadcrumb li {
-  font-size: 14px;
+  font-size: 16px;
 }
 .header_wrap.transparent_header + .breadcrumb_section {
   padding-top: 200px;
@@ -5575,11 +5575,17 @@ footer .widget_title {
 }
 .pr_detail .price {
   vertical-align: middle;
-  font-size: 26px;
+  font-size: 24px;
 }
 .cart-product-quantity {
   margin: 7px 10px 7px 0;
   display: table;
+}
+.product_title_link {
+  font-family: "Roboto";
+  font-size: 26px;
+  font-weight: 700;
+  text-align: left;
 }
 .quantity {
   display: table;
@@ -5790,7 +5796,7 @@ footer .widget_title {
   margin-bottom: 15px;
 }
 .product_sort_info li {
-  font-size: 14px;
+  font-size: 16px;
   color: #292b2c;
   padding-bottom: 10px;
   list-style: none;
@@ -7510,4 +7516,10 @@ blockquote p:last-child {
 
 .cart_hover .cart_count {
   color: #fff;
+}
+.pd10 {
+  padding: 20px 0 !important;
+}
+.pd50 {
+  padding: 50px 0 !important;
 }
