@@ -81,7 +81,6 @@ a:focus {
 img {
   max-width: 100%;
   object-fit: cover;
-
 }
 button {
   -webkit-transition: all 0.3s ease-in-out;
@@ -7526,4 +7525,7 @@ blockquote p:last-child {
 }
 .pd50 {
   padding: 50px 0 !important;
+}
+.mgbt-40px {
+  margin-bottom: -40px !important;
 }
