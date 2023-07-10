@@ -24,9 +24,9 @@
 
 .card .icon {
   /* Styles for the icon */
- width: 60px;
- margin: auto;
-padding-bottom: 10px;
+  width: 40px;
+  margin: auto;
+  padding-bottom: 10px;
 }
 
 .card .label {
@@ -37,23 +37,24 @@ padding-bottom: 10px;
 
 @media only screen and (max-width: 768px) {
   .card .icon {
-    font-size: 2rem;
+    width: 30px;
+    margin: auto;
+    padding-bottom: 10px;
   }
 
   .card .label {
-    font-size: 16px;
+    font-size: 12px;
   }
 }
 
 @media only screen and (max-width: 576px) {
   .card .icon {
-
-    width: 60px;
+    width: 25px;
     margin: auto;
-   padding-bottom: 10px;
+    padding-bottom: 8px;
   }
 
   .card .label {
-    font-size: 8.5px;
+    font-size: 9px;
   }
 }
