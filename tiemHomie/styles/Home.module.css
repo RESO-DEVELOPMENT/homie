@@ -245,7 +245,7 @@
   min-width: 70px;
   padding: 5px 10px;
   border: 1px solid black;
-  font-size: small;
+  font-size: 14px;
   color: black;
   background-color: #fff;
 }
@@ -255,7 +255,7 @@
   border: 1px solid rgb(247, 156, 67);
 }
 .active {
-  font-size: small;
+  font-size: 14px;
   display: inline-block;
   transition: all 0.2s ease-in;
   position: relative;
@@ -279,4 +279,12 @@
 .banner {
   display: flex;
   flex-direction: row;
+}
+@media screen and (max-width: 575px) {
+  .active {
+    font-size: 13px;
+  }
+  .groupButtonColor_button {
+    font-size: 13px;
+  }
 }

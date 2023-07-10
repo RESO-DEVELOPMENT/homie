@@ -183,16 +183,6 @@ const ProductDetail = ({
 
   console.log("childProducts", childProducts);
 
-  const headingStyle = {
-    //css title product
-    fontFamily: "Roboto",
-    fontSize: "28px",
-    fontWeight: 700,
-    lineHeight: "36px",
-    letterSpacing: "0em",
-    textAlign: "left",
-  };
-
   const settings = {
     dots: false,
     infinite: true,
@@ -231,7 +221,7 @@ const ProductDetail = ({
       {/* START MAIN CONTENT */}
       <div className="main_content">
         {/* START SECTION SHOP */}
-        <div className="section">
+        <div className="section pd50">
           <div className="container">
             {/* Main Details of the pages NEED TO WRITE THE LOGIC */}
             <div className="row">
@@ -275,7 +265,7 @@ const ProductDetail = ({
                 <div className="pr_detail">
                   <div className="product_description">
                     <h4 className="product_title">
-                      <Link style={headingStyle} href="#">
+                      <Link className="product_title_link" href="#">
                         {product.name}
                       </Link>
                     </h4>
@@ -304,13 +294,13 @@ const ProductDetail = ({
                       </div>
                       <span className="rating_num">(21)</span>
                     </div> */}
-                    <div className="pr_desc">
+                    {/* <div className="pr_desc">
                       <p>
                         {selectedProduct === undefined
                           ? product.description
                           : selectedProduct.description}
                       </p>
-                    </div>
+                    </div> */}
 
                     <div className="product_sort_info">
                       <ul>
@@ -420,15 +410,9 @@ const ProductDetail = ({
                       SKU: <Link href="#">{product.code}</Link>
                     </li>
                     <li>
-                      Category:{" "}
+                      Danh mục:{" "}
                       <Link href={`/category/${categoryCode}`}>
                         {categoryName}
-                      </Link>
-                    </li>
-                    <li>
-                      Tags:{" "}
-                      <Link href={`/category/${categoryCode}`} rel="tag">
-                        {categoryCode}
                       </Link>
                     </li>
                   </ul>

@@ -1368,6 +1368,9 @@
     left: -15px;
     right: -15px;
   }
+  .product-meta li {
+    font-size: 14px;
+  }
   .btn {
     padding: 10px 28px;
     font-size: 14px;
@@ -1651,6 +1654,18 @@
   }
   .newsletter_form button {
     padding: 9px 25px;
+  }
+  .pr_detail .price {
+    font-size: 22px;
+  }
+  h6.product_title a {
+    font-size: 16px;
+  }
+  .product_sort_info li {
+    font-size: 14px;
+  }
+  .product-meta li {
+    font-size: 14px;
   }
 }
 
