@@ -185,23 +185,6 @@ const Header = ({ products, categories, collections }) => {
                         <ul className="mega-menu  d-lg-flex">
                           <li className="mega-menu-col col-lg-4">
                             <ul>
-                              <li className="dropdown-header">Danh mục</li>
-                              {categories !== undefined &&
-                                categories.map((category) => (
-                                  <li>
-                                    <Link
-                                      className="dropdown-item nav-link nav-item"
-                                      href={`/category/${category.code}`}
-                                      onClick={handleLinkClick}
-                                    >
-                                      {category.name}
-                                    </Link>
-                                  </li>
-                                ))}
-                            </ul>
-                          </li>
-                          <li className="mega-menu-col col-lg-4">
-                            <ul>
                               <li className="dropdown-header">Bộ sưu tập</li>
                               {collections !== undefined &&
                                 collections.map((collection) => (
@@ -217,6 +200,24 @@ const Header = ({ products, categories, collections }) => {
                                 ))}
                             </ul>
                           </li>
+                          <li className="mega-menu-col col-lg-4">
+                            <ul>
+                              <li className="dropdown-header">Danh mục</li>
+                              {categories !== undefined &&
+                                categories.map((category) => (
+                                  <li>
+                                    <Link
+                                      className="dropdown-item nav-link nav-item"
+                                      href={`/category/${category.code}`}
+                                      onClick={handleLinkClick}
+                                    >
+                                      {category.name}
+                                    </Link>
+                                  </li>
+                                ))}
+                            </ul>
+                          </li>
+
                           <div className="flex-lg-column d-lg-flex menu_banners col-lg-4 g-3 px-3">
                             <div className="row">
                               <div className="header-banner">
