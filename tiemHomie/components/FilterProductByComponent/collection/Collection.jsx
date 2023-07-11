@@ -65,27 +65,27 @@ import Link from "next/link";
 
 const CollBar = ({ collections }) => {
   const settings = {
-    dots: false,
+    dots: true,
     infinite: true,
     loop: true,
-    speed: 250,
-    slidesToShow: 8,
-    slidesToScroll: 8,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 5,
     responsive: [
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 5,
           arrows: false,
-          slidesToScroll: 4,
+          slidesToScroll: 5,
         },
       },
       {
         breakpoint: 576,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 5,
           arrows: false,
-          slidesToScroll: 3,
+          slidesToScroll: 5,
         },
       },
     ],
