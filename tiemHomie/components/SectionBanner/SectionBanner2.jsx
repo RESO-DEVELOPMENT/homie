@@ -7,7 +7,7 @@ const SectionBannerSlider2 = () => {
     <div className="banner">
       <div className="banner-img">
         <Image
-          src="/assets/images2/banner.jpg"
+          src="/assets/images2/banneroffice.jpg"
           alt=""
           width={1600}
           height={600}

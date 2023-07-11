@@ -20,6 +20,7 @@
   padding: 12px 35px;
   background-color: #f79c52;
   border-radius: 4px;
+  font-size: 20px;
 }
 .banner_container_link:hover {
   opacity: 0.9;
@@ -30,25 +31,38 @@
 }
 .banner_container {
   position: absolute;
-  top: 40%;
+  top: 50%;
+  transform: translateY(-50%);
   left: 10%;
+}
+@media screen and (max-width: 1400px) {
+  .banner_container_title {
+    font-size: 64px;
+  }
 }
 @media screen and (max-width: 1200px) {
   .banner_container_title {
     font-size: 52px;
   }
+  .banner_container_link {
+    padding: 8px 24px;
+    font-size: 16px;
+  }
 }
 @media screen and (max-width: 992px) {
   .banner_container_title {
-    font-size: 40px;
+    font-size: 44px;
+    margin-bottom: 16px;
   }
 }
 @media screen and (max-width: 768px) {
   .banner_container_title {
     font-size: 32px;
+    /* margin-bottom: 12px; */
   }
   .banner_container_link {
-    padding: 8px 18px;
+    padding: 6px 18px;
+    font-size: 14px;
   }
 }
 @media screen and (max-width: 576px) {
