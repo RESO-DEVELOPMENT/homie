@@ -99,20 +99,21 @@ const ProductDetail = ({
   };
 
   const handleAddToCart = () => {
-    if (selectedProduct === undefined) {
-      enqueueSnackbar("Vui lòng chọn phân loại", { variant: "warning" });
-    } else if (product.type === "PARENT") {
-      dispatch(
-        addToCart({
-          name: selectedProduct.name,
-          sellingPrice: selectedProduct.sellingPrice,
-          picUrl: selectedProduct.picUrl,
-          sku: selectedProduct.code,
-          attribute: {
-            amount: quantity,
-          },
-        })
-      );
+    if (product.type === "PARENT") {
+      if (selectedProduct === undefined) {
+        enqueueSnackbar("Vui lòng chọn phân loại", { variant: "warning" });
+      } else
+        dispatch(
+          addToCart({
+            name: selectedProduct.name,
+            sellingPrice: selectedProduct.sellingPrice,
+            picUrl: selectedProduct.picUrl,
+            sku: selectedProduct.code,
+            attribute: {
+              amount: quantity,
+            },
+          })
+        );
       enqueueSnackbar("Thêm sản phẩm thành công", { variant: "success" });
     } else {
       dispatch(
@@ -338,7 +339,7 @@ const ProductDetail = ({
                                       : `${styles.groupButtonColor_button}`
                                   }
                                 >
-                                  {childProduct.name}
+                                  {childProduct.description}
                                 </button>
                               ))}
                           </div>

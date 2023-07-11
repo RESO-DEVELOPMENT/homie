@@ -97,17 +97,17 @@ const CollBar = ({ collections }) => {
         <div className="row">
           <div className="col-24">
             <Slider {...settings}>
-              {collections.map((category, index) => (
+              {collections.map((collection, index) => (
                 <div className={`${classes.card}`} key={index}>
-                  <Link href={`/category/${category.code}`}>
+                  <Link href={`/category/${collection.code}`}>
                     <div>
                       <img
                         className={`${classes.icon}`}
-                        src={category.picUrl}
-                        alt={category.name}
+                        src={collection.picUrl}
+                        alt={collection.name}
                       />
                     </div>
-                    <h4 className={`${classes.label}`}>{category.name}</h4>
+                    <h4 className={`${classes.label}`}>{collection.name}</h4>
                   </Link>
                 </div>
               ))}

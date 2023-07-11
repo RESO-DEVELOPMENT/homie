@@ -21,6 +21,7 @@ function Home({
   collections,
   categories,
   products,
+  filterCollections,
   newProductsCollection,
   bestSellerProductCollection,
   onlyHomieProductCollection,
@@ -96,7 +97,7 @@ function Home({
         <div className="single_banner">
           <div className="row">
             <div className="col-12">
-              <CollBar collections={categories} />
+              <CollBar collections={filterCollections} />
             </div>
           </div>
         </div>
@@ -114,14 +115,14 @@ function Home({
               <div className="d-flex justify-content-center">
                 <FeaturedProductHeader
                   className="d-flex justify-content-center"
-                  title={onlyHomieProductCollection.name}
+                  title={bestSellerProductCollection.name}
                 />
               </div>
               <div className="tab-pane fade show active">
                 <SliderSection
-                  sliderRef={collection0}
+                  sliderRef={collection1}
                   products={products.filter((p) =>
-                    p.collectionIds.includes(onlyHomieProductCollection.id)
+                    p.collectionIds.includes(bestSellerProductCollection.id)
                   )}
                   showProductActionBox={showProductActionBox}
                 />
@@ -134,14 +135,14 @@ function Home({
               <div className="d-flex justify-content-center">
                 <FeaturedProductHeader
                   className="d-flex justify-content-center"
-                  title={bestSellerProductCollection.name}
+                  title={onlyHomieProductCollection.name}
                 />
               </div>
               <div className="tab-pane fade show active">
                 <SliderSection
-                  sliderRef={collection1}
+                  sliderRef={collection0}
                   products={products.filter((p) =>
-                    p.collectionIds.includes(bestSellerProductCollection.id)
+                    p.collectionIds.includes(onlyHomieProductCollection.id)
                   )}
                   showProductActionBox={showProductActionBox}
                 />
@@ -384,14 +385,18 @@ export async function getStaticProps() {
   const newProductsCollection = collections.find(
     (col) => col.code === "hang-moi-ve"
   );
-
+  const filterCollections = collections.filter(
+    (col) =>
+      (col.code !== "hang-moi-ve") &
+      (col.code !== "ban-chay") &
+      (col.code !== "chi-co-tai-homie")
+  );
   const bestSellerProductCollection = collections.find(
     (col) => col.code === "ban-chay"
   );
   const onlyHomieProductCollection = collections.find(
     (col) => col.code === "chi-co-tai-homie"
   );
-
   const filterProducts = products.filter(
     (product) => product.type === "SINGLE" || product.type === "PARENT"
   );
@@ -403,6 +408,7 @@ export async function getStaticProps() {
       collections,
       categories,
       products: filterProducts,
+      filterCollections: filterCollections,
       newProductsCollection,
       bestSellerProductCollection,
       onlyHomieProductCollection,
