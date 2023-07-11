@@ -100,7 +100,12 @@ const ProductCard = ({
             <div className={Styles.productTitle}>
               <h6
                 className="product_title"
-                style={{ color: "#292B2C", textDecoration: "none" }}
+                style={{
+                  color: "#292B2C",
+                  fontWeight: "600",
+                  fontSize: "18px",
+                  textDecoration: "none",
+                }}
               >
                 <Link
                   href={`/product/${productData.code}`}
