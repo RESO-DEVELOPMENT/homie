@@ -27,7 +27,7 @@ function Home({ products }) {
   const getSliderItems = () => {
     const itemsPerSlide = 3; // Số sản phẩm hiển thị trên mỗi slide
     const totalSlides = Math.ceil(
-      products.filter((p) => p.collectionIds.includes(collectionsData[7].id))
+      products.filter((p) => p.collectionIds.includes(collectionsData[6].id))
         .length / itemsPerSlide
     ); // Tổng số slide
     const sliderItems = [];
@@ -35,7 +35,7 @@ function Home({ products }) {
       const startIndex = i * itemsPerSlide;
       const endIndex = startIndex + itemsPerSlide;
       const slideItems = products
-        .filter((p) => p.collectionIds.includes(collectionsData[7].id))
+        .filter((p) => p.collectionIds.includes(collectionsData[6].id))
         .slice(startIndex, endIndex);
       sliderItems.push(slideItems);
     }
@@ -122,7 +122,7 @@ function Home({ products }) {
               <div className="d-flex justify-content-center">
                 <FeaturedProductHeader
                   className="d-flex justify-content-center"
-                  title={collectionsData[6].name}
+                  title={collectionsData[7].name}
                 />
               </div>
               <div className="tab-pane fade show active">
@@ -145,7 +145,7 @@ function Home({ products }) {
                   <div>
                     <FeaturedProductHeader
                       className="d-flex justify-content-center"
-                      title={collectionsData[7].name}
+                      title={collectionsData[6].name}
                     />
                   </div>
                   <div

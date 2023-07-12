@@ -121,14 +121,7 @@ export const collectionsData = [
       "https://firebasestorage.googleapis.com/v0/b/pos-system-47f93.appspot.com/o/files%2Fimage-141%402x.png?alt=media&token=2a746f44-e2d3-4c9c-90a5-14d685bbb197",
     description: "Bán chạy",
   },
-  {
-    id: "c25e9a9e-399c-46e4-969b-35e1e6d8fa8e",
-    name: "Chỉ có tại Homie",
-    code: "chi-co-tai-homie",
-    picUrl:
-      "https://firebasestorage.googleapis.com/v0/b/pos-system-47f93.appspot.com/o/files%2Fspecial-gift.png?alt=media&token=1171392d-07a5-4d61-8850-3aebf4ca4cb9",
-    description: "Những sản phẩm độc đáo mà bạn khó có thể tìm nơi khác.",
-  },
+
   {
     id: "8c5b242e-8687-450c-80d3-4198d646c1be",
     name: "Hàng mới về",
@@ -136,5 +129,13 @@ export const collectionsData = [
     picUrl:
       "https://firebasestorage.googleapis.com/v0/b/pos-system-47f93.appspot.com/o/files%2Fnew-sticker.png?alt=media&token=20e342fc-857f-48cb-9d40-cd1778eeb995",
     description: "Hàng mới về",
+  },
+  {
+    id: "c25e9a9e-399c-46e4-969b-35e1e6d8fa8e",
+    name: "Chỉ có tại Homie",
+    code: "chi-co-tai-homie",
+    picUrl:
+      "https://firebasestorage.googleapis.com/v0/b/pos-system-47f93.appspot.com/o/files%2Fspecial-gift.png?alt=media&token=1171392d-07a5-4d61-8850-3aebf4ca4cb9",
+    description: "Những sản phẩm độc đáo mà bạn khó có thể tìm nơi khác.",
   },
 ];
