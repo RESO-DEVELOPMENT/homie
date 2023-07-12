@@ -8,13 +8,8 @@ import SortBySelected from "../../components/FilterProductByComponent/sortBySele
 import { AiFillFilter } from "react-icons/ai";
 import SideBar from "../../components/FilterProductByComponent/sidebar/SideBar";
 import FilterButton from "../../components/FilterProductByComponent/sidebar/FilterButton";
-const shopleft = ({
-  products,
-  collections,
-  collection,
-  filteredProducts,
-  productCount,
-}) => {
+import { collectionsData } from "../../data/data";
+const shopleft = ({ products, collection, filteredProducts, productCount }) => {
   const router = useRouter();
   const [showProductActionBox, setShowProductActionBox] = useState(true);
   const [data, setData] = useState([]);
@@ -126,7 +121,7 @@ const shopleft = ({
               </div>
             </div>
             <SideBar
-              collections={collections}
+              collections={collectionsData}
               productCount={productCount}
               show={show}
               handleClose={handleClose}
@@ -164,14 +159,13 @@ export async function getStaticProps({ params }) {
 
   // here is match the code with code of the collections in the url
   const collectionCode = params.slug;
-  const collections = data.collections;
-  const collection = collections.find((c) => c.code === collectionCode);
+  const collection = collectionsData.find((c) => c.code === collectionCode);
   const products = data.products; // take the products attribute in the menu
 
   const filterProducts = products.filter(
     (product) => product.type === "SINGLE" || product.type === "PARENT"
   );
-  const productCount = collections.map((collection) => {
+  const productCount = collectionsData.map((collection) => {
     let count = 0;
 
     filterProducts.forEach((product) => {
@@ -190,7 +184,6 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       products: filterProducts,
-      collections,
       collection,
       filteredProducts,
       productCount,

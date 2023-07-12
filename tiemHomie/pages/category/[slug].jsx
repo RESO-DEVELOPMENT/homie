@@ -11,15 +11,9 @@ import { AiFillFilter } from "react-icons/ai";
 import { getAllProduct } from "../../action/menuApi";
 import FilterButton from "../../components/FilterProductByComponent/sidebar/FilterButton";
 import CategorySideBar from "../../components/FilterProductByComponent/sidebar/CategorySideBar";
+import { categoriesData } from "../../data/data";
 
-const ShopLeft = ({
-  products,
-  categories,
-  category,
-  filteredProducts,
-  productCount,
-  collections,
-}) => {
+const ShopLeft = ({ products, category, filteredProducts, productCount }) => {
   const router = useRouter();
 
   const [showProductActionBox, setShowProductActionBox] = useState(true);
@@ -132,7 +126,7 @@ const ShopLeft = ({
               />
             </div>
             <CategorySideBar
-              categories={categories}
+              categories={categoriesData}
               productCount={productCount}
               show={show}
               handleClose={handleClose}
@@ -170,16 +164,14 @@ export async function getStaticProps({ params }) {
 
   // here is match the code with code of the collections in the url
   const categoryCode = params.slug;
-  const categories = data.categories;
-  const category = categories.find((c) => c.code === categoryCode);
+  const category = categoriesData.find((c) => c.code === categoryCode);
   const products = data.products;
-  const collections = data.collections;
 
   const filterProducts = products.filter(
     (product) => product.type === "SINGLE" || product.type === "PARENT"
   );
 
-  const productCount = categories.map((category) => {
+  const productCount = categoriesData.map((category) => {
     let count = 0;
 
     filterProducts.forEach((product) => {
@@ -199,9 +191,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       products: filterProducts,
-      categories,
       category,
-      collections,
       filteredProducts,
       productCount,
     },

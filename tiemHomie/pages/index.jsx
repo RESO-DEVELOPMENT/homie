@@ -16,31 +16,18 @@ import Arrows from "../components/Button/Arrows";
 import SliderSection from "../components/section/SliderSection/SliderSection";
 import CollBar from "../components/FilterProductByComponent/collection/Collection";
 import SectionBannerSlider2 from "../components/SectionBanner/SectionBanner2";
-
-function Home({
-  collections,
-  categories,
-  products,
-  filterCollections,
-  newProductsCollection,
-  bestSellerProductCollection,
-  onlyHomieProductCollection,
-}) {
+import { collectionsData } from "../data/data";
+function Home({ products }) {
   const [showTabs, setShowTabs] = useState(true);
   const [showProductActionBox, setShowProductActionBox] = useState(true);
   const collection0 = useRef(null);
   const collection1 = useRef(null);
   const collection2 = useRef(null);
-  const collection3 = useRef(null);
-  const collection4 = useRef(null);
-  const collection5 = useRef(null);
-  const collection6 = useRef(null);
-  const collection7 = useRef(null);
-  const collection8 = useRef(null);
+
   const getSliderItems = () => {
     const itemsPerSlide = 3; // Số sản phẩm hiển thị trên mỗi slide
     const totalSlides = Math.ceil(
-      products.filter((p) => p.collectionIds.includes(newProductsCollection.id))
+      products.filter((p) => p.collectionIds.includes(collectionsData[7].id))
         .length / itemsPerSlide
     ); // Tổng số slide
     const sliderItems = [];
@@ -48,7 +35,7 @@ function Home({
       const startIndex = i * itemsPerSlide;
       const endIndex = startIndex + itemsPerSlide;
       const slideItems = products
-        .filter((p) => p.collectionIds.includes(newProductsCollection.id))
+        .filter((p) => p.collectionIds.includes(collectionsData[7].id))
         .slice(startIndex, endIndex);
       sliderItems.push(slideItems);
     }
@@ -97,7 +84,7 @@ function Home({
         <div className="single_banner">
           <div className="row">
             <div className="col-12">
-              <CollBar collections={filterCollections} />
+              <CollBar collections={collectionsData.slice(0, 5)} />
             </div>
           </div>
         </div>
@@ -115,14 +102,14 @@ function Home({
               <div className="d-flex justify-content-center">
                 <FeaturedProductHeader
                   className="d-flex justify-content-center"
-                  title={bestSellerProductCollection.name}
+                  title={collectionsData[5].name}
                 />
               </div>
               <div className="tab-pane fade show active">
                 <SliderSection
                   sliderRef={collection1}
                   products={products.filter((p) =>
-                    p.collectionIds.includes(bestSellerProductCollection.id)
+                    p.collectionIds.includes(collectionsData[5].id)
                   )}
                   showProductActionBox={showProductActionBox}
                 />
@@ -135,14 +122,14 @@ function Home({
               <div className="d-flex justify-content-center">
                 <FeaturedProductHeader
                   className="d-flex justify-content-center"
-                  title={onlyHomieProductCollection.name}
+                  title={collectionsData[6].name}
                 />
               </div>
               <div className="tab-pane fade show active">
                 <SliderSection
                   sliderRef={collection0}
                   products={products.filter((p) =>
-                    p.collectionIds.includes(onlyHomieProductCollection.id)
+                    p.collectionIds.includes(collectionsData[6].id)
                   )}
                   showProductActionBox={showProductActionBox}
                 />
@@ -158,7 +145,7 @@ function Home({
                   <div>
                     <FeaturedProductHeader
                       className="d-flex justify-content-center"
-                      title={newProductsCollection.name}
+                      title={collectionsData[7].name}
                     />
                   </div>
                   <div
@@ -202,7 +189,7 @@ function Home({
                         {...specialSettings}
                         className="overflow-hidden"
                         products={getProductByCollectionID(
-                          newProductsCollection.id
+                          collectionsData[7].id
                         )}
                       >
                         {getSliderItems().map((sliderItems, index) => (
@@ -408,10 +395,6 @@ export async function getStaticProps() {
       collections,
       categories,
       products: filterProducts,
-      filterCollections: filterCollections,
-      newProductsCollection,
-      bestSellerProductCollection,
-      onlyHomieProductCollection,
     },
   };
 }

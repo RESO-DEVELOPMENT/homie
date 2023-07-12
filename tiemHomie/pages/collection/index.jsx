@@ -9,7 +9,9 @@ import { AiFillFilter } from "react-icons/ai";
 import SideBar from "../../components/FilterProductByComponent/sidebar/SideBar";
 import FilterButton from "../../components/FilterProductByComponent/sidebar/FilterButton";
 
-const shopleft = ({ products, collections, productCount } = getStaticProps) => {
+import { collectionsData } from "../../data/data";
+
+const shopleft = ({ products, productCount } = getStaticProps) => {
   const [showProductActionBox, setShowProductActionBox] = useState(true);
   const [data, setData] = useState(products);
   const [selectedSortOption, setSelectedSortOption] = useState("");
@@ -118,7 +120,7 @@ const shopleft = ({ products, collections, productCount } = getStaticProps) => {
               </div>
             </div>
             <SideBar
-              collections={collections}
+              collections={collectionsData}
               productCount={productCount}
               show={show}
               handleClose={handleClose}
@@ -138,12 +140,11 @@ export default shopleft;
 export async function getStaticProps() {
   const data = await getAllProduct();
   const products = data.products;
-  const collections = data.collections;
 
   const filterProducts = products.filter(
     (product) => product.type === "SINGLE" || product.type === "PARENT"
   );
-  const productCount = collections.map((collection) => {
+  const productCount = collectionsData.map((collection) => {
     let count = 0;
 
     filterProducts.forEach((product) => {
@@ -156,6 +157,6 @@ export async function getStaticProps() {
   });
 
   return {
-    props: { products: filterProducts, collections, productCount },
+    props: { products: filterProducts, productCount },
   };
 }

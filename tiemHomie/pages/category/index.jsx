@@ -9,12 +9,8 @@ import { AiFillFilter } from "react-icons/ai";
 import SideBar from "../../components/FilterProductByComponent/sidebar/SideBar";
 import FilterButton from "../../components/FilterProductByComponent/sidebar/FilterButton";
 import CategorySideBar from "../../components/FilterProductByComponent/sidebar/CategorySideBar";
-
-const CategoryPage = ({
-  products,
-  categories,
-  productCount,
-} = getStaticProps) => {
+import { categoriesData } from "../../data/data";
+const CategoryPage = ({ products, productCount } = getStaticProps) => {
   const [showProductActionBox, setShowProductActionBox] = useState(true);
   const [data, setData] = useState(products);
   const [selectedSortOption, setSelectedSortOption] = useState("");
@@ -123,7 +119,7 @@ const CategoryPage = ({
               />
             </div>
             <CategorySideBar
-              categories={categories}
+              categories={categoriesData}
               productCount={productCount}
               show={show}
               handleClose={handleClose}
@@ -143,13 +139,12 @@ export default CategoryPage;
 export async function getStaticProps() {
   const data = await getAllProduct();
   const products = data.products;
-  const categories = data.categories;
 
   const filterProducts = products.filter(
     (product) => product.type === "SINGLE" || product.type === "PARENT"
   );
 
-  const productCount = categories.map((category) => {
+  const productCount = categoriesData.map((category) => {
     let count = 0;
 
     filterProducts.forEach((product) => {
@@ -162,6 +157,6 @@ export async function getStaticProps() {
   });
 
   return {
-    props: { products: filterProducts, categories, productCount },
+    props: { products: filterProducts, productCount },
   };
 }

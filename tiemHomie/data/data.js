@@ -1,533 +1,140 @@
-export const storeData = [
-{
-      "id": 1,
-      "attribute": {
-        "imageUrl": "assets/images2/image-14@2x.png",
-        "imageUrl2": "/assets/images2/image-14@2x.png",
-        "name": "Ca Mat Ngo",
-        "title": "Cá mặt ngơ",
-        "price": "190000",
-        "slug": "Ca-mat-ngo",
-        "salePercent": "5%",
-        "original_price": "200000",
-        "rating": 4.5, 
-        "amount" :1,
-        "description": "Cá mặt ngơ bơm môi hơi ô dề nhưng mà dễ thương chịu không nổi nhaaaaa....",
-        "category": {
-          "data": [
-            {
-              "id": 6,
-              "attribute": {
-                "name": "Quà tặng",
-                "slug": "qua-tang"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "id": 2,
-      "attribute": {
-        "imageUrl": "assets/images2/image-17@2x.png",
-        "imageUrl2": "/assets/images2/image-17@2x.png",
-        "name": "Chen Cham Meo U",
-        "title": "Chén chấm mèo ú",
-        "price": "120000",
-        "slug": "Chen-cham-meo-u",
-        "salePercent": "20%",
-        "rating": 4.2, 
-        "amount" :1,
-        "original_price": "150000",
-        "description": "Màu đỏ cầu sức khoẻ, bình an, xua đuổi các việc không may. Màu trắng kêu gọi tài khí, phúc khí, mời gọi nhân duyên tốt lành, tài lộc cho gia chủ....",
-        "category": {
-          "data": [
-            {
-              "id": 5,
-              "attribute": {
-                "name": "Phụ kiện",
-                "slug": "phu-kien"
-              }
-            },
-            {
-              "id": 6,
-              "attribute": {
-                "name": "Quà tặng",
-                "slug": "qua-tang"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "id": 3,
-      "attribute": {
-        "imageUrl": "assets/images2/image-16@2x.png",
-        "imageUrl2": "/assets/images2/image-16@2x.png",
-        "name": "Vit Hai Huoc Funny",
-        "title": "Vịt hài hước funny",
-        "price": "220000",
-        "slug": "Vit-hai-huoc-funny",
-        "salePercent": "12%",
-        "rating": 4.5, 
-        "amount" :1,
-        "original_price": "200000",
-        "description": "Bằng tuổi mình người ta bồng con hết rồi phải làm sao phải làm sao..",
-        "category": {
-          "data": [
-            {
-              "id": 6,
-              "attribute": {
-                "name": "Quà tặng",
-                "slug": "qua-tang"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "id": 4,
-      "attribute": {
-        "imageUrl": "assets/images2/image-15@2x.png",
-        "imageUrl2": "/assets/images2/image-15@2x.png",
-        "name": "Meo Doi Qua Quyt",
-        "title": "Mèo đội quả quýt",
-        "price": "150000",
-        "slug": "Meo-doi-qua-quyt",
-        "salePercent": "25%",
-        "rating": 4.2, 
-        "amount" :1,
-        "original_price": "220000",
-        "description": "Mèo đội quả quýt xinh đẹp kiểu gì cũng cưng đây nè...",
-        "category": {
-          "data": [
-            {
-              "id": 6,
-              "attribute": {
-                "name": "Quà tặng",
-                "slug": "qua-tang"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "id": 5,
-      "attribute": {
-        "imageUrl": "assets/images2/product-img1jpg@2x.png",
-        "imageUrl2": "/assets/images2/product-img1jpg@2x.png",
-        "name": "Mèo gốm may mắn để bàn",
-        "title": "Mèo gốm may mắn để bàn",
-        "price": "220000",
-      "slug": "Meo-gom-may-man-de-ban",
-        "rating": 4.5, 
-        "amount" :1,
-        "original_price": " 230000",
-        "description": "Màu đỏ cầu sức khoẻ, bình an, xua đuổi các việc không may.Màu trắng kêu gọi tài khí, phúc khí, mời gọi nhân duyên tốt lành, tài lộc cho gia chủ.",
-        "rating_num": 21,
-        "category": {
-          "data": [
-            {
-              "id": 5,
-              "attribute": {
-                "name": "Phụ kiện",
-                "slug": "phu-kien"
-              }
-            },
-            {
-              "id": 6,
-              "attribute": {
-                "name": "Quà tặng",
-                "slug": "qua-tang"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "id": 6,
-      "attribute": {
-        "imageUrl": "assets/images2//product-img2jpg@2x.png",
-        "imageUrl2": "/assets/images2//product-img2jpg@2x.png",
-        "name": "Ly sứ Little Girl",
-        "title": "Ly sứ Little Girl",
-        "price": "180000",
-        "slug": "Ly-su-little-girl",
-        "salePercent": null,
-        "rating": 4.2, 
-        "amount" :1,
-        "original_price": "200000",
-        "description": "gồm 1 tách sứ & nắp silicon như hình, cam kết hết ý!!",
-        "category": {
-          "data": [
-            {
-              "id": 5,
-              "attribute": {
-                "name": "Phụ kiện",
-                "slug": "phu-kien"
-              }
-            },
-            {
-              "id": 6,
-              "attribute": {
-                "name": "Quà tặng",
-                "slug": "qua-tang"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "id": 7,
-      "attribute": {
-        "imageUrl": "assets/images2/product-img3jpg@2x.png",
-        "imageUrl2": "/assets/images2/product-img3jpg@2x.png",
-        "name": "Ong Cánh Hoa",
-        "title": "Ong Cánh Hoa",
-        "price": "250000",
-        "slug": "Ong-canh-hoa",
-        "salePercent": null,
-        "rating": 4.5, 
-        "amount" :1,
-        "original_price": "265000",
-        "description": "bé xinh vừa mềm êm vừa đáng yêu, bé bay đi đâu đi đâu",
-        "category": {
-          "data": [
-            {
-              "id": 6,
-              "attribute": {
-                "name": "Quà tặng",
-                "slug": "qua-tang"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "id": 8,
-      "attribute": {
-        "imageUrl": "assets/images2/product-img4jpg@2x.png",
-        "imageUrl2": "/assets/images2/product-img4jpg@2x.png",
-        "name": "Quả bí lông cừu",
-        "title": "Quả bí lông cừu",
-        "price": "320000",
-        "slug": "Qua-bi-long-cuu",
-        "salePercent": null,
-        "rating": 4.2, 
-        "amount" :1,
-        "original_price": "330000",
-        "description": "Chất liệu vải dày dặn, thiết kế tinnh xảo, màu sắc dễ phối",
-        "category": {
-          "data": [
-            {
-              "id": 6,
-              "attribute": {
-                "name": "Quà tặng",
-                "slug": "qua-tang"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "id": 9,
-      "attribute": {
-        "imageUrl": "assets/images2/product-img1jpg1@2x.png",
-        "imageUrl2": "/assets/images2/product-img1jpg1@2x.png",
-        "name": "Smiley Cup",
-        "title": "Smiley Cup",
-        "price": "250000",
-        "slug": "Smiley-Cup",
-        "salePercent": null,
-        "rating": 4.5, 
-        "amount" :1,
-        "original_price": "260000",
-        "description": "set gồm tách và đĩa sứ ,Tươi như ảnh minh họa",
-        "category": {
-          "data": [
-            {
-              "id": 8,
-              "attribute": {
-                "name": "Thư giãn",
-                "slug": "thu-gian"
-              }
-            },
-            {
-              "id": 9,
-              "attribute": {
-                "name": "Tiện ích",
-                "slug": "tien-ich"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "id": 10,
-      "attribute": {
-        "imageUrl": "assets/images2/product-img2jpg1@2x.png",
-        "imageUrl2": "/assets/images2/product-img2jpg1@2x.png",
-        "name": "Cún Milo",
-        "title": "Cún Milo",
-        "price": "350000",
-        "slug": "Cun-Milo",
-        "salePercent": null,
-        "rating": 4.2, 
-        "amount" :1,
-        "original_price": "360000",
-        "description": "Gương mặt này ai nỡ không đối xử dịu dàng cơ chứ, tui còn ôm đi từ nhà đến trường",
-        "category": {
-          "data": [
-            {
-              "id": 9,
-              "attribute": {
-                "name": "Tiện ích",
-                "slug": "tien-ich"
-              }
-            },
-            {
-              "id": 6,
-              "attribute": {
-                "name": "Quà tặng",
-                "slug": "qua-tang"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "id": 11,
-      "attribute": {
-        "imageUrl": "assets/images2/product-img1jpg2@2x.png",
-        "imageUrl2": "/assets/images2/product-img1jpg2@2x.png",
-        "name": "Ly giữ nhiệt Funny Party",
-        "title": "Ly giữ nhiệt Funny Party",
-        "price": "250000",
-        "slug": "Ly-giu-nhiet-Funny-Party",
-        "salePercent": null,
-        "rating": 4.2, 
-        "amount" :1,
-        "original_price": "260000",
-        "description": "Tặng gì cho crush “mát lòng mát dạ” giữa trưa hè tháng sáu",
-        "category": {
-          "data": [
-            {
-              "id": 9,
-              "attribute": {
-                "name": "Tiện ích",
-                "slug": "tien-ich"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "id": 12,
-      "attribute": {
-        "imageUrl": "assets/images2/product-img4jpg3@2x.png",
-        "imageUrl2": "/assets/images2/product-img4jpg3@2x.png",
-        "name": "Thỏ Cà Rốt",
-        "title": "Thỏ Cà Rốt",
-        "price": "170000",
-        "slug": "Tho-Ca-Rot",
-        "salePercent": null,
-        "rating": 4.2, 
-        "amount" :1,
-        "original_price": "180000",
-        "description": "3 em thỏ ngộ nghĩnh tay ôm cà rốt với chi tiết thêu tinh tế",
-        "category": {
-          "data": [
-            {
-              "id": 9,
-              "attribute": {
-                "name": "Tiện ích",
-                "slug": "tien-ich"
-              }
-            },
-            {
-              "id": 6,
-              "attribute": {
-                "name": "Quà tặng",
-                "slug": "qua-tang"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "id": 13,
-      "attribute": {
-        "imageUrl": "assets/images2/product-img3jpg3@2x.png",
-        "imageUrl2": "/assets/images2/product-img3jpg3@2x.png",
-        "name": "Chú lừa Donkie",
-        "title": "Chú lừa Donkie",
-        "price": "350000",
-        "slug": "Chu-lua-Donkie",
-        "salePercent": null,
-        "rating": 4.2, 
-        "amount" :1,
-        "original_price": "360000",
-        "description": "Bộ lông mềm mượt còn gương mặt lại cưng thiệt cưng, tỉ mỉ từng...",
-        "category": {
-          "data": [
-            {
-              "id": 6,
-              "attribute": {
-                "name": "Quà tặng",
-                "slug": "qua-tang"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "id": 14,
-      "attribute": {
-        "imageUrl": "assets/images2/product-img6jpg@2x.png",
-        "imageUrl2": "/assets/images2/product-img6jpg@2x.png",
-        "name": "Cá mập quần bông",
-        "title": "Cá mập quần bông",
-        "price": "290000",
-        "slug": "Ca-map-quan-bong",
-        "salePercent": null,
-        "rating": 4.2, 
-        "amount" :1,
-        "original_price": "300000",
-        "description": "Có anh ở đây đố đứa nào dám ăn hiếp em nhoa......",
-        "category": {
-          "data": [
-            {
-              "id": 8,
-              "attribute": {
-                "name": "Thư giãn",
-                "slug": "thu-gian"
-              }
-            },
-            {
-              "id": 6,
-              "attribute": {
-                "name": "Quà tặng",
-                "slug": "qua-tang"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "id": 15,
-      "attribute": {
-        "imageUrl": "assets/images2/product-img7jpg@2x.png",
-        "imageUrl2": "/assets/images2/product-img7jpg@2x.png",
-        "name": "Gối Cầu Vồng",
-        "title": "Gối Cầu Vồng",
-        "price": "380000",
-        "slug": "Goi-Cau-Vong",
-        "salePercent": null,
-        "rating": 5.4, 
-        "amount" :1,
-        "original_price": "400000",
-        "description": "Vỏ gối bằng chất liệu vải canvas chắc chắn, hoạ tiết cầu vồng...",
-        "category": {
-          "data": [
-            {
-              "id": 8,
-              "attribute": {
-                "name": "Thư giãn",
-                "slug": "thu-gian"
-              }
-            },
-            {
-              "id": 6,
-              "attribute": {
-                "name": "Quà tặng",
-                "slug": "qua-tang"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "id": 16,
-      "attribute": {
-        "imageUrl": "assets/images2/product-img8jpg@2x.png",
-        "imageUrl2": "/assets/images2/product-img8jpg@2x.png",
-        "name": "Spa time",
-        "title": "Spa time",
-        "price": "150000",
-        "slug": "Spa-time",
-        "salePercent": null,
-        "rating": 4.2, 
-        "amount" :1,
-        "original_price": "160000",
-        "description": "Điều tôi muốn khi bên ngoài nóng hơn 40 độ của cái nắng Hạ",
-        "category": {
-          "data": [
-            {
-              "id": 7,
-              "attribute": {
-                "name": "Trang trí nhà cửa",
-                "slug": "trang-tri-nha-cua"
-              }
-            },
-            {
-              "id": 6,
-              "attribute": {
-                "name": "Quà tặng",
-                "slug": "qua-tang"
-              }
-            }
-          ]
-        },
-        "rating_num": 216
-      }
-    },
-    {
-      "id": 17,
-      "attribute": {
-        "imageUrl": "assets/images2/product-img10jpg@2x.png",
-        "imageUrl2": "/assets/images2/product-img10jpg@2x.png",
-        "name": "Khủng long Greenie",
-        "title": "Khủng long Greenie",
-        "price": "250000",
-        "slug": "Khung-long-Greenie",
-        "salePercent": null,
-        "rating": 4.5, 
-        "amount" :1,
-        "original_price": "260000",
-        "description": "Trong vườn bao nhiêu cây lá nhưng không cây nào xanh...",
-        "category": {
-          "data": [
-            {
-              "id": 7,
-              "attribute": {
-                "name": "Trang trí nhà cửa",
-                "slug": "trang-tri-nha-cua"
-              }
-            },
-            {
-              "id": 6,
-              "attribute": {
-                "name": "Quà tặng",
-                "slug": "qua-tang"
-              }
-            }
-          ]
-        },
-        "rating_num": 21
-      }
-    }
-  ]
+export const categoriesData = [
+  {
+    id: "5a036881-c0b3-43b8-8e05-66242ec96e46",
+    code: "thu-bong",
+    name: "Thú bông/Gối",
+    type: "Normal",
+    displayOrder: 100,
+    description: "Thú bông/Gối bông/Gối tựa lưng/Gối cổ",
+    picUrl:
+      "https://firebasestorage.googleapis.com/v0/b/pos-system-47f93.appspot.com/o/files%2Fteddy.png?alt=media&token=db7f1663-8ab9-46fa-9eea-c7aee587c47f",
+  },
+  {
+    id: "0c1cfd05-e2a4-4091-b1d1-457680702abb",
+    code: "chen-dia-ly-su",
+    name: "Chén dĩa ly sứ",
+    type: "Normal",
+    displayOrder: 99,
+    description: "Vật phẩm trang trí",
+    picUrl:
+      "https://firebasestorage.googleapis.com/v0/b/pos-system-47f93.appspot.com/o/files%2Fclean-dishes.png?alt=media&token=a6d64b33-6ac6-4006-baf5-e8cc9ffe59c6",
+  },
+  {
+    id: "f27692c6-3448-418c-a3cd-e4d32fe4bfab",
+    code: "meo-gom",
+    name: "Mèo gốm may mắn",
+    type: "Normal",
+    displayOrder: 98,
+    description: "Mèo gốm trang trí dễ thương",
+    picUrl:
+      "https://firebasestorage.googleapis.com/v0/b/pos-system-47f93.appspot.com/o/files%2Fcat.png?alt=media&token=0fb8167f-5fcf-4de2-89f6-023714cb92f5",
+  },
+  {
+    id: "77420e32-4f92-476a-ba5f-3f5861792210",
+    code: "tui-xach",
+    name: "Túi xách & Túi mỹ phẩm",
+    type: "Normal",
+    displayOrder: 97,
+    description:
+      "Túi xách thời trang hiện đại nhưng cũng rất mộc mạc, đời thường",
+    picUrl:
+      "https://firebasestorage.googleapis.com/v0/b/pos-system-47f93.appspot.com/o/files%2Fhandbag.png?alt=media&token=8fd7387e-4074-4598-b60c-df1c1396c951",
+  },
+  {
+    id: "2c9dcf87-cac8-4fb9-9eed-85abca41e21f",
+    code: "moc-khoa",
+    name: "Móc khóa",
+    type: "Normal",
+    displayOrder: 96,
+    description: "Móc khóa trang trí",
+    picUrl:
+      "https://firebasestorage.googleapis.com/v0/b/pos-system-47f93.appspot.com/o/files%2Fkey.png?alt=media&token=65b80eef-e422-4a15-aa35-48fd39849f5f",
+  },
+  {
+    id: "f9efce19-9dc6-4f14-ac7f-0c6e20b060ad",
+    code: "men",
+    name: "Chăn mền",
+    type: "Normal",
+    displayOrder: 95,
+    description: "Chăn mền giữ ấm",
+    picUrl:
+      "https://firebasestorage.googleapis.com/v0/b/pos-system-47f93.appspot.com/o/files%2Fblanket.png?alt=media&token=5557ecf7-c99c-4bc8-ae99-e6758b6a5685",
+  },
+  {
+    id: "8f3f63d8-b2f0-44a8-8f6b-b82655baa127",
+    code: "tien-ich",
+    name: "Trang trí & tiện ích",
+    type: "Normal",
+    displayOrder: 94,
+    description: "Trang trí và tiện ích & Nam châm tủ lạnh",
+    picUrl:
+      "https://firebasestorage.googleapis.com/v0/b/pos-system-47f93.appspot.com/o/files%2Fsearch.png?alt=media&token=be7fdf1f-91e9-428a-8b9f-a91d75d6983a",
+  },
+];
+
+export const collectionsData = [
+  {
+    id: "3aa1be67-8af0-4ba9-8986-de025af39ac7",
+    name: "Quà tặng",
+    code: "qua-tang",
+    picUrl:
+      "https://firebasestorage.googleapis.com/v0/b/pos-system-47f93.appspot.com/o/files%2Fgift.png?alt=media&token=755a326b-7222-41fc-8c6f-aa6928fc162c",
+    description: "Bộ sưu tập quà tặng",
+  },
+  {
+    id: "9b85992b-a53b-4e1b-8c05-ed7d106bf5ee",
+    name: "Trang trí nhà cửa",
+    code: "trang-tri-nha-cua",
+    picUrl:
+      "https://firebasestorage.googleapis.com/v0/b/pos-system-47f93.appspot.com/o/files%2Fcabin.png?alt=media&token=1901c224-4b48-4f16-ab2d-b18552876139",
+    description: "Trang trí nhà cửa",
+  },
+  {
+    id: "02a4d2a0-f022-4005-aac8-5a885e2dd77a",
+    name: "Thư giãn",
+    code: "thu-gian",
+    picUrl:
+      "https://firebasestorage.googleapis.com/v0/b/pos-system-47f93.appspot.com/o/files%2Frelax-time.png?alt=media&token=4ef2d827-d1dc-4c18-a5d8-834a88c34b8d",
+    description: "Thư giãn",
+  },
+  {
+    id: "9748a277-380c-47bf-9a24-eea7782cebbb",
+    name: "Tiện ích",
+    code: "tien-ich",
+    picUrl:
+      "https://firebasestorage.googleapis.com/v0/b/pos-system-47f93.appspot.com/o/files%2Fsearch.png?alt=media&token=be7fdf1f-91e9-428a-8b9f-a91d75d6983a",
+    description: "Tiện ích",
+  },
+  {
+    id: "8c4956df-6c05-4300-9064-0cc32fac6e04",
+    name: "Phụ kiện",
+    code: "phu-kien",
+    picUrl:
+      "https://firebasestorage.googleapis.com/v0/b/pos-system-47f93.appspot.com/o/files%2Ffashion-accessory.png?alt=media&token=336e8f35-53a3-4266-9c1b-4f27eb587329",
+    description: "Phụ kiện",
+  },
+  {
+    id: "d28b683d-28da-4cdc-b1b2-441161194b87",
+    name: "Bán chạy",
+    code: "ban-chay",
+    picUrl:
+      "https://firebasestorage.googleapis.com/v0/b/pos-system-47f93.appspot.com/o/files%2Fimage-141%402x.png?alt=media&token=2a746f44-e2d3-4c9c-90a5-14d685bbb197",
+    description: "Bán chạy",
+  },
+  {
+    id: "c25e9a9e-399c-46e4-969b-35e1e6d8fa8e",
+    name: "Chỉ có tại Homie",
+    code: "chi-co-tai-homie",
+    picUrl:
+      "https://firebasestorage.googleapis.com/v0/b/pos-system-47f93.appspot.com/o/files%2Fspecial-gift.png?alt=media&token=1171392d-07a5-4d61-8850-3aebf4ca4cb9",
+    description: "Những sản phẩm độc đáo mà bạn khó có thể tìm nơi khác.",
+  },
+  {
+    id: "8c5b242e-8687-450c-80d3-4198d646c1be",
+    name: "Hàng mới về",
+    code: "hang-moi-ve",
+    picUrl:
+      "https://firebasestorage.googleapis.com/v0/b/pos-system-47f93.appspot.com/o/files%2Fnew-sticker.png?alt=media&token=20e342fc-857f-48cb-9d40-cd1778eeb995",
+    description: "Hàng mới về",
+  },
+];
