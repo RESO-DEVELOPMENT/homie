@@ -38,7 +38,7 @@ const ProductCard = ({
 
   return (
     <div className="m-1">
-      <div className="product zoom">
+      <div className="product zoom2">
         {/* <span className="pr_flash">New</span> */}
         <div className="product_img text-center">
           <Link href={`/product/${productData.code}`}>

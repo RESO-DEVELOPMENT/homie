@@ -5254,7 +5254,7 @@ footer .widget_title {
 .price {
   color: #ff324d;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 16px;
 }
 .product_price del {
   font-size: 14px;
@@ -7536,4 +7536,16 @@ blockquote p:last-child {
 }
 .zoom:hover {
   transform: scale(1.05);
+}
+.zoom {
+  transition: transform 0.2s;
+}
+.zoom:hover {
+  transform: scale(1.03);
+}
+.zoom2 {
+  transition: transform 0.2s;
+}
+.zoom2:hover {
+  transform: scale(1.02);
 }
