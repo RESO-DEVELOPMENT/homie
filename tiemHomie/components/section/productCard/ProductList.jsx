@@ -36,7 +36,7 @@ const ProductList = ({
   return (
     <div className={Styles.overall}>
       <ToastContainer />
-      <div className="product m-2" style={{ maxHeight: "8rem" }}>
+      <div className="product m-2 zoom" style={{ maxHeight: "8rem" }}>
         <span className="pr_flash">New</span>
         <div className="product_img text-center">
           <div className={Styles.img_container}>
