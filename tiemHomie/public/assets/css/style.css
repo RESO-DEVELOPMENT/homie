@@ -1205,6 +1205,7 @@ button:focus:not(:focus-visible) {
   > li:hover
   > a {
   color: #ff324d;
+  transform: scaleX(1.1) translateX(5%);
 }
 .dark_skin .navbar .navbar-nav li > .dropdown-item,
 .dark_skin .navbar .navbar-nav .dropdown-header,
@@ -7529,4 +7530,10 @@ blockquote p:last-child {
 }
 .mgbt-40px {
   margin-bottom: -40px !important;
+}
+.zoom {
+  transition: transform 0.2s;
+}
+.zoom:hover {
+  transform: scale(1.05);
 }
