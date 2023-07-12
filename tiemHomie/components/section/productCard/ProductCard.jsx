@@ -46,7 +46,7 @@ const ProductCard = ({
               <img src={productData.picUrl} alt={productData.name} />
             </div>
           </Link>
-          {showProductActionBox && (
+          {/* {showProductActionBox && (
             <div className="product_action_box">
               <ul className="list_none pr_action_btn">
                 <li
@@ -93,7 +93,7 @@ const ProductCard = ({
                 </li>
               </ul>
             </div>
-          )}
+          )} */}
         </div>
         <div className="product_info ">
           <div className={Styles.downClass}>

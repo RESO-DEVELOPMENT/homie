@@ -99,7 +99,7 @@ const CollBar = ({ collections }) => {
             <Slider {...settings}>
               {collections.map((collection, index) => (
                 <div className={`${classes.card}`} key={index}>
-                  <Link href={`/category/${collection.code}`}>
+                  <Link href={`/collection/${collection.code}`}>
                     <div>
                       <img
                         className={`${classes.icon}`}

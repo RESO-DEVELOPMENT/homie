@@ -506,7 +506,7 @@ const ProductDetail = ({
 
             {/* Section Product HERE HAVE AN PROBLEM */}
             <div className="section small_pt small_pb">
-              <div className="container">
+              <div className="">
                 <div className="">
                   <FeaturedProductHeader
                     className="d-flex justify-content-center"

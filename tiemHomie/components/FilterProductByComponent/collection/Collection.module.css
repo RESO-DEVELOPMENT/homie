@@ -43,18 +43,18 @@
   }
 
   .card .label {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 
 @media only screen and (max-width: 576px) {
   .card .icon {
-    width: 25px;
+    width: 20px;
     margin: auto;
     padding-bottom: 8px;
   }
 
   .card .label {
-    font-size: 9px;
+    font-size: 12px;
   }
 }
