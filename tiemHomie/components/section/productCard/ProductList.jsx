@@ -45,7 +45,7 @@ const ProductList = ({
                 <img src={productData.picUrl} alt={productData.name} />
               </div>
             </Link>
-            {showProductActionBox && (
+            {/* {showProductActionBox && (
               <div className="product_action_box">
                 <ul className="list_none pr_action_btn">
                   <li className="add-to-cart">
@@ -76,7 +76,7 @@ const ProductList = ({
                   </li>
                 </ul>
               </div>
-            )}
+            )} */}
           </div>
         </div>
         <div className="product_info " style={{ maxHeight: "4.5rem" }}>
