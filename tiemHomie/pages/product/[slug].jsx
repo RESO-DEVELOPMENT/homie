@@ -510,7 +510,7 @@ const ProductDetail = ({
                 <div className="">
                   <FeaturedProductHeader
                     className="d-flex justify-content-center"
-                    title="Có Thể Bạn Cũng Quan Tâm"
+                    title="Sản phẩm tương tự"
                   />
                   <div
                     className={styles.buttonsN}
