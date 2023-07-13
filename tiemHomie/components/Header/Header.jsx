@@ -93,11 +93,11 @@ const Header = ({ products }) => {
 
               <div className="col-6 col-md-2 col-sm-6 col-xl-2 col-xxl-2 d-flex align-items-center justify-content-end order-md-2 order-xl-2 px-1">
                 <ul className="navbar-nav attr-nav align-items-center">
-                  <li className={style.loginBtn}>
+                  {/* <li className={style.loginBtn}>
                     <a href="/">
                       <i className="ti-user"></i>
                     </a>
-                  </li>
+                  </li> */}
 
                   <li className="cart_hover px-1">
                     <a

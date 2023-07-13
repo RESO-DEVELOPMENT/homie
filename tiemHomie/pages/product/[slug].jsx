@@ -102,7 +102,7 @@ const ProductDetail = ({
     if (product.type === "PARENT") {
       if (selectedProduct === undefined) {
         enqueueSnackbar("Vui lòng chọn phân loại", { variant: "warning" });
-      } else
+      } else {
         dispatch(
           addToCart({
             name: selectedProduct.name,
@@ -114,7 +114,8 @@ const ProductDetail = ({
             },
           })
         );
-      enqueueSnackbar("Thêm sản phẩm thành công", { variant: "success" });
+        enqueueSnackbar("Thêm sản phẩm thành công", { variant: "success" });
+      }
     } else {
       dispatch(
         addToCart({
