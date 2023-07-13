@@ -264,11 +264,11 @@ const Footer = ({}) => {
                       </Link>
                     </li>
 
-                    <li>
+                    {/* <li>
                       <Link href="" className="sc_google">
                         <i className="ion-social-googleplus" />
                       </Link>
-                    </li>
+                    </li> */}
 
                     <li>
                       <Link
@@ -281,7 +281,7 @@ const Footer = ({}) => {
                   </ul>
                 </div>
               </div>
-              <div className="col-lg-4">
+              {/* <div className="col-lg-4">
                 <ul className="footer_payment text-center text-lg-end">
                   <li>
                     <Link href="/">
@@ -315,7 +315,7 @@ const Footer = ({}) => {
                     </Link>
                   </li>
                 </ul>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
