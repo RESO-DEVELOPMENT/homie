@@ -102,7 +102,7 @@ export const collectionsData = [
     name: "Tiện ích",
     code: "tien-ich",
     picUrl:
-      "https://firebasestorage.googleapis.com/v0/b/pos-system-47f93.appspot.com/o/files%2Fsearch.png?alt=media&token=be7fdf1f-91e9-428a-8b9f-a91d75d6983a",
+      "https://firebasestorage.googleapis.com/v0/b/pos-system-47f93.appspot.com/o/files%2Fmagnifying-glass.png?alt=media&token=f93fdd73-98bc-4d17-b0e2-739674bcbee2",
     description: "Tiện ích",
   },
   {
@@ -110,7 +110,7 @@ export const collectionsData = [
     name: "Phụ kiện",
     code: "phu-kien",
     picUrl:
-      "https://firebasestorage.googleapis.com/v0/b/pos-system-47f93.appspot.com/o/files%2Ffashion-accessory.png?alt=media&token=336e8f35-53a3-4266-9c1b-4f27eb587329",
+      "https://firebasestorage.googleapis.com/v0/b/pos-system-47f93.appspot.com/o/files%2Fsun.png?alt=media&token=0c5344da-b942-4e13-99fa-9abb30ab5abdps://firebasestorage.googleapis.com/v0/b/pos-system-47f93.appspot.com/o/files%2Ffashion-accessory.png?alt=media&token=336e8f35-53a3-4266-9c1b-4f27eb587329",
     description: "Phụ kiện",
   },
   {
