@@ -98,7 +98,10 @@ const ProductList = ({
 
               <div className={Styles.desSize}>
                 <div className="pr_desc d-block">
-                  <div className={Styles.overF}>
+                  <div
+                    style={{ whiteSpace: "pre-line" }}
+                    className={Styles.overF}
+                  >
                     <p>{productData.description}</p>
                   </div>
                 </div>

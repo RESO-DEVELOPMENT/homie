@@ -1,32 +1,32 @@
-import React from 'react'
+import React from "react";
 
-const Tabs = ({description}) => {
+const Tabs = ({ description }) => {
   return (
     <>
-                <div className="row">
-              <div className="col-12">
-                <div className="large_divider clearfix" />
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-12">
-                <div className="tab-style3">
-                  <ul className="nav nav-tabs" role="tablist">
-                    <li className="nav-item">
-                      <a
-                        className="nav-link active"
-                        id="Description-tab"
-                        data-bs-toggle="tab"
-                        href="#Description"
-                        role="tab"
-                        aria-controls="Description"
-                        aria-selected="true"
-                      >
-                        MÔ TẢ SẢN PHẨM
-                      </a>
-                    </li>
+      <div className="row">
+        <div className="col-12">
+          <div className="large_divider clearfix" />
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-12">
+          <div className="tab-style3">
+            <ul className="nav nav-tabs" role="tablist">
+              <li className="nav-item">
+                <a
+                  className="nav-link active"
+                  id="Description-tab"
+                  data-bs-toggle="tab"
+                  href="#Description"
+                  role="tab"
+                  aria-controls="Description"
+                  aria-selected="true"
+                >
+                  MÔ TẢ SẢN PHẨM
+                </a>
+              </li>
 
-                    {/* <li className="nav-item">
+              {/* <li className="nav-item">
                       <a
                         className="nav-link"
                         id="Reviews-tab"
@@ -39,22 +39,18 @@ const Tabs = ({description}) => {
                         NHẬN XÉT (2)
                       </a>
                     </li> */}
-                  </ul>
-                  <div className="tab-content shop_info_tab">
-                    <div
-                      className="tab-pane fade show active"
-                      id="Description"
-                      role="tabpanel"
-                      aria-labelledby="Description-tab"
-                    >
-                      <p>
-                        
-                      </p>
-                      <p>
-                        {description}
-                      </p>
-                    </div>
-                    {/* <div
+            </ul>
+            <div className="tab-content shop_info_tab">
+              <div
+                style={{ whiteSpace: "pre-line" }}
+                className="tab-pane fade show active"
+                id="Description"
+                role="tabpanel"
+                aria-labelledby="Description-tab"
+              >
+                <p>{description}</p>
+              </div>
+              {/* <div
                       className="tab-pane fade"
                       id="Reviews"
                       role="tabpanel"
@@ -194,12 +190,12 @@ const Tabs = ({description}) => {
                         </form>
                       </div>
                     </div> */}
-                  </div>
-                </div>
-              </div>
             </div>
+          </div>
+        </div>
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default Tabs
+export default Tabs;

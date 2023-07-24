@@ -119,7 +119,10 @@ const ProductCard = ({
             <div className={Styles.desSize}>
               <div className="pr_desc d-block">
                 <div className={Styles.overF}>
-                  <Link href={`/product/${productData.code}`}>
+                  <Link
+                    style={{ whiteSpace: "pre-line" }}
+                    href={`/product/${productData.code}`}
+                  >
                     <p>
                       {productData.description}
                       {/* Màu đỏ cầu sức khoẻ, bình an, xua đuổi các việc không may. Màu trắng kêu gọi tài khí, phúc khí, mời gọi nhân duyên tốt lành, tài lộc cho gia chủ.... */}
