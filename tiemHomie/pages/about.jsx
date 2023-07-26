@@ -41,14 +41,14 @@ const about = () => {
                   Facebook:{" "}
                   <a
                     href="https://www.facebook.com/tiemhomie.sg"
-                    style={{ color: "rgb(240,30,30)" }}
+                    style={{ color: "#f79c43" }}
                   >
                     Tiệm Homie
                   </a>{" "}
                   &nbsp; &nbsp; &nbsp; Instagram:{" "}
                   <a
                     href="https://www.instagram.com/tiemhomie/"
-                    style={{ color: "rgb(240,30,30)" }}
+                    style={{ color: "#f79c43" }}
                   >
                     tiemhomie
                   </a>
