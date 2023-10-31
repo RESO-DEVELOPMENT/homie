@@ -3,25 +3,25 @@
 import { useDispatch } from "react-redux";
 import axiosInstance from "../utils/axiosClient";
 
+//api test need to fix in future
+
 export const getAllProduct = async () => {
   try {
     // Login request
     const loginResponse = await axiosInstance.post("/auth/login", {
-      username: "homiestaff",
-      password: "123456",
+      username: "test",
+      password: "123",
     });
     const accessToken = loginResponse.accessToken; // Access the access_token
 
-    // Create a query string
-
-    // const queryString = `?type=${type}&page=${page}&size=${size}`;
-
-    // Fetch products using accessToken and query string
-    const response = await axiosInstance.get(`/stores/menus`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
+    const response = await axiosInstance.get(
+      `/brands/menus?brandCode=deercoffee`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
 
     return response;
   } catch (error) {

@@ -11,6 +11,7 @@ const YourPageComponent = () => {
     const fetchProducts = async () => {
       try {
         const fetchedData = await getAllProduct();
+        console.log(fetchedData)
         const products = fetchedData.products;
         const collections = fetchedData.collections;
         const categories = fetchedData.categories;

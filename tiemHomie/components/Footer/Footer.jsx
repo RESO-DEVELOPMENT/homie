@@ -113,8 +113,8 @@ const Footer = ({}) => {
                       <li>
                         <i className="ti-location-pin" />
                         <p>
-                          132 Bến Vân Đồn P6 Q4, TP. Hồ Chí Minh (Nhà riêng, gọi
-                          trước khi qua)
+                          Địa chỉ: 132 Bến Vân Đồn, phường 6 quận 4 TP.HCM (Nhà
+                          riêng, gọi trước khi qua)
                         </p>
                       </li>
                       <li>
@@ -123,12 +123,48 @@ const Footer = ({}) => {
                           className="text-decoration-none"
                           href="mailto:info@sitename.com"
                         >
-                          tiemhomie@gmail.com
+                          Email: tiemhomie@gmail.com
                         </Link>
                       </li>
                       <li>
                         <i className="ti-mobile" />
-                        <p>0386660782</p>
+                        <p>Điện thoại: 0386660782</p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="col-lg-2 col-md-4 col-sm-6">
+                  <div className="widget">
+                    <h6 className="widget_title">Chính sách</h6>
+                    <ul className="widget_links">
+                      <li>
+                        <Link
+                          href="/chinh-sach"
+                          className="text-decoration-none"
+                        >
+                          Chính sách
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/chinh-sach-doi-tra"
+                          className="text-decoration-none"
+                        >
+                          Chính sách đổi trả
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/chinh-sach-van-chuyen"
+                          className="text-decoration-none"
+                        >
+                          Chính sách vận chuyển
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="/chinh-sach-so-huu" className="text-decoration-none">
+                          Chính sách sở hữu
+                        </Link>
                       </li>
                     </ul>
                   </div>
@@ -168,38 +204,7 @@ const Footer = ({}) => {
                     </ul>
                   </div>
                 </div>
-                <div className="col-lg-2 col-md-4 col-sm-6">
-                  <div className="widget">
-                    <h6 className="widget_title">about</h6>
-                    <ul className="widget_links">
-                      <li>
-                        <Link href="/about" className="text-decoration-none">
-                          My Account
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href="/about" className="text-decoration-none">
-                          Discount
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href="/about" className="text-decoration-none">
-                          Returns
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href="/about" className="text-decoration-none">
-                          Orders History
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href="/about" className="text-decoration-none">
-                          Order Tracking
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
+
                 <div className="col-lg-4 col-md-4 col-sm-12">
                   <div className="widget">
                     <h6 className="widget_title">Facebook, Instagram</h6>
