@@ -147,6 +147,14 @@ const Footer = ({}) => {
                       </li>
                       <li>
                         <Link
+                          href="/chinh-sach-bao-mat"
+                          className="text-decoration-none"
+                        >
+                          Chính sách bảo mật
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
                           href="/chinh-sach-doi-tra"
                           className="text-decoration-none"
                         >

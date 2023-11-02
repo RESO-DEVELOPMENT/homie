@@ -17,6 +17,11 @@ const PolicyDeliveryPage = () => {
             <h3 className="heading_s1">Chính sách vận chuyển</h3>
 
             <p>
+              Giao hàng thông qua các đơn vị vận chuyển như GrabExpress, Be
+              Delivery, Giao hàng Tiết Kiệm, J&T, Ninja Van, Giao Hàng Nhanh.
+            </p>
+
+            <p>
               Chính sách vận chuyển của chúng tôi rất đơn giản và tiện lợi cho
               khách hàng. Miễn phí vận chuyển sẽ áp dụng cho tất cả các đơn hàng
               có tổng giá trị từ 600,000đ trở lên, bất kể bạn ở tỉnh thành nào

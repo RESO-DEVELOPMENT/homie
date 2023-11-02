@@ -52,6 +52,10 @@ const PolicyPage = () => {
             <h3>Thông tin về vận chuyển và giao nhận</h3>
 
             <p>Giao hàng bằng phương thức COD (Cash On Delivery)</p>
+            <p>
+              Giao hàng thông qua các đơn vị vận chuyển như GrabExpress, Be
+              Delivery, Giao hàng Tiết Kiệm, J&T, Ninja Van, Giao Hàng Nhanh.
+            </p>
 
             <h4> Thời hạn ước tính cho việc giao hàng</h4>
 
