@@ -27,7 +27,7 @@ function Home({ products }) {
   const getSliderItems = () => {
     const itemsPerSlide = 3; // Số sản phẩm hiển thị trên mỗi slide
     const totalSlides = Math.ceil(
-      products.filter((p) => p.collectionIds.includes(collectionsData[6].id))
+      products.filter((p) => p.collectionIds.includes(collectionsData[4].id))
         .length / itemsPerSlide
     ); // Tổng số slide
     const sliderItems = [];
@@ -35,7 +35,7 @@ function Home({ products }) {
       const startIndex = i * itemsPerSlide;
       const endIndex = startIndex + itemsPerSlide;
       const slideItems = products
-        .filter((p) => p.collectionIds.includes(collectionsData[6].id))
+        .filter((p) => p.collectionIds.includes(collectionsData[4].id))
         .slice(startIndex, endIndex);
       sliderItems.push(slideItems);
     }
@@ -102,14 +102,14 @@ function Home({ products }) {
               <div className="d-flex justify-content-center">
                 <FeaturedProductHeader
                   className="d-flex justify-content-center"
-                  title={collectionsData[5].name}
+                  title={collectionsData[3].name}
                 />
               </div>
               <div className="tab-pane fade show active">
                 <SliderSection
                   sliderRef={collection1}
                   products={products.filter((p) =>
-                    p.collectionIds.includes(collectionsData[5].id)
+                    p.collectionIds.includes(collectionsData[3].id)
                   )}
                   showProductActionBox={showProductActionBox}
                 />
@@ -122,14 +122,14 @@ function Home({ products }) {
               <div className="d-flex justify-content-center">
                 <FeaturedProductHeader
                   className="d-flex justify-content-center"
-                  title={collectionsData[7].name}
+                  title={collectionsData[5].name}
                 />
               </div>
               <div className="tab-pane fade show active">
                 <SliderSection
                   sliderRef={collection0}
                   products={products.filter((p) =>
-                    p.collectionIds.includes(collectionsData[6].id)
+                    p.collectionIds.includes(collectionsData[5].id)
                   )}
                   showProductActionBox={showProductActionBox}
                 />
@@ -145,7 +145,7 @@ function Home({ products }) {
                   <div>
                     <FeaturedProductHeader
                       className="d-flex justify-content-center"
-                      title={collectionsData[6].name}
+                      title={collectionsData[4].name}
                     />
                   </div>
                   <div
@@ -189,7 +189,7 @@ function Home({ products }) {
                         {...specialSettings}
                         className="overflow-hidden"
                         products={getProductByCollectionID(
-                          collectionsData[7].id
+                          collectionsData[5].id
                         )}
                       >
                         {getSliderItems().map((sliderItems, index) => (

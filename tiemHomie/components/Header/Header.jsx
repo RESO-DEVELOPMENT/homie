@@ -274,6 +274,8 @@ const Header = ({ products }) => {
 export async function getStaticProps() {
   const data = await getAllProduct();
   const products = data.products;
+  const collections = data.collections;
+  const categories = data.categories;
   return {
     props: { products },
   };
