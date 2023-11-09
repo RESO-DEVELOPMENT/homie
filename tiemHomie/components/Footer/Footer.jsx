@@ -113,8 +113,7 @@ const Footer = ({}) => {
                       <li>
                         <i className="ti-location-pin" />
                         <p>
-                          Địa chỉ: 132 Bến Vân Đồn, phường 6 quận 4 TP.HCM (Nhà
-                          riêng, gọi trước khi qua)
+                          Địa chỉ: 132 Bến Vân Đồn, phường 6 quận 4 TP.HCM 
                         </p>
                       </li>
                       <li>

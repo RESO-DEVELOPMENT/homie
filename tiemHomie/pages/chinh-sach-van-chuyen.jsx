@@ -16,6 +16,8 @@ const PolicyDeliveryPage = () => {
           <div className="container ">
             <h3 className="heading_s1">Chính sách vận chuyển</h3>
 
+            <p>Giao hàng bằng phương thức COD (Cash On Delivery)</p>
+
             <p>
               Giao hàng thông qua các đơn vị vận chuyển như GrabExpress, Be
               Delivery, Giao hàng Tiết Kiệm, J&T, Ninja Van, Giao Hàng Nhanh.
@@ -38,6 +40,7 @@ const PolicyDeliveryPage = () => {
               chuyển sẽ là 25,000đ. Đối với những người ở khu vực ngoại thành
               HCM, phí vận chuyển sẽ là 30,000đ.
             </p>
+
             <p>
               Chúng tôi cung cấp giá trị và linh hoạt cho việc mua sắm của bạn,
               giúp bạn tiết kiệm hơn khi bạn mua ít hơn mức giá trị tối thiểu để
@@ -47,6 +50,9 @@ const PolicyDeliveryPage = () => {
               có bất kỳ câu hỏi hoặc cần thêm thông tin về chính sách vận chuyển
               của chúng tôi. Chúng tôi sẽ rất hân hạnh được phục vụ bạn!
             </p>
+            <h4> Thời hạn ước tính cho việc giao hàng</h4>
+
+<p>Giao hàng toàn quốc trong vòng 01 đến 05 ngày tùy khu vực.</p>
           </div>
         </div>
       </div>
