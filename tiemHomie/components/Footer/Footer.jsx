@@ -1,10 +1,10 @@
 import React, { FC, useState } from "react";
+
 import classes from "./Footer.module.css";
 import Link from "next/link";
 const Footer = ({}) => {
   return (
     <>
-      {" "}
       <footer className="bg_gray">
         <div className={classes.bg}>
           <div className="middle_footer">
@@ -130,6 +130,14 @@ const Footer = ({}) => {
                         <i className="ti-mobile" />
                         <p>Điện thoại: 0386660782</p>
                       </li>
+                      <li>
+                        <i className="ti-briefcase"/>
+                        <p>
+                          GPKD: 54.G.8.007589, ngày cấp 12/04/2023,
+                          <br /> Mã số thuế: 3501905238-001
+                          <br/>  Chi cục Thuế khu vực IV
+                        </p>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -137,14 +145,6 @@ const Footer = ({}) => {
                   <div className="widget">
                     <h6 className="widget_title">Chính sách</h6>
                     <ul className="widget_links">
-                      <li>
-                        <Link
-                          href="/chinh-sach"
-                          className="text-decoration-none"
-                        >
-                          Chính sách
-                        </Link>
-                      </li>
                       <li>
                         <Link
                           href="/chinh-sach-bao-mat"
@@ -167,11 +167,6 @@ const Footer = ({}) => {
                           className="text-decoration-none"
                         >
                           Chính sách vận chuyển
-                        </Link>
-                      </li>
-                      <li>
-                        <Link href="/chinh-sach-so-huu" className="text-decoration-none">
-                          Chính sách sở hữu
                         </Link>
                       </li>
                     </ul>
