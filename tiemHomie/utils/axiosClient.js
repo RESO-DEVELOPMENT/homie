@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { API_URL } from "./urls";
 
-const apiBaseUrl = "http://admin.reso.vn/api/v1";
+const apiBaseUrl = "https://admin.reso.vn/api/v1";
 
 const axiosInstance = axios.create({
   baseURL: apiBaseUrl,

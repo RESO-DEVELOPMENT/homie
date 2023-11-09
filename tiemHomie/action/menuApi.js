@@ -8,19 +8,15 @@ import axiosInstance from "../utils/axiosClient";
 export const getAllProduct = async () => {
   try {
     // Login request
-    const loginResponse = await axiosInstance.post("/auth/login", {
-      username: "test",
-      password: "123",
-    });
-    const accessToken = loginResponse.accessToken; // Access the access_token
+    // const loginResponse = await axiosInstance.post("/auth/login", {
+    //   username: "homiestaff",
+    //   password: "123456",
+    // });
+    // const accessToken = loginResponse.accessToken; // Access the access_token
 
     const response = await axiosInstance.get(
-      `/brands/menus?brandCode=deercoffee`,
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
+      `/brands/menus?brandCode=HOMIE`,
+      {}
     );
 
     return response;
