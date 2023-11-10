@@ -105,10 +105,14 @@ const ProductDetail = ({
       } else {
         dispatch(
           addToCart({
+            productInMenuId: selectedProduct.menuProductId,
             name: selectedProduct.name,
             sellingPrice: selectedProduct.sellingPrice,
             picUrl: selectedProduct.picUrl,
             sku: selectedProduct.code,
+            categoryCode: selectedProduct.categoryId,
+            type: selectedProduct.type,
+            parentProductId:selectedProduct.parentProductId,
             attribute: {
               amount: quantity,
             },

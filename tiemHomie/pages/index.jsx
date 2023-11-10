@@ -368,7 +368,6 @@ export async function getStaticProps() {
   const products = data.products; // take the products attribute in the menu
   const collections = data.collections;
   const categories = data.categories;
-
   const newProductsCollection = collections.find(
     (col) => col.code === "hang-moi-ve"
   );

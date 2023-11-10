@@ -11,29 +11,44 @@ import {
 import classes from "./CartPage.module.css";
 import { addProduct, removeProduct } from "@/redux/reducers/checkoutSlice";
 
-
 const ProductCheckout = ({
   name,
-  price,
-  image,
+  sellingPrice,
+  picUrl,
   amount,
+  type,
+  parentProductId,
+  categoryCode,
+  productInMenuId,
   handleQuantityChange,
   sku,
 }) => {
-  const { products, total } = useSelector((store) => store.cart);
-  const { products: checkoutProducts } = useSelector(
-    (store) => store.checkout
-  );
+  const { cartItems, total } = useSelector((store) => store.cart);
+  const { products: checkoutProducts,checkoutAmount, totalPriceCheckout } = useSelector((store) => store.checkout);
   const dispatch = useDispatch();
-  const [isChecked, setIsChecked] = useState(checkoutProducts.some((p) => p.sku === sku));
-
-  
+  const [isChecked, setIsChecked] = useState(
+    checkoutProducts.some((p) => p.sku === sku)
+  );
   const handleCheckboxChange = (event) => {
     const checked = event.target.checked;
     setIsChecked(checked);
 
     if (checked) {
-      dispatch(addProduct({ product: {image, name, price, amount, sku } }));
+      dispatch(
+        addProduct({
+          product: {
+            productInMenuId,
+            picUrl,
+            name,
+            sellingPrice,
+            amount,
+            sku ,
+            type,
+            categoryCode,
+            parentProductId,
+          },
+        })
+      );
     } else {
       dispatch(removeProduct({ productId: sku }));
     }
@@ -41,20 +56,22 @@ const ProductCheckout = ({
 
   useEffect(() => {
     dispatch(updateTotal());
-  }, [products, useDispatch()]);
-
-
+  }, [cartItems, useDispatch()]);
 
   const formattedPrice =
-    price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "₫";
-  const totalProductPrice = price * amount;
+    sellingPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "₫";
+  const totalProductPrice = sellingPrice * amount;
   const formatTotalProductPrice =
     totalProductPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "₫";
   return (
     <tr>
       <td className="product-thumbnail text-start">
         <Link href="#">
-          <img src={image} alt={name} style={{ width: '60%', height: '55%' }} />
+          <img
+            src={picUrl}
+            alt={name}
+            style={{ width: "60%", height: "55%" }}
+          />
         </Link>
       </td>
       <td className="product-name" data-title="Product">
@@ -74,7 +91,7 @@ const ProductCheckout = ({
         {amount}
       </td>
       <td className="product-subtotal text-center px-0" data-title="Total">
-        {formatTotalProductPrice}
+        {checkoutAmount}
       </td>
     </tr>
   );

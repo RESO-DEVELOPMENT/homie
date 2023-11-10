@@ -2,26 +2,39 @@ import React, { useState, useEffect } from "react";
 import classes from "../styles/Cart.module.css";
 import BreadCrumb from "../components/breadCrumb/BreadCrumb";
 import Link from "next/link";
-import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import { GrFormPrevious } from "react-icons/gr";
+
 import { MdLocationPin } from "react-icons/md";
 import { useSelector, useDispatch } from "react-redux";
-import { updateTotal, removeItem } from "@/redux/reducers/cartSlice";
-import ProductCardPage from "../components/Header/Cart/ProductCartPage";
-import ProductCartSidebar from "../components/Header/Cart/ProductCartSidebar";
+import { updateTotal, removeItem, clearCart } from "@/redux/reducers/cartSlice";
+import { removeAllFromCheckout } from "@/redux/reducers/checkoutSlice";
+
 import axios from "axios";
 import ProductCheckout from "../components/Header/Cart/ProductCheckout";
+import axiosInstance from "../utils/axiosClient";
+import { useRouter } from "next/router";
+import { useSnackbar } from "notistack";
 
 const CheckoutForm = () => {
-  const [data, setData] = useState([]);
+  const [customerName, setCustomerName] = useState("");
+  const [customerPhone, setCustomerPhone] = useState("");
+
+  //init to store fullAddress
+  const [selectedProvince, setSelectedProvince] = useState("");
+  const [selectedDistrict, setSelectedDistrict] = useState("");
+  const [selectedWard, setSelectedWard] = useState("");
+  const [address, setAddress] = useState("");
+
+  // store api map
   const [provinces, setProvinces] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [ward, setWard] = useState([]);
-  const [showOtherAddress, setShowOtherAddress] = useState(false);
 
+  const [showOtherAddress, setShowOtherAddress] = useState(false);
   const handleShowOtherAddress = () => {
     setShowOtherAddress(!showOtherAddress);
   };
+  const { enqueueSnackbar } = useSnackbar();
+  const router = useRouter();
 
   useEffect(() => {
     // Gọi API để lấy danh sách tỉnh, thành phố
@@ -38,6 +51,11 @@ const CheckoutForm = () => {
   const handleProvinceChange = (event) => {
     const selectedProvinceCode = event.target.value;
 
+    const province = provinces.find(
+      (p) => p.code === Number(selectedProvinceCode)
+    );
+    setSelectedProvince(province.name);
+
     // Gọi API để lấy danh sách quận, huyện dựa trên tỉnh, thành phố đã chọn
     axios
       .get(
@@ -53,6 +71,8 @@ const CheckoutForm = () => {
 
   const handleDistrictChange = (event) => {
     const selectedCity = event.target.value;
+    const district = districts.find((p) => p.code === Number(selectedCity));
+    setSelectedDistrict(district.name);
 
     // Gọi API để lấy danh sách xã dựa trên quận, huyện đã chọn
     axios
@@ -65,7 +85,13 @@ const CheckoutForm = () => {
       });
   };
 
-  // console.log(districts)
+  const handleWardChange = (event) => {
+    const selectedWardCode = event.target.value;
+
+    const wardCode = ward.find((p) => p.code === Number(selectedWardCode));
+    setSelectedWard(wardCode.name);
+  };
+  const fullAddress = `${selectedProvince}, ${selectedDistrict}, ${selectedWard}, ${address}`;
 
   const { products, totalPriceCheckout, checkoutAmount } = useSelector(
     (store) => store.checkout
@@ -78,8 +104,40 @@ const CheckoutForm = () => {
 
   var formattedTotalCheckout =
     totalPriceCheckout.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "₫";
-  var formattedNum =
-    totalPriceCheckout.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "₫";
+
+  const onCheckout = async () => {
+    const fotmatProductList = products.map((product) => {
+      const { sku, ...otherProps } = product;
+
+      return {
+        ...otherProps,
+        code: sku,
+      };
+    });
+
+    const values = {
+      storeId: "af68a1db-1fda-444c-881e-196d4610634d",
+      orderType: "EAT_IN",
+      paymentType: "CASH",
+      productList: fotmatProductList,
+      totalAmount: totalPriceCheckout,
+      finalAmount: totalPriceCheckout,
+      customerName,
+      customerPhone,
+      deliveryAddress: fullAddress,
+    };
+
+    try {
+      await axiosInstance.post("/users/order", values);
+      dispatch(removeAllFromCheckout());
+      dispatch(clearCart());
+      enqueueSnackbar("đặt hàng thành công", { variant: "success" });
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+      enqueueSnackbar("đặt hàng thất bại", { variant: "error" });
+    }
+  };
 
   return (
     <>
@@ -92,370 +150,6 @@ const CheckoutForm = () => {
           middlePath="Giỏ hàng"
         />
       </div>
-
-      {/* <div className="section">
-        <div className="container">
-         
-          <div className="row">
-            <div className="col-12">
-              <div className="medium_divider" />
-              <div className="divider center_icon">
-                <i className="linearicons-credit-card" />
-              </div>
-              <div className="medium_divider" />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-md-6">
-              <div className="heading_s1">
-                <h4>Thông tin mua hàng</h4>
-              </div>
-              <form method="post">
-                <div className="form-group mb-3">
-                  <input
-                    className="form-control"
-                    required
-                    type="text"
-                    name="billingEmail"
-                    id="billingEmail"
-                    placeholder="Email *"
-                  />
-                </div>
-                <div className="form-group mb-3">
-                  <input
-                    type="text"
-                    required
-                    className="form-control"
-                    name="billingName"
-                    id="billingName"
-                    placeholder="Họ và Tên *"
-                  />
-                </div>
-                <div className="form-group mb-3">
-                  <input
-                    className="form-control"
-                    required
-                    type="text"
-                    name="billingPhone"
-                    id="billingPhone"
-                    placeholder="Số điện thoại *"
-                  />
-                </div>
-                <div className="form-group mb-3">
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="billingAddress"
-                    id="billingAddress"
-                    required
-                    placeholder="Địa chỉ *"
-                  />
-                </div>
-
-                <div className="form-group mb-3" id="province">
-                  <div className="custom_select">
-                    <select
-                      className="form-control"
-                      id="billingProvince"
-                      onChange={handleProvinceChange}
-                    >
-                      <option value="" placeholder="">
-                        Tỉnh thành
-                      </option>
-                      {provinces.map((province) => (
-                        <option key={province.code} value={province.code}>
-                          {province.name}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-                <div
-                  className="form-group mb-3"
-                  id="city"
-                  onChange={handleDistrictChange}
-                  disabled={!provinces.length}
-                >
-                  <div className="custom_select">
-                    <select
-                      className="form-control"
-                      id="billingCity"
-                      onChange={handleDistrictChange}
-                    >
-                      <option value="">Quận, huyện</option>
-                      {districts.map((district) => (
-                        <option key={district.code} value={district.code}>
-                          {district.name}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
-                <div
-                  className="form-group mb-3"
-                  id="district"
-                  disabled={!districts.length || !provinces.length}
-                >
-                  <div className="custom_select">
-                    <select className="form-control" id="billingDistrict">
-                      <option value="">Phường, xã</option>
-                      {ward.map((district) => (
-                        <option key={district.code} value={district.code}>
-                          {district.name}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
-                <div className="ship_detail">
-                  <div className="form-group mb-3">
-                    <div className="chek-form">
-                      <div className="custome-checkbox">
-                        <input
-                          className="form-check-input"
-                          type="checkbox"
-                          name="checkbox"
-                          id="differentaddress"
-                          onClick={handleShowOtherAddress}
-                        />
-                        <label
-                          className="form-check-label label_info"
-                          htmlFor="differentaddress"
-                        >
-                          <span>Giao hàng đến địa chỉ khác</span>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-
-                  {showOtherAddress ? (
-                    <div>
-                      <div className="form-group mb-3">
-                        <input
-                          type="text"
-                          required
-                          className="form-control"
-                          name="shippingName"
-                          id="shippingName"
-                          placeholder="Họ và Tên *"
-                        />
-                      </div>
-                      <div className="form-group mb-3">
-                        <input
-                          className="form-control"
-                          required
-                          type="text"
-                          name="shippingPhone"
-                          id="shippingPhone"
-                          placeholder="Số điện thoại *"
-                        />
-                      </div>
-                      <div className="form-group mb-3">
-                        <input
-                          type="text"
-                          className="form-control"
-                          name="shippingAddress"
-                          id="shippingAddress"
-                          required
-                          placeholder="Địa chỉ *"
-                        />
-                      </div>
-
-                      <div className="form-group mb-3" id="province">
-                        <div className="custom_select">
-                          <select
-                            className="form-control"
-                            id="shippingProvince"
-                            onChange={handleProvinceChange}
-                          >
-                            <option value="" placeholder="">
-                              Tỉnh thành
-                            </option>
-                            {provinces.map((province) => (
-                              <option key={province.code} value={province.code}>
-                                {province.name}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                      </div>
-                      <div
-                        className="form-group mb-3"
-                        id="city"
-                        onChange={handleDistrictChange}
-                        disabled={!provinces.length}
-                      >
-                        <div className="custom_select">
-                          <select
-                            className="form-control"
-                            id="shippingCity"
-                            onChange={handleDistrictChange}
-                          >
-                            <option value="">Quận, huyện</option>
-                            {districts.map((district) => (
-                              <option key={district.code} value={district.code}>
-                                {district.name}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                      </div>
-
-                      <div
-                        className="form-group mb-3"
-                        id="district"
-                        disabled={!districts.length || !provinces.length}
-                      >
-                        <div className="custom_select">
-                          <select
-                            className="form-control"
-                            id="shippingDistrict"
-                          >
-                            <option value="">Phường, xã</option>
-                            {ward.map((district) => (
-                              <option key={district.code} value={district.code}>
-                                {district.name}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                  ) : (
-                    <></>
-                  )}
-                </div>
-                <div className="form-group mb-0">
-                  <textarea
-                    rows={5}
-                    className="form-control"
-                    placeholder="Ghi chú (tuỳ chọn)"
-                    defaultValue={""}
-                  />
-                </div>
-              </form>
-            </div>
-            <div className="col-md-6">
-              <div className="order_review">
-                <div className="heading_s1">
-                </div>
-                <div className="table-responsive order_table">
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th>Sản phẩm</th>
-                        <th>Giá</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {cartItems.map((item, index) => (
-                        <ProductCartSidebar
-                          key={new Date().getTime() + Math.random()}
-                          name={item.name}
-                          price={item.sellingPrice}
-                          image={item.picUrl}
-                          amount={item.attribute.amount}
-                          handleQuantityChange={(newQuantity) =>
-                            handleQuantityChange(item.id, newQuantity)
-                          }
-                        />
-                      ))}
-                    </tbody>
-                    <tfoot>
-                      <tr>
-                        <th>Tạm tính</th>
-                        <td className="product-subtotal"> {formattedTotal} </td>
-                      </tr>
-                      <tr>
-                        <th>Phí vận chuyển</th>
-                        <td>Miễn phí</td>
-                      </tr>
-                      <tr>
-                        <th>Thành tiền</th>
-                        <td className="product-subtotal"> {formattedTotal} </td>
-                      </tr>
-                    </tfoot>
-                  </table>
-                </div>
-                <div className="payment_method">
-                  <div className="heading_s1">
-                    <h4>Phương thức thanh toán</h4>
-                  </div>
-                  <div className="payment_option">
-                    <div className="custome-radio">
-                      <input
-                        className="form-check-input"
-                        required
-                        type="radio"
-                        name="payment_option"
-                        id="exampleRadios3"
-                        defaultValue="option3"
-                        defaultChecked
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="exampleRadios3"
-                      >
-                        Chuyển khoản qua ngân hàng
-                      </label>
-                      <p data-method="option3" className="payment-text">
-                        There are many variations of passages of Lorem Ipsum
-                        available, but the majority have suffered alteration.{" "}
-                      </p>
-                    </div>
-                    <div className="custome-radio">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="payment_option"
-                        id="exampleRadios4"
-                        defaultValue="option4"
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="exampleRadios4"
-                      >
-                        Thanh toán khi nhận hàng (COD)
-                      </label>
-                      <p data-method="option4" className="payment-text">
-                        Please send your cheque to Store Name, Store Street,
-                        Store Town, Store State / County, Store Postcode.
-                      </p>
-                    </div>
-                    <div className="custome-radio">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="payment_option"
-                        id="exampleRadios5"
-                        defaultValue="option5"
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="exampleRadios5"
-                      >
-                        Paypal
-                      </label>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="d-flex justify-content-around align-items-center">
-                  <Link href="/" className="col">
-                    <GrFormPrevious />
-                    <span>Tiếp Tục mua sắm</span>
-                  </Link>
-                  <a href="#" className="btn btn-fill-out">
-                    Đặt hàng
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
 
       <div className="container bg-light pb-3">
         <div className="billingAddress bg-white py-4">
@@ -473,11 +167,15 @@ const CheckoutForm = () => {
                     className="form-control"
                     type="text"
                     placeholder="Họ và tên"
+                    value={customerName}
+                    onChange={(e) => setCustomerName(e.target.value)}
                   />
                   <input
                     className="form-control mt-3"
                     type="text"
                     placeholder="Số điện thoại"
+                    value={customerPhone}
+                    onChange={(e) => setCustomerPhone(e.target.value)}
                   />
                 </div>
                 <div className=" container d-flex flex-wrap px-0 mt-3">
@@ -527,6 +225,7 @@ const CheckoutForm = () => {
                     className="form-group mb-3 w-100"
                     id="district"
                     disabled={!districts.length || !provinces.length}
+                    onChange={handleWardChange}
                   >
                     {/* <label htmlFor="district"></label> */}
                     <div className="custom_select">
@@ -546,6 +245,8 @@ const CheckoutForm = () => {
                     className="form-control"
                     type="text"
                     placeholder="Địa chỉ cụ thể"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
                   />
                 </div>
               </div>
@@ -561,7 +262,9 @@ const CheckoutForm = () => {
           </div>
         </div>
 
-        <div className={`${classes.tableProduct} billingDetail bg-white mt-3 pt-3`}>
+        <div
+          className={`${classes.tableProduct} billingDetail bg-white mt-3 pt-3`}
+        >
           <div className="text-body">
             <table className="table">
               <thead>
@@ -578,11 +281,15 @@ const CheckoutForm = () => {
                 {products.map((item, index) => (
                   <ProductCheckout
                     key={new Date().getTime() + Math.random()}
+                    productInMenuId={item.productInMenuId}
                     name={item.name}
-                    price={item.price}
-                    image={item.image}
-                    amount={item.amount}
+                    sellingPrice={item.sellingPrice}
+                    picUrl={item.picUrl}
+                    amount={item.attribute.amount}
                     sku={item.sku}
+                    type={item.type}
+                    categoryCode={item.categoryCode}
+                    parentProductId={item.parentProductId}
                     handleQuantityChange={(newQuantity) =>
                       handleQuantityChange(item.id, newQuantity)
                     }
@@ -648,30 +355,11 @@ const CheckoutForm = () => {
                   >
                     Thanh toán khi nhận hàng (COD)
                   </label>
-                  {/* <p data-method="option4" className="payment-text">
-                        Please send your cheque to Store Name, Store Street,
-                        Store Town, Store State / County, Store Postcode.
-                      </p> */}
                 </div>
-                {/* <div className="custome-radio">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="payment_option"
-                        id="exampleRadios5"
-                        defaultValue="option5"
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="exampleRadios5"
-                      >
-                        Paypal
-                      </label>
-                    </div> */}
               </div>
             </div>
             <div className="d-flex align-items-center justify-content-center col-6">
-              <Link href="#" className="btn btn-fill-out">
+              <Link href="#" className="btn btn-fill-out" onClick={onCheckout}>
                 Đặt hàng
               </Link>
             </div>

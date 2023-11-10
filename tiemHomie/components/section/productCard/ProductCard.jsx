@@ -35,7 +35,6 @@ const ProductCard = ({
   showSaleOfprice,
 }) => {
   const dispatch = useDispatch();
-
   return (
     <div className="m-1">
       <div className="product zoom2">

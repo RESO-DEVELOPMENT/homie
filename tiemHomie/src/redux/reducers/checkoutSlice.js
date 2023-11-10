@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { selectAllProducts } from "./cartSlice";
 
 const initialState = {
   products: [],
@@ -14,7 +13,7 @@ const checkoutSlice = createSlice({
     addProduct(state, action) {
       const { product } = action.payload;
       state.products.push(product);
-      state.checkoutAmount += 1;
+      state.checkoutAmount += product.attribute?.amount ?? 0;
     },
     removeProduct(state, action) {
       const { productId } = action.payload;
@@ -22,24 +21,40 @@ const checkoutSlice = createSlice({
       state.checkoutAmount -= 1;
     },
     addAllToCheckout: (state, action) => {
-      // const products = selectAllProducts(action.payload); // Assuming you have a selector in the cartSlice to get all products
-      // const products = selectAllProducts(action);
-      // state.products.push(...products);
-      // state.products = state.products.concat(products);
-    },
+      const cartItems = action.payload; // Access payload directly
+      state.products.push(...cartItems);
+      state.checkoutAmount += cartItems.length;
+    }, 
     removeAllFromCheckout: (state) => {
       state.products = [];
       state.checkoutAmount = 0;
+      state.totalPriceCheckout=0;
     },
     updateTotalCheckout: (state) => {
       let amount = 0;
       let total = 0;
       state.products.forEach((item) => {
-        amount += item.amount;
-        total += item.amount * item.price;
+        if (item.attribute) {
+          amount += item.attribute.amount;
+          total += item.attribute.amount * item.sellingPrice;  
+        }
       });
       state.checkoutAmount = amount;
       state.totalPriceCheckout = total;
+    },
+    incrementCheckoutAmount: (state, action) => {
+      const { name } = action.payload;
+      const item = state.products.find((item) => item.name === name);
+      if (item) {
+        item.attribute.amount++;
+      }
+    },
+    decrementCheckoutAmount: (state, action) => {
+      const { name } = action.payload;
+      const item = state.products.find((item) => item.name === name);
+      if (item) {
+        item.attribute.amount--;
+      }
     },
   },
 });
@@ -50,5 +65,7 @@ export const {
   addAllToCheckout,
   removeAllFromCheckout,
   updateTotalCheckout,
+  incrementCheckoutAmount,
+  decrementCheckoutAmount,
 } = checkoutSlice.actions;
 export default checkoutSlice.reducer;

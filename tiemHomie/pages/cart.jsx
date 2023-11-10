@@ -4,12 +4,12 @@ import BreadCrumb from "../components/breadCrumb/BreadCrumb";
 import Link from "next/link";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
+import { updateTotal, removeItem, clearCart } from "@/redux/reducers/cartSlice";
 import {
-  updateTotal,
-  removeItem,
-  clearCart,
-} from "@/redux/reducers/cartSlice";
-import {addAllToCheckout, removeAllFromCheckout, updateTotalCheckout} from "@/redux/reducers/checkoutSlice";
+  addAllToCheckout,
+  removeAllFromCheckout,
+  updateTotalCheckout,
+} from "@/redux/reducers/checkoutSlice";
 
 import ProductCardPage from "../components/Header/Cart/ProductCartPage";
 
@@ -100,14 +100,16 @@ import ProductCardPage from "../components/Header/Cart/ProductCartPage";
 const cart = () => {
   const [isChecked, setIsChecked] = useState(false);
   const { cartItems, total, amount } = useSelector((store) => store.cart);
-  const {products, totalPriceCheckout, checkoutAmount} = useSelector((store) => store.checkout);
+  const { products, totalPriceCheckout, checkoutAmount } = useSelector(
+    (store) => store.checkout
+  );
   const dispatch = useDispatch();
-
   const handleCheckboxChange = () => {
     if (isChecked) {
       dispatch(removeAllFromCheckout());
     } else {
-      dispatch(addAllToCheckout());
+      dispatch(removeAllFromCheckout());
+      dispatch(addAllToCheckout(cartItems));
     }
     setIsChecked(!isChecked);
   };
@@ -116,17 +118,12 @@ const cart = () => {
     dispatch(updateTotal());
   }, [cartItems, useDispatch()]);
 
-
   useEffect(() => {
     dispatch(updateTotalCheckout());
   }, [products, useDispatch()]);
 
-  var formattedTotal =
-    total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "₫";
-  var formattedNum =
-    total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "₫";
-  var formattedTotalCheckout = 
-  totalPriceCheckout.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "₫";
+  var formattedTotalCheckout =
+    totalPriceCheckout.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "₫";
   return (
     <div>
       <BreadCrumb
@@ -161,18 +158,21 @@ const cart = () => {
                           {cartItems.map((item, index) => (
                             <ProductCardPage
                               key={new Date().getTime() + Math.random()}
+                              productInMenuId={item.productInMenuId}
                               name={item.name}
-                              price={item.sellingPrice}
-                              image={item.picUrl}
+                              sellingPrice={item.sellingPrice}
+                              picUrl={item.picUrl}
                               amount={item.attribute.amount}
                               sku={item.sku}
+                              type={item.type}
+                              categoryCode={item.categoryCode}
+                              parentProductId={item.parentProductId}
                               handleQuantityChange={(newQuantity) =>
                                 handleQuantityChange(item.id, newQuantity)
                               }
                             />
                           ))}
                         </tbody>
-                        
                       </table>
                     </div>
                   </div>
@@ -228,43 +228,6 @@ const cart = () => {
                         </Link>
                       </div>
                     </div>
-
-                    {/* <div className="mt-4">
-                      <div className="heading_s1 mb-3">
-                        <div className="table-responsive">
-                          <table className="table table-borderless">
-                            <tbody>
-                              <tr>
-                                <td className="cart_total_label text-end">
-                                  Tổng thanh toán({amount} sản phẩm)
-                                </td>
-                                <td className="cart_total_amount text-end">
-                                  {formattedTotal}
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                        <div className="d-flex justify-content-end">
-                          <div className="">
-                            <Link
-                              href="/"
-                              className={`border-danger btn btn-outline-warning text-body btn-sm me-4 ${classes.btn}`}
-                            >
-                              Tiếp tục mua sắm
-                            </Link>
-                          </div>
-                          <div className="">
-                            <Link
-                              href="#"
-                              className={`border-danger btn btn-outline-warning text-body btn-sm me-3 ${classes.btn}`}
-                            >
-                              Mua hàng
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
-                    </div> */}
                   </div>
                 </div>
               </div>
@@ -302,56 +265,6 @@ const cart = () => {
                     </div>
                   </div>
                 </div>
-                {/* <div className="row">
-                  <div className="col-md-5">
-                    <Coupon></Coupon>
-                    <Ship></Ship>
-                  </div>
-                  <div className="col-md-7">
-                    <div className="mt-4">
-                      <div className="heading_s1 mb-3">
-                        <div className="table-responsive">
-                          <table className="table table-borderless">
-                            <tbody>
-                              <tr>
-                                <td className="cart_total_label text-end">
-                                  Tổng cộng
-                                </td>
-                                <td className="cart_total_amount text-end">
-                                  {formattedTotal}
-                                </td>
-                              </tr>
-                              <tr className="border-black border-top border-bottom">
-                                <td className="cart_total_label text-end">
-                                  Phí vận chuyển
-                                </td>
-                                <td className="cart_total_amount text-end">
-                                  Miễn phí
-                                </td>
-                              </tr>
-                              <tr className="border-black border-top border-bottom">
-                                <td className="cart_total_label text-end">
-                                  Tổng đơn hàng
-                                </td>
-                                <td className="cart_total_amount text-end">
-                                  {formattedTotal}
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                        <div className="text-end">
-                          <Link
-                            href="#"
-                            className={`border-danger btn btn-outline-warning text-body btn-sm ${classes.btn}`}
-                          >
-                            Hoàn tất thanh toán
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
               </div>
             </div>
           </div>
