@@ -116,7 +116,7 @@ const CheckoutForm = () => {
     });
 
     const values = {
-      storeId: "af68a1db-1fda-444c-881e-196d4610634d",
+      storeId: "6fd326ff-808e-4eac-b497-a137a5b44080",
       orderType: "EAT_IN",
       paymentType: "CASH",
       productList: fotmatProductList,
