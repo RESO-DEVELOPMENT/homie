@@ -80,7 +80,8 @@ const ProductDetail = ({
   const [selectedProduct, setSelectedProduct] = useState();
   const { enqueueSnackbar } = useSnackbar();
   const [listImage, setListImage] = useState([]);
-
+  console.log(selectedProduct);
+  console.log(product);
   //route declare
   const dispatch = useDispatch();
   const sliderRef6 = useRef(null);
@@ -112,7 +113,7 @@ const ProductDetail = ({
             sku: selectedProduct.code,
             categoryCode: selectedProduct.categoryId,
             type: selectedProduct.type,
-            parentProductId:selectedProduct.parentProductId,
+            parentProductId: selectedProduct.parentProductId,
             attribute: {
               amount: quantity,
             },
@@ -123,10 +124,14 @@ const ProductDetail = ({
     } else {
       dispatch(
         addToCart({
+          productInMenuId: product.menuProductId,
           name: product.name,
           sellingPrice: product.sellingPrice,
           picUrl: product.picUrl,
           sku: product.code,
+          categoryCode: product.categoryId,
+          type: product.type,
+          parentProductId: product.parentProductId,
           attribute: {
             amount: quantity,
           },

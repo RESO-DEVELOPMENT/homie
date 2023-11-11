@@ -97,7 +97,6 @@ const CheckoutForm = () => {
     (store) => store.checkout
   );
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(updateTotal());
   }, [products, useDispatch()]);
