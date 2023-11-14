@@ -56,7 +56,7 @@ const about = () => {
                   Hotline/Zalo: 0386660782
                   <br />
                   Liên hệ xem hàng: Chung cư Masteri Millennium 132 Bến Vân Đồn,
-                  phường 6 quận 4, TP.HCM (Nhà riêng , Gọi trước khi qua)
+                  phường 6 quận 4, TP.HCM
                 </p>
               </div>
             </div>

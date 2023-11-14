@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import classes from "../styles/Cart.module.css";
 import BreadCrumb from "../components/breadCrumb/BreadCrumb";
 import Link from "next/link";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 import { MdLocationPin } from "react-icons/md";
 import { useSelector, useDispatch } from "react-redux";
@@ -13,10 +15,12 @@ import ProductCheckout from "../components/Header/Cart/ProductCheckout";
 import axiosInstance from "../utils/axiosClient";
 import { useRouter } from "next/router";
 import { useSnackbar } from "notistack";
+import useOrder from "../hooks/useOrder";
 
 const CheckoutForm = () => {
   const [customerName, setCustomerName] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
+  const [note, setNote] = useState("");
 
   //init to store fullAddress
   const [selectedProvince, setSelectedProvince] = useState("");
@@ -29,12 +33,18 @@ const CheckoutForm = () => {
   const [districts, setDistricts] = useState([]);
   const [ward, setWard] = useState([]);
 
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const [showOtherAddress, setShowOtherAddress] = useState(false);
   const handleShowOtherAddress = () => {
     setShowOtherAddress(!showOtherAddress);
   };
   const { enqueueSnackbar } = useSnackbar();
   const router = useRouter();
+
+  const { saveOrderList } = useOrder();
 
   useEffect(() => {
     // Gọi API để lấy danh sách tỉnh, thành phố
@@ -116,18 +126,23 @@ const CheckoutForm = () => {
 
     const values = {
       storeId: "6fd326ff-808e-4eac-b497-a137a5b44080",
-      orderType: "EAT_IN",
+      orderType: "DELIVERY",
       paymentType: "CASH",
       productList: fotmatProductList,
       totalAmount: totalPriceCheckout,
       finalAmount: totalPriceCheckout,
       customerName,
       customerPhone,
+      note,
       deliveryAddress: fullAddress,
     };
 
     try {
-      await axiosInstance.post("/users/order", values);
+      const res = await axiosInstance.post("/users/order", values);
+
+      console.log(res);
+      saveOrderList(res);
+      setShow(false);
       dispatch(removeAllFromCheckout());
       dispatch(clearCart());
       enqueueSnackbar("đặt hàng thành công", { variant: "success" });
@@ -255,6 +270,8 @@ const CheckoutForm = () => {
                   className="form-control"
                   placeholder="Ghi chú (tuỳ chọn)"
                   defaultValue={""}
+                  value={note}
+                  onChange={(e) => setNote(e.target.value)}
                 />
               </div>
             </form>
@@ -311,35 +328,9 @@ const CheckoutForm = () => {
           <div className="heading_s1 p-2">
             <h4 className="w-100 ">Phương thức thanh toán</h4>
           </div>
-          <div className="d-flex pb-3">
-            <div className="d-grid ms-2 col-6">
-              <div className="payment_option">
-                <div className="custome-radio">
-                  <input
-                    className="form-check-input"
-                    required
-                    type="radio"
-                    name="payment_option"
-                    id="exampleRadios3"
-                    defaultValue="option3"
-                    defaultChecked
-                  />
-                  <label
-                    className="form-check-label text-muted"
-                    htmlFor="exampleRadios3"
-                  >
-                    Chuyển khoản qua ngân hàng
-                  </label>
-
-                  <div>
-                    Chuyển khoản vào STK: 123456789 <br />
-                    Ngân Hàng :
-                  </div>
-                  {/* <p data-method="option3" className="payment-text">
-                        There are many variations of passages of Lorem Ipsum
-                        available, but the majority have suffered alteration.{" "}
-                      </p> */}
-                </div>
+          <div className="d-flex pb-3  ">
+            <div className="d-grid ms-2 col-6 align-items-center pt-3">
+              <div className="payment_option  ">
                 <div className="custome-radio">
                   <input
                     className="form-check-input"
@@ -358,9 +349,25 @@ const CheckoutForm = () => {
               </div>
             </div>
             <div className="d-flex align-items-center justify-content-center col-6">
-              <Link href="#" className="btn btn-fill-out" onClick={onCheckout}>
-                Đặt hàng
-              </Link>
+              <>
+                <Button className="btn btn-fill-out" onClick={handleShow}>
+                  Đặt hàng
+                </Button>
+                <Modal show={show} onHide={handleClose}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Đơn hàng</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>Xác nhận đơn hàng</Modal.Body>
+                  <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                      Hủy
+                    </Button>
+                    <Button className="btn btn-fill-out" onClick={onCheckout}>
+                      Xác nhận
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
+              </>
             </div>
           </div>
         </div>

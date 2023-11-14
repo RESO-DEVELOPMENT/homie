@@ -99,6 +99,26 @@ const Header = ({ products }) => {
                     </a>
                   </li> */}
 
+                  <li className="cart_hover px-1 mt-1">
+                    <a
+                      className="nav-link cart_trigger"
+                      href="/order"
+                      data-bs-toggle=""
+                    >
+                      <i className="linearicons-bag"></i>
+                    </a>
+             
+                  </li>
+
+
+                </ul>
+                <ul className="navbar-nav attr-nav align-items-center">
+                  {/* <li className={style.loginBtn}>
+                    <a href="/">
+                      <i className="ti-user"></i>
+                    </a>
+                  </li> */}
+
                   <li className="cart_hover px-1">
                     <a
                       className="nav-link cart_trigger"

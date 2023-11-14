@@ -222,7 +222,7 @@ const cart = () => {
                       <div className="">
                         <Link
                           href="/checkout"
-                          className={`border-danger btn btn-outline-warning text-body btn-sm me-3 ${classes.btn}`}
+                          className={`border-danger btn btn-outline-warning text-body btn-sm me-3 ${classes.btnCheckout}`}
                         >
                           Mua hàng
                         </Link>

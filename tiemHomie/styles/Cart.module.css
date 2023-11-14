@@ -20,5 +20,9 @@ text-align: center;
 }
 
 .btn{
-    background-color: #F79C43;
+    background-color: #e0a56a;
+}
+
+.btnCheckout{
+    background-color: #e58b32;
 }
