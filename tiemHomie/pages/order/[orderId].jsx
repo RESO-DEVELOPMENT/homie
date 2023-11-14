@@ -1,27 +1,41 @@
-import React, { useState } from "react";
-import BreadCrumb from "../components/breadCrumb/BreadCrumb";
-import classes from "../styles/Cart.module.css";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import axiosInstance from "../../utils/axiosClient";
+import BreadCrumb from "../../components/breadCrumb/BreadCrumb";
+import OrderItem from "../../components/Order/OrderItem";
 import Link from "next/link";
+import classes from "../../styles/Cart.module.css";
+const OrderIdPage = () => {
+  const router = useRouter();
 
-import useOrder from "../hooks/useOrder";
-import OrderItem from "../components/Order/OrderItem";
+  const [order, setOrder] = useState({});
+  const [loading, setLoading] = useState(false);
 
-const Order = () => {
+  useEffect(() => {
+    const fetchOrder = async () => {
+      const res = await axiosInstance.get(
+        `/users/orders/${router.query.orderId}`
+      );
+      console.log(res);
+      setOrder(res);
+      setLoading(true);
+    };
 
-  const { orders, loading } = useOrder();
+    fetchOrder();
+  }, []);
+
   if (!loading) {
-    return <div>...loading</div>;
+    return <div>...Loading</div>;
   }
 
   return (
     <div>
       <BreadCrumb
-        title="Đơn hàng"
-        descriptionTitle="Đơn hàng của bạn"
-        middlePath="Đơn hàng"
+        title="Chi tiết đơn hàng"
+        descriptionTitle="Chi tiết đơn hàng của bạn"
+        middlePath="Chi tiết đơn hàng"
       />
-
-      {orders.length > 0 ? (
+      {order.productList.length > 0 ? (
         <>
           <div className="main_content">
             <div className="section">
@@ -32,21 +46,16 @@ const Order = () => {
                       <table className="table">
                         <thead>
                           <tr className="border-top border-bottom border-dark">
-                            <th className="product-invocedId">MÃ HÓA ĐƠN</th>
-                            <th className="product-quantity">SỐ LƯỢNG SẢN PHẨM</th>
-                            <th className="product-subtotal">TỔNG CỘNG</th>
-                            <th className="product-status">Trạng thái</th>
+                            <th className="product-name">Tên sản phẩm</th>
+                            <th className="product-price">SỐ LƯỢNG SẢN PHẨM</th>
                           </tr>
                         </thead>
                         <tbody>
-                          {orders.map((item, index) => (
+                          {order.productList.map((item, index) => (
                             <OrderItem
-                              totalAmount={item.totalAmount}
-                              orderId={item.orderId}
-                              invoiceId={item.invoiceId}
-                              orderStatus={item.orderStatus}
-                              productList={item.productList}
-                              amount={item.productList.length}
+                              key={index}
+                              name={item.name}
+                              price={item.sellingPrice}
                             />
                           ))}
                         </tbody>
@@ -117,4 +126,4 @@ const Order = () => {
   );
 };
 
-export default Order;
+export default OrderIdPage;
