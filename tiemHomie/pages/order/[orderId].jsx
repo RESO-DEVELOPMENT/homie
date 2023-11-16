@@ -47,7 +47,7 @@ const OrderIdPage = () => {
                         <thead>
                           <tr className="border-top border-bottom border-dark">
                             <th className="product-name">Tên sản phẩm</th>
-                            <th className="product-price">SỐ LƯỢNG SẢN PHẨM</th>
+                            <th className={`product-price ${classes.paddingRight}`}>Giá tiền</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -60,6 +60,86 @@ const OrderIdPage = () => {
                           ))}
                         </tbody>
                       </table>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div className="col-12 ">
+                      <div className="table-responsive shop_cart_table">
+                        <table className="table">
+                          <tbody>
+                            <tr>
+                              <td class="product-name" data-title="Product">
+                                <p class="mt-4 m-1">
+                                  <p class="CartPage_name__5cAyN">
+                                    Trạng thái đơn hàng{" "}
+                                  </p>
+                                </p>
+                              </td>
+                              <td class="product-subtotal" data-title="Total">
+                                <div class="mt-4 m-1 ">
+                                  <p>
+                                    {order.orderStatus === "PENDING" ? (
+                                      <div className="pl-4">Chờ xử lý</div>
+                                    ) : (
+                                      <div>Đã Giao</div>
+                                    )}
+                                  </p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="product-name" data-title="Product">
+                                <p class="mt-4 m-1">
+                                  <p class="CartPage_name__5cAyN">
+                                    Loại đơn hàng{" "}
+                                  </p>
+                                </p>
+                              </td>
+                              <td class="product-subtotal" data-title="Total">
+                                <div class="mt-4 m-1">
+                                  <p>{order.orderType}</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td class="product-name" data-title="Product">
+                                <p class="mt-4 m-1">
+                                  <p class="CartPage_name__5cAyN">
+                                    Hình thức thanh toán{" "}
+                                  </p>
+                                </p>
+                              </td>
+                              <td class="product-subtotal" data-title="Total">
+                                <div class="mt-4 m-1">
+                                  <p>
+                                    {order.paymentType === "CASH" && (
+                                      <div>Tiền mặt</div>
+                                    )}
+                                  </p>
+                                </div>
+                              </td>
+                            </tr>
+                            
+                            <tr>
+                              <td class="product-name" data-title="Product">
+                                <p class="mt-4 m-1">
+                                  <p class={`${classes.nameHiglight}`}>
+                                   Tổng giá tiền{" "}
+                                  </p>
+                                </p>
+                              </td>
+                              <td class="product-subtotal" data-title="Total">
+                                <div class="mt-4 m-1">
+                                <p class={`${classes.nameHiglight}`}>
+                                    {order.totalAmount}
+                                  </p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                     </div>
                   </div>
                 </div>

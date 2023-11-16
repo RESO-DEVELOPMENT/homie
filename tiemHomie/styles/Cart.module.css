@@ -13,6 +13,12 @@ font-style: normal;
     text-decoration: none;
 }
 
+.nameHiglight{
+    color: black;
+    font-weight: 600;
+    text-decoration: none;
+}
+
 .remove i{
     width: 11px;
 height: 16px;
@@ -25,4 +31,8 @@ text-align: center;
 
 .btnCheckout{
     background-color: #e58b32;
+}
+
+.paddingRight {
+    padding-right: 50px !important;
 }

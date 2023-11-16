@@ -14,13 +14,13 @@ const OrderItem = ({ name, price }) => {
   return (
     <tr>
       <td className="product-name" data-title="Product">
-        <p className="m-4" >
+        <div className={`mt-4 m-1 ${classes.paddingLeftItem} `} >
           <p className={classes.name}>{name}</p>
-        </p>
+        </div>
       </td>
 
       <td className="product-subtotal" data-title="Total">
-        <div className="mt-4 m-1">
+      <div className={`mt-4 m-1 ${classes.paddingLeftItem} `} >
           <p>{formatTotalProductPrice}</p>
         </div>
       </td>

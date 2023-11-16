@@ -19,3 +19,8 @@ text-align: center;
 .btn{
     background-color: #F79C43;
 }
+
+
+.paddingLeftItem {
+    padding-right: 38px;
+}
